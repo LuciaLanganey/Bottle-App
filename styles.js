@@ -80,14 +80,14 @@ export const AppStyles = () => {
       borderColor: theme.secondaryColor,
     },
     textInputBox: {
-      width: windowWidth*0.8,
-      height: windowHeight*0.05,
       borderRadius: 20,
-      borderWidth: 1,
-      borderStyle: 'solid',
       borderColor: theme.borderOutlineColor,
       backgroundColor: theme.white,
-      padding: 20,
+      width: windowWidth*0.8,
+      height: windowHeight*0.05,
+      margin: 12,
+      borderWidth: 1,
+      padding: 10,
     },
   });
 };

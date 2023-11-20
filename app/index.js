@@ -4,6 +4,8 @@ import { AppStyles } from "../styles";
 
 export default function Home() {
   const styles = AppStyles();
+  const [text, onChangeText] = React.useState('');
+
   if (!styles) {
     return null;
   }
@@ -19,11 +21,11 @@ export default function Home() {
         style={styles.profileImage}
       />
       <TextInput
-          style={styles.textInputBox}
-          // onChangeText={text => setInput(text)}
-          // value={input}
-          placeholder="Filler Text Here"
-        />
+        style={styles.textInputBox}
+        onChangeText={onChangeText}
+        value={text}
+        placeholder="Filler Text"
+      />
     </SafeAreaView>
   );
 }
