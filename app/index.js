@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, SafeAreaView, View, Image, TextInput, ImageBackground } from "react-native";
 import { AppStyles } from "../styles";
+import { Icon } from 'react-native-elements'
 
 export default function Home() {
   const styles = AppStyles();
@@ -14,7 +15,7 @@ export default function Home() {
     <ImageBackground source={require("../assets/background.png")} opacity='0.5' style={styles.backgroundImage}>
     <SafeAreaView>
         <Text style={styles.timeLeftText}>01h 03 m</Text>
-        <Text style={styles.timeSubheadingText}>until sent to</Text>
+        <Text style={styles.timeSubheadingText}>until sent</Text>
         <View style={styles.container}> 
           <View style={styles.button}>
             <Text style={styles.buttonText}>Change time</Text>
@@ -27,11 +28,16 @@ export default function Home() {
         <Text style={styles.personNameText}>Greg</Text>
         <View style={styles.container}> 
           <Image
-            source={require("../assets/graphics/EmptyBottle.png")}
+            source={require("../assets/graphics/bottle-cropped.png")}
             style={styles.bottleImage}
           />
         </View>
-        
+        <View style={{justifyContent:'center',alignItems:'center',alignSelf:'center', position:'absolute', bottom: '10%'}}>
+          <Icon name='add-circle' type='ionicons' color='#23AFBB' size={100} onPress={() => console.log('hello')} />
+          {/* NOTE: add button is here - change link to next screen with onPress */}
+        </View>
+
+
         {/* <TextInput
           style={styles.textInputBox}
           onChangeText={onChangeText}

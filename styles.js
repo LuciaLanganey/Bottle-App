@@ -71,10 +71,10 @@ export const AppStyles = () => {
       backgroundColor: theme.buttonColor,
       justifyContent: "center",
       marginTop: 10,
-      marginBottom: 10,
+      marginBottom: 15,
     },
     buttonText: {
-      fontSize: 18,
+      fontSize: 16,
       textAlign: "center",
       fontFamily: theme.textFont,
       color: theme.white,
@@ -87,7 +87,7 @@ export const AppStyles = () => {
       borderColor: theme.secondaryColor,
     },
     bottleImage: {
-      width: windowWidth*0.55,
+      width: windowWidth*0.7,
       height: windowHeight*0.5,
     },
     textInputBox: {
@@ -104,14 +104,14 @@ export const AppStyles = () => {
       color: theme.primaryColor,
       textAlign: "center",
       fontFamily: theme.titleFont,
-      fontSize: 40,
+      fontSize: 35,
       fontWeight: 500,
     },
     timeSubheadingText: {
       color: theme.primaryColor,
       textAlign: "center",
       fontFamily: theme.textFont,
-      fontSize: 30,
+      fontSize: 20,
     },
     personNameText: {
       color: theme.primaryColor,
