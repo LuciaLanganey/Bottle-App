@@ -17,7 +17,9 @@ export default function Home() {
         <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'center'}}>
           <Text style={styles.timeLeftText}>01h 03 m</Text>
             <Icon name='clock-edit' type='material-community' color='#23AFBB' size={40}
+              style={{alignSelf: 'center', marginTop: 50, marginLeft: 10}}
               onPress={() => console.log('hello')} />
+            
         </View>
         <Text style={styles.timeSubheadingText}>until sent</Text>
         <View style={styles.container}> 
