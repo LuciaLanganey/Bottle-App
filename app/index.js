@@ -14,12 +14,13 @@ export default function Home() {
   return (
     <ImageBackground source={require("../assets/background.png")} opacity='0.5' style={styles.backgroundImage}>
     <SafeAreaView>
-        <Text style={styles.timeLeftText}>01h 03 m</Text>
+        <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'center'}}>
+          <Text style={styles.timeLeftText}>01h 03 m</Text>
+            <Icon name='clock-edit' type='material-community' color='#23AFBB' size={40}
+              onPress={() => console.log('hello')} />
+        </View>
         <Text style={styles.timeSubheadingText}>until sent</Text>
         <View style={styles.container}> 
-          <View style={styles.button}>
-            <Text style={styles.buttonText}>Change time</Text>
-          </View>
           <View style={{alignItems: 'center'}}>
             <Image
               source={require("../assets/people/profileImage.jpg")}
@@ -29,7 +30,8 @@ export default function Home() {
         </View>
         <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'center'}}>
           <Text style={styles.personNameText}>Greg</Text>
-          <Icon name='account-edit' type='material-community' color='#23AFBB' size={50} style={{marginLeft: 'auto'}} onPress={() => console.log('hello')} />
+          <Icon name='account-edit' type='material-community' color='#23AFBB' size={50} style={{marginLeft: 'auto'}} 
+            onPress={() => console.log('hello')} />
         </View>
            
         <View style={styles.container}> 
@@ -38,7 +40,7 @@ export default function Home() {
             style={styles.bottleImage}
           />
         </View>
-        <View style={{justifyContent:'center',alignItems:'center',alignSelf:'center', position:'absolute', bottom: '10%'}}>
+        <View style={{justifyContent:'center',alignItems:'center',alignSelf:'center', position:'absolute', bottom: '13%'}}>
           <Icon name='add-circle' type='ionicons' color='#23AFBB' size={100} onPress={() => console.log('hello')} />
           {/* NOTE: add button is here - change link to next screen with onPress */}
         </View>

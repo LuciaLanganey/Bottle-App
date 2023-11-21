@@ -83,8 +83,11 @@ export const AppStyles = () => {
       width: 120,
       height: 120,
       borderRadius: 60,
+      marginTop: 10,
+      marginBottom: 10,
     },
     bottleImage: {
+      marginTop: 15, 
       width: windowWidth*0.7,
       height: windowHeight*0.5,
     },
@@ -104,6 +107,7 @@ export const AppStyles = () => {
       fontFamily: theme.titleFont,
       fontSize: 35,
       fontWeight: 500,
+      marginTop: 50,
     },
     timeSubheadingText: {
       color: theme.primaryColor,
