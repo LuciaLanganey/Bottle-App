@@ -20,12 +20,18 @@ export default function Home() {
           <View style={styles.button}>
             <Text style={styles.buttonText}>Change time</Text>
           </View>
-          <Image
-            source={require("../assets/people/profileImage.jpg")}
-            style={styles.profileImage}
-          />
+          <View style={{alignItems: 'center'}}>
+            <Image
+              source={require("../assets/people/profileImage.jpg")}
+              style={styles.profileImage}
+            />
+          </View>
         </View>
-        <Text style={styles.personNameText}>Greg</Text>
+        <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'center'}}>
+          <Text style={styles.personNameText}>Greg</Text>
+          <Icon name='account-edit' type='material-community' color='#23AFBB' size={50} style={{marginLeft: 'auto'}} onPress={() => console.log('hello')} />
+        </View>
+           
         <View style={styles.container}> 
           <Image
             source={require("../assets/graphics/bottle-cropped.png")}

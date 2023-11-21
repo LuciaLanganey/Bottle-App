@@ -82,9 +82,7 @@ export const AppStyles = () => {
     profileImage: {
       width: 120,
       height: 120,
-      borderRadius: 60, 
-      borderWidth: 3,
-      borderColor: theme.secondaryColor,
+      borderRadius: 60,
     },
     bottleImage: {
       width: windowWidth*0.7,
