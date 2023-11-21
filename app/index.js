@@ -2,10 +2,12 @@ import React from "react";
 import { Text, SafeAreaView, View, Image, TextInput, ImageBackground } from "react-native";
 import { AppStyles } from "../styles";
 import { Icon } from 'react-native-elements'
+import { useNavigation } from '@react-navigation/native';
 
 export default function Home() {
   const styles = AppStyles();
-  const [text, onChangeText] = React.useState('');
+  // const [text, onChangeText] = React.useState('');
+  const navigation = useNavigation();
 
   if (!styles) {
     return null;
@@ -17,9 +19,8 @@ export default function Home() {
         <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'center'}}>
           <Text style={styles.timeLeftText}>01h 03 m</Text>
             <Icon name='clock-edit' type='material-community' color='#23AFBB' size={40}
-              style={{alignSelf: 'center', marginTop: 50, marginLeft: 10}}
-              onPress={() => console.log('hello')} />
-            
+              style={{alignSelf: 'center', marginTop: 50, marginLeft: 10}} 
+              onPress={() => navigation.navigate('TimeScreen')} /> 
         </View>
         <Text style={styles.timeSubheadingText}>until sent</Text>
         <View style={styles.container}> 
