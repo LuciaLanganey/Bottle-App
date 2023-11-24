@@ -22,9 +22,22 @@ export default function Home() {
   };
 
   const handleConfirm = (date) => {
-    const selectedHour = date.getHours();
+    let selectedHour = date.getHours();
     const selectedMinute = date.getMinutes();
-    const formattedTime = `${selectedHour}:${selectedMinute < 10 ? '0' + selectedMinute : selectedMinute}`;
+    let amPm = 'AM';
+  
+    if (selectedHour >= 12) {
+      amPm = 'PM';
+      if (selectedHour > 12) {
+        selectedHour -= 12;
+      }
+    }
+  
+    if (selectedHour === 0) {
+      selectedHour = 12;
+    }
+  
+    const formattedTime = `${selectedHour}:${selectedMinute < 10 ? '0' + selectedMinute : selectedMinute} ${amPm}`;
     setSelectedTime(formattedTime);
     hideDatePicker();
   };
@@ -38,7 +51,7 @@ export default function Home() {
       selected.setMinutes(minutes);
 
       let difference = selected.getTime() - now.getTime();
-      
+
       if (difference < 0) {
         selected.setDate(selected.getDate() + 1);
         difference = selected.getTime() - now.getTime();
