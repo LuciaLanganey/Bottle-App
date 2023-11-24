@@ -1,13 +1,33 @@
-import React from "react";
-import { Text, SafeAreaView, View, Image, TextInput, ImageBackground } from "react-native";
+import React, { useState } from "react";
+import { Text, SafeAreaView, View, Image, TextInput, ImageBackground, TouchableOpacity } from "react-native";
 import { AppStyles } from "../styles";
 import { Icon } from 'react-native-elements'
 import { useNavigation } from '@react-navigation/native';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 export default function Home() {
   const styles = AppStyles();
   // const [text, onChangeText] = React.useState('');
   const navigation = useNavigation();
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+  const [selectedTime, setSelectedTime] = useState('11:00 AM');
+
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+  const handleConfirm = (date) => {
+    const selectedHour = date.getHours();
+    const selectedMinute = date.getMinutes();
+    const formattedTime = `${selectedHour}:${selectedMinute < 10 ? '0' + selectedMinute : selectedMinute}`;
+    setSelectedTime(formattedTime);
+    hideDatePicker();
+  };
+
 
   if (!styles) {
     return null;
@@ -20,7 +40,7 @@ export default function Home() {
           <Text style={styles.timeLeftText}>01h 03 m</Text>
             <Icon name='clock-edit' type='material-community' color='#23AFBB' size={40}
               style={{alignSelf: 'center', marginTop: 50, marginLeft: 10}} 
-              onPress={() => navigation.navigate('TimeScreen')} /> 
+              onPress={() => showDatePicker()} /> 
         </View>
         <Text style={styles.timeSubheadingText}>until sent</Text>
         <View style={styles.container}> 
@@ -55,6 +75,30 @@ export default function Home() {
           value={text}
           placeholder="Filler Text"
         /> */}
+        <DateTimePickerModal
+          isVisible={isDatePickerVisible}
+          mode="time"
+          onConfirm={handleConfirm}
+          onCancel={hideDatePicker}
+          textColor='#186174'
+          customHeaderIOS={(headerProps) => (
+            <View style={{ justifyContent: 'space-between', alignItems: 'center', paddingVertical: 10, paddingHorizontal: 20 }}>
+              <Text style={{ color: '#186174', fontSize: 18, marginTop: 20, marginBottom: 10 }}>Change your bottle delivery time</Text>
+              <Text style={{ color: '#186174', fontSize: 24, fontWeight: 700 }}>{selectedTime}</Text>
+              <Text style={{ color: '#186174', fontSize: 18, marginTop: 10}}>to:</Text>
+            </View>
+          )}
+          customCancelButtonIOS={(cancelProps) => (
+            <TouchableOpacity onPress={cancelProps.onPress } style={{backgroundColor: 'white', alignItems: 'center', borderRadius: 10}}>
+              <Text style={{ color: '#23AFBB', fontSize: 20, paddingHorizontal: 20, paddingVertical: 15 }}>Cancel</Text>
+            </TouchableOpacity>
+          )}
+          customConfirmButtonIOS={(confirmProps) => (
+            <TouchableOpacity onPress={confirmProps.onPress}  style={{backgroundColor: '#23AFBB', alignItems: 'center'}}>
+              <Text style={{ color: 'white', fontSize: 20, paddingHorizontal: 20, paddingVertical: 15, fontWeight: 600}}>Confirm</Text>
+            </TouchableOpacity>
+          )}
+        />
     </SafeAreaView>
     </ImageBackground>
   );
