@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Text, SafeAreaView, View, Image, TextInput, ImageBackground, TouchableOpacity } from "react-native";
 import { AppStyles } from "../styles";
 import { Icon } from 'react-native-elements'
@@ -11,6 +11,7 @@ export default function Home() {
   const navigation = useNavigation();
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [selectedTime, setSelectedTime] = useState('11:00 AM');
+  const [timeLeft, setTimeLeft] = useState('00h 00m');
 
   const showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -28,6 +29,31 @@ export default function Home() {
     hideDatePicker();
   };
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const now = new Date();
+      const selected = new Date();
+      const [hours, minutes] = selectedTime.split(':').map((str) => parseInt(str));
+      selected.setHours(hours);
+      selected.setMinutes(minutes);
+
+      let difference = selected.getTime() - now.getTime();
+      
+      if (difference < 0) {
+        selected.setDate(selected.getDate() + 1);
+        difference = selected.getTime() - now.getTime();
+      }
+
+      const hoursLeft = Math.floor(difference / (1000 * 60 * 60));
+      const minutesLeft = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+
+      const formattedTimeLeft = `${hoursLeft.toString().padStart(2, '0')}h ${minutesLeft.toString().padStart(2, '0')}m`;
+      setTimeLeft(formattedTimeLeft);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [selectedTime]);
+
 
   if (!styles) {
     return null;
@@ -37,7 +63,7 @@ export default function Home() {
     <ImageBackground source={require("../assets/background.png")} opacity='0.5' style={styles.backgroundImage}>
     <SafeAreaView>
         <View style={{flexDirection:'row', alignItems: 'center', justifyContent: 'center'}}>
-          <Text style={styles.timeLeftText}>01h 03 m</Text>
+          <Text style={styles.timeLeftText}>{timeLeft}</Text>
             <Icon name='clock-edit' type='material-community' color='#23AFBB' size={40}
               style={{alignSelf: 'center', marginTop: 50, marginLeft: 10}} 
               onPress={() => showDatePicker()} /> 
@@ -89,7 +115,7 @@ export default function Home() {
             </View>
           )}
           customCancelButtonIOS={(cancelProps) => (
-            <TouchableOpacity onPress={cancelProps.onPress } style={{backgroundColor: 'white', alignItems: 'center', borderRadius: 10}}>
+            <TouchableOpacity onPress={cancelProps.onPress } style={{backgroundColor: 'white', alignItems: 'center', borderRadius: 15}}>
               <Text style={{ color: '#23AFBB', fontSize: 20, paddingHorizontal: 20, paddingVertical: 15 }}>Cancel</Text>
             </TouchableOpacity>
           )}
