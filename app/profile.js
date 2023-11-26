@@ -5,7 +5,7 @@ export default function Profile() {
   return (
     <View style={styles.container}>
       <Text>Profile</Text>
-      <Text>Hi</Text>
+      <Text>Hi Bottle team</Text>
       <StatusBar style="auto" />
     </View>
   );
