@@ -13,13 +13,14 @@ import {
   Button,
   FlatList,
 } from "react-native";
-import { AppStyles } from "../styles";
+import { AppStyles } from "../utils/styles";
 import { Icon } from "react-native-elements";
 import { FontAwesome } from "@expo/vector-icons";
 
 import { useNavigation } from "@react-navigation/native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-// import { TextInput } from "react-native-gesture-handler";
+import Supabase from "../utils/Supabase";
+import Reciever from "../components/Reciever";
 
 export default function Home() {
   const styles = AppStyles();
@@ -103,14 +104,81 @@ export default function Home() {
     // In a real application, you would perform a search using the searchQuery
     // and update the searchResults state with the actual search results.
     // For simplicity, we'll just simulate some search results here.
-    const simulatedResults = [
-      { id: "1", name: "Result 1" },
-      { id: "2", name: "Result 2" },
-      { id: "3", name: "Result 3" },
-    ];
+    const simulatedResults = data;
 
     setSearchResults(simulatedResults);
   };
+
+  // supabase rendering profile
+
+  const [data, setData] = useState(null);
+
+  const handleRecordUpdated = (payload) => {
+    console.log("UPDATE", payload);
+    setData((oldData) => [...oldData, payload.new]);
+  };
+
+  const handleRecordInserted = (payload) => {
+    console.log("INSERT", payload);
+    setData((oldData) => [...oldData, payload.new]);
+  };
+
+  const handleRecordDeleted = (payload) => {
+    console.log("DELETE", payload);
+    setData((oldData) => oldData.filter((item) => item.id !== payload.old.id));
+  };
+
+  const updateSelectedReceiver = async (selectedReceiver) => {
+    try {
+      const response = await Supabase.from("Friends").insert({
+        receiver_id: selectedReceiver.id,
+        receiver_name: selectedReceiver.name,
+        receiver_image_url: selectedReceiver.image_url,
+        // Add any other receiver-related information you want to store
+      });
+      console.log("Updated selected receiver:", response);
+    } catch (error) {
+      console.error("Error updating selected receiver:", error);
+    }
+  };
+
+  const renderReciever = ({ item }) => {
+    return (
+      <Reciever id={item.id} name={item.name} image_url={item.image_url} />
+    );
+  };
+
+  useEffect(() => {
+    // Listen for changes to db
+    // From https://supabase.com/docs/guides/realtime/concepts#postgres-changes
+    Supabase.channel("schema-db-changes")
+      .on(
+        "postgres_changes",
+        { event: "UPDATE", schema: "public", table: "Friends" },
+        handleRecordUpdated
+      )
+      .on(
+        "postgres_changes",
+        { event: "INSERT", schema: "public", table: "Friends" },
+        handleRecordInserted
+      )
+      .on(
+        "postgres_changes",
+        { event: "DELETE", schema: "public", table: "Friends" },
+        handleRecordDeleted
+      )
+      .subscribe();
+  }, []);
+
+  useEffect(() => {
+    // Fetch data on initial load
+    const fetchData = async () => {
+      const response = await Supabase.from("Friends").select("*");
+      setData(response.data);
+      console.log(response);
+    };
+    fetchData();
+  }, []);
 
   if (!styles) {
     return null;
@@ -168,7 +236,7 @@ export default function Home() {
                 {/* Current Reciever Pic and Name*/}
                 <View style={{ alignItems: "center" }}>
                   <Image
-                    source={require("../assets/people/profileImage.jpg")}
+                    source={require("../assets/people/greg.jpg")}
                     style={styles.modalRecieverImage}
                   />
                   <Text style={styles.modalRecieverName}>Greg</Text>
@@ -194,17 +262,14 @@ export default function Home() {
                 </View>
 
                 {/* Scrollable list of all friends */}
-                {searchResults.length > 0 && (
-                  <FlatList
-                    data={searchResults}
-                    keyExtractor={(item) => item.id}
-                    renderItem={({ item }) => (
-                      <View style={{ marginTop: 10 }}>
-                        <Text>{item.name}</Text>
-                      </View>
-                    )}
-                  />
-                )}
+                <FlatList
+                  data={data}
+                  renderItem={renderReciever}
+                  keyExtractor={(item) => item.id}
+                  style={styles.posts}
+                />
+
+                {/* )} */}
 
                 <Pressable
                   style={[styles.button]}
@@ -218,7 +283,7 @@ export default function Home() {
 
           <View style={{ alignItems: "center" }}>
             <Image
-              source={require("../assets/people/profileImage.jpg")}
+              source={require("../assets/people/greg.jpg")}
               style={styles.profileImage}
             />
           </View>

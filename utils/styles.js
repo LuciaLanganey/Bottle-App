@@ -17,8 +17,8 @@ const { height: windowHeight, width: windowWidth } = Dimensions.get("window");
 
 export const AppStyles = () => {
   const [fontsLoaded] = useFonts({
-    "Inter-Bold": require("./assets/fonts/Inter-Bold.ttf"),
-    "Inter-Regular": require("./assets/fonts/Inter-Regular.ttf"),
+    "Inter-Bold": require("../assets/fonts/Inter-Bold.ttf"),
+    "Inter-Regular": require("../assets/fonts/Inter-Regular.ttf"),
   });
 
   if (!fontsLoaded) {
@@ -207,3 +207,4 @@ export const AppStyles = () => {
     },
   });
 };
+
