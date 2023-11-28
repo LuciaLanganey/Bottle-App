@@ -137,6 +137,7 @@ export const AppStyles = () => {
     },
     modalView: {
       width: windowWidth * 0.8,
+      height: windowHeight * 0.6,
       margin: 20,
       backgroundColor: "white",
       borderRadius: 20,
@@ -172,20 +173,21 @@ export const AppStyles = () => {
       textAlign: "center",
       fontFamily: theme.titleFont,
       fontSize: 16,
-      margin: 10,
+      margin: 5,
+      // margin: 10,
     },
     modalRecieverImage: {
-      width: 100,
-      height: 100,
+      width: 80,
+      height: 80,
       borderRadius: 60,
-      marginTop: 10,
-      marginBottom: 10,
+      margin: 5,
     },
     modalRecieverName: {
       color: theme.primaryColor,
       textAlign: "center",
       fontFamily: theme.textFont,
       fontSize: 16,
+      margin: 5,
     },
 
     // search bar
@@ -194,16 +196,44 @@ export const AppStyles = () => {
       borderColor: theme.borderOutlineColor,
       backgroundColor: theme.white,
       width: windowWidth * 0.6,
-      height: windowHeight * 0.05,
+      height: windowHeight * 0.04,
       borderWidth: 1,
       padding: 10,
       margin: 10,
     },
+
     closeIconContainer: {
       position: "absolute",
       top: 0,
       right: 0,
       padding: 10,
+    },
+
+    recieverListContainer: {
+      width: windowWidth * 0.7,
+      height: windowHeight * 0.2,
+      alignContent: "center",
+      borderColor: "red",
+      borderWidth: 2,
+    },
+
+    reciever: {
+      flexDirection: "col",
+      alignItems: "center",
+      borderColor: "blue",
+      borderWidth: 2,
+      margin: 10,
+    },
+
+    resultsName: {
+      color: theme.primaryColor,
+      fontFamily: theme.textFont,
+      fontSize: 16,
+    },
+    resultsImage: {
+      width: 70,
+      height: 70,
+      borderRadius: 60,
     },
   });
 };

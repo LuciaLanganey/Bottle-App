@@ -10,14 +10,10 @@ import {
   Modal,
   Pressable,
   TextInput,
-  Button,
   FlatList,
 } from "react-native";
 import { AppStyles } from "../utils/styles";
 import { Icon } from "react-native-elements";
-import { FontAwesome } from "@expo/vector-icons";
-
-import { useNavigation } from "@react-navigation/native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import Supabase from "../utils/Supabase";
 import Reciever from "../components/Reciever";
@@ -25,7 +21,6 @@ import Reciever from "../components/Reciever";
 export default function Home() {
   const styles = AppStyles();
   // const [text, onChangeText] = React.useState('');
-  const navigation = useNavigation();
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [selectedTime, setSelectedTime] = useState("11:00 AM");
   const [timeLeft, setTimeLeft] = useState("00h 00m");
@@ -98,20 +93,13 @@ export default function Home() {
 
   // search bar
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+  let [searchResults, setSearchResults] = useState([]);
+  const [data, setData] = useState([]);
 
   const handleSearch = () => {
-    // In a real application, you would perform a search using the searchQuery
-    // and update the searchResults state with the actual search results.
-    // For simplicity, we'll just simulate some search results here.
-    const simulatedResults = data;
-
-    setSearchResults(simulatedResults);
+    searchResults = data;
+    setSearchResults(searchResults);
   };
-
-  // supabase rendering profile
-
-  const [data, setData] = useState(null);
 
   const handleRecordUpdated = (payload) => {
     console.log("UPDATE", payload);
@@ -128,23 +116,29 @@ export default function Home() {
     setData((oldData) => oldData.filter((item) => item.id !== payload.old.id));
   };
 
-  const updateSelectedReceiver = async (selectedReceiver) => {
-    try {
-      const response = await Supabase.from("Friends").insert({
-        receiver_id: selectedReceiver.id,
-        receiver_name: selectedReceiver.name,
-        receiver_image_url: selectedReceiver.image_url,
-        // Add any other receiver-related information you want to store
-      });
-      console.log("Updated selected receiver:", response);
-    } catch (error) {
-      console.error("Error updating selected receiver:", error);
-    }
-  };
+  // const updateSelectedReceiver = async (selectedReceiver) => {
+  //   try {
+  //     const response = await Supabase.from("Friends").insert({
+  //       receiver_id: selectedReceiver.id,
+  //       receiver_first_name: selectedReceiver.first_name,
+  //       receiver_last_name: selectedReceiver.last_name,
+  //       receiver_image_url: selectedReceiver.image_url,
+  //       // Add any other receiver-related information you want to store
+  //     });
+  //     console.log("Updated selected receiver:", response);
+  //   } catch (error) {
+  //     console.error("Error updating selected receiver:", error);
+  //   }
+  // };
 
   const renderReciever = ({ item }) => {
     return (
-      <Reciever id={item.id} name={item.name} image_url={item.image_url} />
+      <Reciever
+      id={item.id}
+      first_name={item.first_name}
+      last_name={item.last_name}
+      image_url={item.image_url}
+      />
     );
   };
 
@@ -249,8 +243,7 @@ export default function Home() {
                     name="search"
                     type="font-awesome"
                     color="#23AFBB"
-                    size={30}
-                    style={{ marginRight: 10 }}
+                    size={20}
                     onPress={() => handleSearch()}
                   />
                   <TextInput
@@ -262,12 +255,15 @@ export default function Home() {
                 </View>
 
                 {/* Scrollable list of all friends */}
-                <FlatList
-                  data={data}
-                  renderItem={renderReciever}
-                  keyExtractor={(item) => item.id}
-                  style={styles.posts}
-                />
+                <View style={styles.recieverListContainer}>
+                  <FlatList
+                    data={data}
+                    renderItem={({ item }) => <Reciever {...item} />}
+                    keyExtractor={(item) => item.id}
+                    numColumns={3}
+                  />
+                </View>
+                
 
                 {/* )} */}
 

@@ -1,22 +1,19 @@
-import { useState } from "react";
+import React from 'react';
 import {
   Text,
   View,
-  StyleSheet,
   Image,
-  TextInput,
-  Pressable,
 } from "react-native";
 
-import { AppStyles } from "../utils/styles";
+import { AppStyles } from '../utils/styles';
 
-const styles = AppStyles();
 
-const Reciever = ({ id, name, image_url }) => {
+const Reciever = ({ id, first_name, last_name, image_url }) => {
+  const styles = AppStyles();
   return (
-    <View>
-      <Image source={{ uri: image_url }} style={styles.modalReceiverImage} />
-      <Text style={styles.modalReceiverName}>{name}</Text>
+      <View style={styles.reciever}>
+        <Image source={require("../assets/background.png")} style={styles.resultsImage} />
+        <Text style={styles.resultsName}>{first_name}</Text>
     </View>
   );
 };
