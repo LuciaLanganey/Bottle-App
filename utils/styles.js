@@ -1,21 +1,21 @@
 import { StyleSheet, Dimensions } from "react-native";
 import { useFonts } from "expo-font";
 
-const theme = {
-  backgroundColor: "#ffffff",
-  primaryColor: "#186174",
-  secondaryColor: "#23AFBB",
-  borderOutlineColor: "#D9D9D9",
-  buttonColor: "#23AFBB",
-  white: "#FFFFFF",
-  black: "#000000",
-  titleFont: "Inter-Bold",
-  textFont: "Inter-Regular",
-};
-
-const { height: windowHeight, width: windowWidth } = Dimensions.get("window");
-
 export const AppStyles = () => {
+  const theme = {
+    backgroundColor: "#ffffff",
+    primaryColor: "#186174",
+    secondaryColor: "#23AFBB",
+    borderOutlineColor: "#D9D9D9",
+    buttonColor: "#23AFBB",
+    white: "#FFFFFF",
+    black: "#000000",
+    titleFont: "Inter-Bold",
+    textFont: "Inter-Regular",
+  };
+
+  const { height: windowHeight, width: windowWidth } = Dimensions.get("window");
+
   const [fontsLoaded] = useFonts({
     "Inter-Bold": require("../assets/fonts/Inter-Bold.ttf"),
     "Inter-Regular": require("../assets/fonts/Inter-Regular.ttf"),
@@ -63,6 +63,38 @@ export const AppStyles = () => {
       textAlign: "center",
       fontFamily: theme.titleFont,
       color: theme.primaryColor,
+    },
+    subHeading: {
+      fontSize: 21,
+      textAlign: "center",
+      fontFamily: theme.titleFont,
+      color: theme.primaryColor,
+    },
+
+    titleContainer: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+      // borderWidth: 2,
+      // borderColor: 'blue'
+      // paddingHorizontal: 16,
+      // paddingTop: 16,
+    },
+
+    headerContainer: {
+      // display: flex,
+      // alignItems: flex-start, /* Change to flex-start for top alignment */
+      // justifyContent: 'center', /* Adjust as needed for horizontal alignment */
+      // borderWidth: 2,
+      // borderColor: 'blue'
+      // paddingHorizontal: 16,
+      // paddingTop: 16,
+    },
+
+    backIconContainer: {
+      marginLeft: 5, // Adjust the margin as needed
+      paddingHorizontal: 16,
+      paddingTop: 16,
     },
     button: {
       width: windowWidth * 0.4,
@@ -209,20 +241,29 @@ export const AppStyles = () => {
       padding: 10,
     },
 
+    // backIconContainer: {
+    //   position: 'absolute',
+    //   top: 0,
+    //   left: 0,
+    // },
+
     recieverListContainer: {
-      width: windowWidth * 0.7,
+      width: windowWidth * 0.8,
       height: windowHeight * 0.2,
       alignContent: "center",
-      borderColor: "red",
-      borderWidth: 2,
+      // borderColor: "red",
+      // borderWidth: 2,
+      justifyContent: "center",
+      alignItems: "center",
+      display: "flex",
     },
 
     reciever: {
       flexDirection: "col",
       alignItems: "center",
-      borderColor: "blue",
-      borderWidth: 2,
-      margin: 10,
+      // borderColor: "blue",
+      // borderWidth: 2,
+      margin: 5,
     },
 
     resultsName: {
@@ -231,10 +272,32 @@ export const AppStyles = () => {
       fontSize: 16,
     },
     resultsImage: {
-      width: 70,
-      height: 70,
+      width: 60,
+      height: 60,
       borderRadius: 60,
     },
+
+    // reciever overlays
+    checkmarkContainer: {
+      position: 'absolute',
+      position: 'absolute',
+      top: 5,
+      right: 5,
+    },
+
+    checkmarkCircle: {
+      backgroundColor: theme.primaryColor,
+      borderRadius: 12,
+      width: 24,
+      height: 24,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    checkmarkText: {
+      color: 'white',
+      fontSize: 16,
+      fontWeight: 'bold',
+    },
+    
   });
 };
-

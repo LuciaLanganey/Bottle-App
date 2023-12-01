@@ -17,15 +17,129 @@ import { Icon } from "react-native-elements";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import Supabase from "../utils/Supabase";
 import Reciever from "../components/Reciever";
+import { Link } from "expo-router";
 
 export default function Home() {
   const styles = AppStyles();
-  // const [text, onChangeText] = React.useState('');
+
+  // General Supabase Functions:
+  const handleRecordUpdated = (payload) => {
+    console.log("UPDATE", payload);
+    setRecipients((oldRecipients) => {
+      const updatedRecipients = oldRecipients.map((recipient) =>
+        recipient.id === payload.new.id ? payload.new : recipient
+      );
+      return updatedRecipients;
+    });
+  };
+
+  const handleRecordInserted = (payload) => {
+    console.log("INSERT", payload);
+    setRecipients((oldRecipients) => [...oldRecipients, payload.new]);
+  };
+
+  const handleRecordDeleted = (payload) => {
+    console.log("DELETE", payload);
+    setRecipients((oldRecipients) =>
+      oldRecipients.filter((recipient) => recipient.id !== payload.old.id)
+    );
+  };
+
+  useEffect(() => {
+    // Listen for changes to db
+    // From https://supabase.com/docs/guides/realtime/concepts#postgres-changes
+    Supabase.channel("schema-db-changes")
+      .on(
+        "postgres_changes",
+        { event: "UPDATE", schema: "public", table: "Friends" },
+        handleRecordUpdated
+      )
+      .on(
+        "postgres_changes",
+        { event: "INSERT", schema: "public", table: "Friends" },
+        handleRecordInserted
+      )
+      .on(
+        "postgres_changes",
+        { event: "DELETE", schema: "public", table: "Friends" },
+        handleRecordDeleted
+      )
+      .subscribe();
+  }, []);
+
+  useEffect(() => {
+    // Fetch data on initial load
+    const fetchData = async () => {
+      const response = await Supabase.from("Friends").select("*");
+      setData(response.data);
+    };
+    fetchData();
+  }, []);
+
+  // fetch all recievers and current reciever:
+  const [recipients, setRecipients] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Fetch all recipients
+        const { data, error } = await Supabase.from("Friends").select("*");
+
+        if (error) {
+          console.error("Error fetching recipients:", error);
+          return;
+        }
+
+        // Find the recipient with is_selected set to true
+        const selectedRecipient = data.find(
+          (recipient) => recipient.is_selected
+        );
+
+        // Set recipients and selected recipient in state
+        setRecipients(data);
+        setSelectedRecipient(selectedRecipient || null); // Set to null if none found
+      } catch (error) {
+        console.error("Error fetching and setting recipients:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // Select new reciever code:
+  const [selectedRecipient, setSelectedRecipient] = useState(null);
+
+  const handleRecieverChange = async (potentialRecipient) => {
+    try {
+      // Update the new recipient's is_selected field to true
+      await Supabase.from("Friends")
+        .update([{ is_selected: true }])
+        .eq("id", potentialRecipient.id);
+
+      // Update the previously selected recipient's is_selected field to false
+      if (selectedRecipient) {
+        await Supabase.from("Friends")
+          .update([{ is_selected: false }])
+          .eq("id", selectedRecipient.id);
+      }
+
+      // Update the local state
+      setSelectedRecipient(potentialRecipient);
+      console.log("Recipient Changed");
+    } catch (error) {
+      console.error("Error updating is_selected field:", error);
+    }
+  };
+
+  const select = (newRecipient) => {
+    potentialRecipient = newRecipient;
+  };
+
+  // time picker code:
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [selectedTime, setSelectedTime] = useState("11:00 AM");
   const [timeLeft, setTimeLeft] = useState("00h 00m");
 
-  // time picker functions
   const showDatePicker = () => {
     setDatePickerVisibility(true);
   };
@@ -88,7 +202,7 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [selectedTime]);
 
-  // change reciever functions
+  // modal code
   const [modalVisible, setModalVisible] = useState(false);
 
   // search bar
@@ -100,79 +214,6 @@ export default function Home() {
     searchResults = data;
     setSearchResults(searchResults);
   };
-
-  const handleRecordUpdated = (payload) => {
-    console.log("UPDATE", payload);
-    setData((oldData) => [...oldData, payload.new]);
-  };
-
-  const handleRecordInserted = (payload) => {
-    console.log("INSERT", payload);
-    setData((oldData) => [...oldData, payload.new]);
-  };
-
-  const handleRecordDeleted = (payload) => {
-    console.log("DELETE", payload);
-    setData((oldData) => oldData.filter((item) => item.id !== payload.old.id));
-  };
-
-  // const updateSelectedReceiver = async (selectedReceiver) => {
-  //   try {
-  //     const response = await Supabase.from("Friends").insert({
-  //       receiver_id: selectedReceiver.id,
-  //       receiver_first_name: selectedReceiver.first_name,
-  //       receiver_last_name: selectedReceiver.last_name,
-  //       receiver_image_url: selectedReceiver.image_url,
-  //       // Add any other receiver-related information you want to store
-  //     });
-  //     console.log("Updated selected receiver:", response);
-  //   } catch (error) {
-  //     console.error("Error updating selected receiver:", error);
-  //   }
-  // };
-
-  const renderReciever = ({ item }) => {
-    return (
-      <Reciever
-      id={item.id}
-      first_name={item.first_name}
-      last_name={item.last_name}
-      image_url={item.image_url}
-      />
-    );
-  };
-
-  useEffect(() => {
-    // Listen for changes to db
-    // From https://supabase.com/docs/guides/realtime/concepts#postgres-changes
-    Supabase.channel("schema-db-changes")
-      .on(
-        "postgres_changes",
-        { event: "UPDATE", schema: "public", table: "Friends" },
-        handleRecordUpdated
-      )
-      .on(
-        "postgres_changes",
-        { event: "INSERT", schema: "public", table: "Friends" },
-        handleRecordInserted
-      )
-      .on(
-        "postgres_changes",
-        { event: "DELETE", schema: "public", table: "Friends" },
-        handleRecordDeleted
-      )
-      .subscribe();
-  }, []);
-
-  useEffect(() => {
-    // Fetch data on initial load
-    const fetchData = async () => {
-      const response = await Supabase.from("Friends").select("*");
-      setData(response.data);
-      console.log(response);
-    };
-    fetchData();
-  }, []);
 
   if (!styles) {
     return null;
@@ -230,10 +271,16 @@ export default function Home() {
                 {/* Current Reciever Pic and Name*/}
                 <View style={{ alignItems: "center" }}>
                   <Image
-                    source={require("../assets/people/greg.jpg")}
+                    source={require("../assets/people/profile.jpg")}
                     style={styles.modalRecieverImage}
                   />
-                  <Text style={styles.modalRecieverName}>Greg</Text>
+                  {selectedRecipient && (
+                    <>
+                      <Text style={styles.personNameText}>
+                        {selectedRecipient.first_name}
+                      </Text>
+                    </>
+                  )}
                 </View>
 
                 <Text style={styles.modalText}>Select a new reciever:</Text>
@@ -257,19 +304,33 @@ export default function Home() {
                 {/* Scrollable list of all friends */}
                 <View style={styles.recieverListContainer}>
                   <FlatList
-                    data={data}
-                    renderItem={({ item }) => <Reciever {...item} />}
-                    keyExtractor={(item) => item.id}
+                    data={recipients}
+                    renderItem={({ item }) => (
+                      <Reciever
+                        id={item.id}
+                        first_name={item.first_name}
+                        last_name={item.last_name}
+                        image_url={item.image_url}
+                        onPress={() => {
+                          select(item);
+                        }}
+                        isSelected={
+                          selectedRecipient && selectedRecipient.id === item.id
+                        }
+                      />
+                    )}
+                    keyExtractor={(item) => item.id.toString()}
                     numColumns={3}
                   />
                 </View>
-                
-
-                {/* )} */}
 
                 <Pressable
                   style={[styles.button]}
-                  onPress={() => setModalVisible(!modalVisible)}
+                  onPress={() => {
+                    setModalVisible(!modalVisible);
+                    handleRecieverChange(potentialRecipient);
+                    // setSelectedRecipient(potentialRecipient);
+                  }}
                 >
                   <Text style={styles.textStyle}>Done</Text>
                 </Pressable>
@@ -279,7 +340,7 @@ export default function Home() {
 
           <View style={{ alignItems: "center" }}>
             <Image
-              source={require("../assets/people/greg.jpg")}
+              source={require("../assets/people/profile.jpg")}
               style={styles.profileImage}
             />
           </View>
@@ -291,7 +352,13 @@ export default function Home() {
             justifyContent: "center",
           }}
         >
-          <Text style={styles.personNameText}>Greg</Text>
+          {selectedRecipient && (
+            <>
+              <Text style={styles.personNameText}>
+                {selectedRecipient.first_name}
+              </Text>
+            </>
+          )}
           <Icon
             name="account-edit"
             type="material-community"
@@ -317,13 +384,14 @@ export default function Home() {
             bottom: "13%",
           }}
         >
-          <Icon
-            name="add-circle"
-            type="ionicons"
-            color="#23AFBB"
-            size={100}
-            onPress={() => console.log("hello")}
-          />
+          <Link href="/addMoment" asChild>
+            <Icon
+              name="add-circle"
+              type="ionicons"
+              color="#23AFBB"
+              size={100}
+            />
+          </Link>
           {/* NOTE: add button is here - change link to next screen with onPress */}
         </View>
 
