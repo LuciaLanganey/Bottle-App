@@ -13,11 +13,6 @@
     "@react-native-async-storage/async-storage": "^1.21.0",
     "@react-navigation/stack": "^6.3.20",
     "@supabase/supabase-js": "^2.39.0",
-<<<<<<< HEAD
-    "async-storage": "^0.1.0",
-=======
-    "base64-arraybuffer": "^1.0.2",
->>>>>>> 64211b6ea75ec4b0d50be7d23f40d2472fd0a41e
     "expo": "~49.0.15",
     "expo-constants": "~14.4.2",
     "expo-file-system": "~15.4.5",
