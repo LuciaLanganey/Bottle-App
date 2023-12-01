@@ -14,8 +14,7 @@ export default function addMoment() {
       opacity="0.5"
       style={styles.backgroundImage}
     >
-        <SafeAreaView style={styles.container}>
-        <View style={styles.headerContainer}>
+        <SafeAreaView style={styles.headerContainer}>
           <View style={styles.backIconContainer}>
             <Link href="home" asChild>
               <Ionicons
@@ -26,11 +25,13 @@ export default function addMoment() {
               />
             </Link>
           </View>
+        <View style={styles.titleContainer}>
+          <View style={{flex: 1, borderWidth: 2, borderColor: 'blue'}}></View>
           <Text style={styles.subHeading}>Add Moment</Text>
-          {/* Add an empty View or any other components to center the header */}
-          <View style={{ flex: 1 }} />
+          <View style={{flex: 1, borderWidth: 2, borderColor: 'blue'}}></View>
         </View>
-        {/* The rest of your component content */}
+
+
       </SafeAreaView>
     </ImageBackground>
     

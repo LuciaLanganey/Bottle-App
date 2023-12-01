@@ -71,15 +71,30 @@ export const AppStyles = () => {
       color: theme.primaryColor,
     },
 
-    headerContainer: {
+    titleContainer: {
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "space-between",
+      // borderWidth: 2,
+      // borderColor: 'blue'
+      // paddingHorizontal: 16,
+      // paddingTop: 16,
+    },
+
+    headerContainer: {
+      // display: flex,
+      // alignItems: flex-start, /* Change to flex-start for top alignment */
+      // justifyContent: 'center', /* Adjust as needed for horizontal alignment */
+      // borderWidth: 2,
+      // borderColor: 'blue'
+      // paddingHorizontal: 16,
+      // paddingTop: 16,
+    },
+
+    backIconContainer: {
+      marginLeft: 5, // Adjust the margin as needed
       paddingHorizontal: 16,
       paddingTop: 16,
-    },
-    backIconContainer: {
-      marginRight: 10, // Adjust the margin as needed
     },
     button: {
       width: windowWidth * 0.4,
