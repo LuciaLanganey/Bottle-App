@@ -17,10 +17,52 @@ import { Icon } from "react-native-elements";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import Supabase from "../utils/Supabase";
 import Reciever from "../components/Reciever";
+import { Link } from "expo-router";
 
 export default function Home() {
   const styles = AppStyles();
+
+  // selected reciever check code:
+  const [selectedReceiver, setSelectedReceiver] = useState(null);
+
+  const handleReceiverPress = (selected) => {
+    setSelectedReceiver(selected);
+  }
+
+  // change reciever code:
+  const [selectedRecipient, setSelectedRecipient] = useState(null);
+  const [recipients, setRecipients] = useState([]);
+
+  // fetch current reciever
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Fetch all recipients
+        const { data, error } = await Supabase.from("Friends").select("*");
+  
+        if (error) {
+          console.error("Error fetching recipients:", error);
+          return;
+        }
+  
+        // Find the recipient with is_selected set to true
+        const selectedRecipient = data.find((recipient) => recipient.is_selected);
+  
+        // Set recipients and selected recipient in state
+        setRecipients(data);
+        setSelectedRecipient(selectedRecipient || null); // Set to null if none found
+      } catch (error) {
+        console.error("Error fetching and setting recipients:", error);
+      }
+    };
+  
+    fetchData();
+  }, []);
+  
+
+
   // const [text, onChangeText] = React.useState('');
+
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [selectedTime, setSelectedTime] = useState("11:00 AM");
   const [timeLeft, setTimeLeft] = useState("00h 00m");
@@ -88,6 +130,13 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [selectedTime]);
 
+  // add moment icon navigation
+  // const navigation = useNavigation();
+
+  // const handleIconPress = () => {
+  //   navigation.navigate('AddMoment'); // Replace 'DetailsScreen' with your actual screen name
+  // };
+
   // change reciever functions
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -101,19 +150,31 @@ export default function Home() {
     setSearchResults(searchResults);
   };
 
+  const handlePress = (newRecipient) => {
+    potentialRecipient = newRecipient;
+    // setSelectedRecipient(newRecipient);
+  }
+
   const handleRecordUpdated = (payload) => {
     console.log("UPDATE", payload);
-    setData((oldData) => [...oldData, payload.new]);
+    setRecipients((oldRecipients) => {
+      const updatedRecipients = oldRecipients.map((recipient) =>
+        recipient.id === payload.new.id ? payload.new : recipient
+      );
+      return updatedRecipients;
+    });
   };
-
+  
   const handleRecordInserted = (payload) => {
     console.log("INSERT", payload);
-    setData((oldData) => [...oldData, payload.new]);
+    setRecipients((oldRecipients) => [...oldRecipients, payload.new]);
   };
-
+  
   const handleRecordDeleted = (payload) => {
     console.log("DELETE", payload);
-    setData((oldData) => oldData.filter((item) => item.id !== payload.old.id));
+    setRecipients((oldRecipients) =>
+      oldRecipients.filter((recipient) => recipient.id !== payload.old.id)
+    );
   };
 
   // const updateSelectedReceiver = async (selectedReceiver) => {
@@ -131,17 +192,30 @@ export default function Home() {
   //   }
   // };
 
-  const renderReciever = ({ item }) => {
-    return (
-      <Reciever
-      id={item.id}
-      first_name={item.first_name}
-      last_name={item.last_name}
-      image_url={item.image_url}
-      />
-    );
-  };
+  // const renderReciever = ({ item }) => {
+  //   return (
+  //     <TouchableOpacity
+  //     onPress={() => {
+  //       setSelectedReceiver(item.first_name);
+  //       setModalVisible(!modalVisible);
+  //     }}
+  //   >
+  //     <Reciever
+  //       id={item.id}
+  //       first_name={item.first_name}
+  //       last_name={item.last_name}
+  //       image_url={item.image_url}
+  //     />
+  //   </TouchableOpacity>
+  //   );
+  // };
 
+  // const handleReceiverSelection = (selectedReceiver) => {
+  //   setSelectedReceiver(selectedReceiver);
+  //   console.log(selectedReceiver);
+  //   // setModalVisible(false); // Close the modal after selection
+  // };
+  
   useEffect(() => {
     // Listen for changes to db
     // From https://supabase.com/docs/guides/realtime/concepts#postgres-changes
@@ -230,10 +304,16 @@ export default function Home() {
                 {/* Current Reciever Pic and Name*/}
                 <View style={{ alignItems: "center" }}>
                   <Image
-                    source={require("../assets/people/greg.jpg")}
+                    source={require("../assets/people/profile.jpg")}
                     style={styles.modalRecieverImage}
                   />
-                  <Text style={styles.modalRecieverName}>Greg</Text>
+                  {/* <Text style={styles.modalRecieverName}>Greg</Text> */}
+                  {selectedRecipient && (
+                    <>
+                      {/* <Image source={{ uri: selectedRecipient.image_url }} style={styles.profileImage} /> */}
+                      <Text style={styles.personNameText}>{selectedRecipient.first_name}</Text>
+                    </>
+                  )}
                 </View>
 
                 <Text style={styles.modalText}>Select a new reciever:</Text>
@@ -256,20 +336,33 @@ export default function Home() {
 
                 {/* Scrollable list of all friends */}
                 <View style={styles.recieverListContainer}>
-                  <FlatList
-                    data={data}
-                    renderItem={({ item }) => <Reciever {...item} />}
-                    keyExtractor={(item) => item.id}
-                    numColumns={3}
-                  />
+                <FlatList
+                  data={recipients}
+                  renderItem={({ item }) => (
+                    <Reciever
+                      id={item.id}
+                      first_name={item.first_name}
+                      last_name={item.last_name}
+                      image_url={item.image_url}
+                      onPress={() => {
+                        handlePress(item)
+                        handleReceiverPress
+                      }}
+                      isSelected={selectedReceiver && selectedReceiver.id === item.id}
+                    />
+                  )}
+                  keyExtractor={(item) => item.id.toString()}
+                  numColumns={3}
+                />
                 </View>
-                
-
-                {/* )} */}
 
                 <Pressable
                   style={[styles.button]}
-                  onPress={() => setModalVisible(!modalVisible)}
+                  onPress={() => {
+                    setModalVisible(!modalVisible)
+                    setSelectedRecipient(potentialRecipient);
+                  }
+                }
                 >
                   <Text style={styles.textStyle}>Done</Text>
                 </Pressable>
@@ -279,7 +372,7 @@ export default function Home() {
 
           <View style={{ alignItems: "center" }}>
             <Image
-              source={require("../assets/people/greg.jpg")}
+              source={require("../assets/people/profile.jpg")}
               style={styles.profileImage}
             />
           </View>
@@ -291,15 +384,22 @@ export default function Home() {
             justifyContent: "center",
           }}
         >
-          <Text style={styles.personNameText}>Greg</Text>
-          <Icon
-            name="account-edit"
-            type="material-community"
-            color="#23AFBB"
-            size={50}
-            style={{ marginLeft: "auto" }}
-            onPress={() => setModalVisible(true)}
-          />
+          {selectedRecipient && (
+            <>
+              {/* <Image source={{ uri: selectedRecipient.image_url }} style={styles.profileImage} /> */}
+              <Text style={styles.personNameText}>{selectedRecipient.first_name}</Text>
+            </>
+          )}
+          
+          {/* <Text style={styles.personNameText}>Greg</Text> */}
+            <Icon
+              name="account-edit"
+              type="material-community"
+              color="#23AFBB"
+              size={50}
+              style={{ marginLeft: "auto" }}
+              onPress={() => setModalVisible(true)}
+            />
         </View>
 
         <View style={styles.container}>
@@ -317,13 +417,14 @@ export default function Home() {
             bottom: "13%",
           }}
         >
-          <Icon
-            name="add-circle"
-            type="ionicons"
-            color="#23AFBB"
-            size={100}
-            onPress={() => console.log("hello")}
-          />
+          <Link href="/addMoment" asChild>
+            <Icon
+              name="add-circle"
+              type="ionicons"
+              color="#23AFBB"
+              size={100}
+            />
+          </Link>
           {/* NOTE: add button is here - change link to next screen with onPress */}
         </View>
 
