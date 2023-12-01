@@ -22,32 +22,79 @@ import { Link } from "expo-router";
 export default function Home() {
   const styles = AppStyles();
 
-  // selected reciever check code:
-  const [selectedReceiver, setSelectedReceiver] = useState(null);
+  // General Supabase Functions:
+  const handleRecordUpdated = (payload) => {
+    console.log("UPDATE", payload);
+    setRecipients((oldRecipients) => {
+      const updatedRecipients = oldRecipients.map((recipient) =>
+        recipient.id === payload.new.id ? payload.new : recipient
+      );
+      return updatedRecipients;
+    });
+  };
 
-  const handleReceiverPress = (selected) => {
-    setSelectedReceiver(selected);
-  }
+  const handleRecordInserted = (payload) => {
+    console.log("INSERT", payload);
+    setRecipients((oldRecipients) => [...oldRecipients, payload.new]);
+  };
 
-  // change reciever code:
-  const [selectedRecipient, setSelectedRecipient] = useState(null);
+  const handleRecordDeleted = (payload) => {
+    console.log("DELETE", payload);
+    setRecipients((oldRecipients) =>
+      oldRecipients.filter((recipient) => recipient.id !== payload.old.id)
+    );
+  };
+
+  useEffect(() => {
+    // Listen for changes to db
+    // From https://supabase.com/docs/guides/realtime/concepts#postgres-changes
+    Supabase.channel("schema-db-changes")
+      .on(
+        "postgres_changes",
+        { event: "UPDATE", schema: "public", table: "Friends" },
+        handleRecordUpdated
+      )
+      .on(
+        "postgres_changes",
+        { event: "INSERT", schema: "public", table: "Friends" },
+        handleRecordInserted
+      )
+      .on(
+        "postgres_changes",
+        { event: "DELETE", schema: "public", table: "Friends" },
+        handleRecordDeleted
+      )
+      .subscribe();
+  }, []);
+
+  useEffect(() => {
+    // Fetch data on initial load
+    const fetchData = async () => {
+      const response = await Supabase.from("Friends").select("*");
+      setData(response.data);
+    };
+    fetchData();
+  }, []);
+
+  // fetch all recievers and current reciever:
   const [recipients, setRecipients] = useState([]);
 
-  // fetch current reciever
   useEffect(() => {
     const fetchData = async () => {
       try {
         // Fetch all recipients
         const { data, error } = await Supabase.from("Friends").select("*");
-  
+
         if (error) {
           console.error("Error fetching recipients:", error);
           return;
         }
-  
+
         // Find the recipient with is_selected set to true
-        const selectedRecipient = data.find((recipient) => recipient.is_selected);
-  
+        const selectedRecipient = data.find(
+          (recipient) => recipient.is_selected
+        );
+
         // Set recipients and selected recipient in state
         setRecipients(data);
         setSelectedRecipient(selectedRecipient || null); // Set to null if none found
@@ -55,19 +102,44 @@ export default function Home() {
         console.error("Error fetching and setting recipients:", error);
       }
     };
-  
+
     fetchData();
   }, []);
-  
 
+  // Select new reciever code:
+  const [selectedRecipient, setSelectedRecipient] = useState(null);
 
-  // const [text, onChangeText] = React.useState('');
+  const handleRecieverChange = async (potentialRecipient) => {
+    try {
+      // Update the new recipient's is_selected field to true
+      await Supabase.from("Friends")
+        .update([{ is_selected: true }])
+        .eq("id", potentialRecipient.id);
 
+      // Update the previously selected recipient's is_selected field to false
+      if (selectedRecipient) {
+        await Supabase.from("Friends")
+          .update([{ is_selected: false }])
+          .eq("id", selectedRecipient.id);
+      }
+
+      // Update the local state
+      setSelectedRecipient(potentialRecipient);
+      console.log("Recipient Changed");
+    } catch (error) {
+      console.error("Error updating is_selected field:", error);
+    }
+  };
+
+  const select = (newRecipient) => {
+    potentialRecipient = newRecipient;
+  };
+
+  // time picker code:
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [selectedTime, setSelectedTime] = useState("11:00 AM");
   const [timeLeft, setTimeLeft] = useState("00h 00m");
 
-  // time picker functions
   const showDatePicker = () => {
     setDatePickerVisibility(true);
   };
@@ -130,14 +202,7 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [selectedTime]);
 
-  // add moment icon navigation
-  // const navigation = useNavigation();
-
-  // const handleIconPress = () => {
-  //   navigation.navigate('AddMoment'); // Replace 'DetailsScreen' with your actual screen name
-  // };
-
-  // change reciever functions
+  // modal code
   const [modalVisible, setModalVisible] = useState(false);
 
   // search bar
@@ -149,104 +214,6 @@ export default function Home() {
     searchResults = data;
     setSearchResults(searchResults);
   };
-
-  const handlePress = (newRecipient) => {
-    potentialRecipient = newRecipient;
-    // setSelectedRecipient(newRecipient);
-  }
-
-  const handleRecordUpdated = (payload) => {
-    console.log("UPDATE", payload);
-    setRecipients((oldRecipients) => {
-      const updatedRecipients = oldRecipients.map((recipient) =>
-        recipient.id === payload.new.id ? payload.new : recipient
-      );
-      return updatedRecipients;
-    });
-  };
-  
-  const handleRecordInserted = (payload) => {
-    console.log("INSERT", payload);
-    setRecipients((oldRecipients) => [...oldRecipients, payload.new]);
-  };
-  
-  const handleRecordDeleted = (payload) => {
-    console.log("DELETE", payload);
-    setRecipients((oldRecipients) =>
-      oldRecipients.filter((recipient) => recipient.id !== payload.old.id)
-    );
-  };
-
-  // const updateSelectedReceiver = async (selectedReceiver) => {
-  //   try {
-  //     const response = await Supabase.from("Friends").insert({
-  //       receiver_id: selectedReceiver.id,
-  //       receiver_first_name: selectedReceiver.first_name,
-  //       receiver_last_name: selectedReceiver.last_name,
-  //       receiver_image_url: selectedReceiver.image_url,
-  //       // Add any other receiver-related information you want to store
-  //     });
-  //     console.log("Updated selected receiver:", response);
-  //   } catch (error) {
-  //     console.error("Error updating selected receiver:", error);
-  //   }
-  // };
-
-  // const renderReciever = ({ item }) => {
-  //   return (
-  //     <TouchableOpacity
-  //     onPress={() => {
-  //       setSelectedReceiver(item.first_name);
-  //       setModalVisible(!modalVisible);
-  //     }}
-  //   >
-  //     <Reciever
-  //       id={item.id}
-  //       first_name={item.first_name}
-  //       last_name={item.last_name}
-  //       image_url={item.image_url}
-  //     />
-  //   </TouchableOpacity>
-  //   );
-  // };
-
-  // const handleReceiverSelection = (selectedReceiver) => {
-  //   setSelectedReceiver(selectedReceiver);
-  //   console.log(selectedReceiver);
-  //   // setModalVisible(false); // Close the modal after selection
-  // };
-  
-  useEffect(() => {
-    // Listen for changes to db
-    // From https://supabase.com/docs/guides/realtime/concepts#postgres-changes
-    Supabase.channel("schema-db-changes")
-      .on(
-        "postgres_changes",
-        { event: "UPDATE", schema: "public", table: "Friends" },
-        handleRecordUpdated
-      )
-      .on(
-        "postgres_changes",
-        { event: "INSERT", schema: "public", table: "Friends" },
-        handleRecordInserted
-      )
-      .on(
-        "postgres_changes",
-        { event: "DELETE", schema: "public", table: "Friends" },
-        handleRecordDeleted
-      )
-      .subscribe();
-  }, []);
-
-  useEffect(() => {
-    // Fetch data on initial load
-    const fetchData = async () => {
-      const response = await Supabase.from("Friends").select("*");
-      setData(response.data);
-      console.log(response);
-    };
-    fetchData();
-  }, []);
 
   if (!styles) {
     return null;
@@ -307,11 +274,11 @@ export default function Home() {
                     source={require("../assets/people/profile.jpg")}
                     style={styles.modalRecieverImage}
                   />
-                  {/* <Text style={styles.modalRecieverName}>Greg</Text> */}
                   {selectedRecipient && (
                     <>
-                      {/* <Image source={{ uri: selectedRecipient.image_url }} style={styles.profileImage} /> */}
-                      <Text style={styles.personNameText}>{selectedRecipient.first_name}</Text>
+                      <Text style={styles.personNameText}>
+                        {selectedRecipient.first_name}
+                      </Text>
                     </>
                   )}
                 </View>
@@ -336,33 +303,34 @@ export default function Home() {
 
                 {/* Scrollable list of all friends */}
                 <View style={styles.recieverListContainer}>
-                <FlatList
-                  data={recipients}
-                  renderItem={({ item }) => (
-                    <Reciever
-                      id={item.id}
-                      first_name={item.first_name}
-                      last_name={item.last_name}
-                      image_url={item.image_url}
-                      onPress={() => {
-                        handlePress(item)
-                        handleReceiverPress
-                      }}
-                      isSelected={selectedReceiver && selectedReceiver.id === item.id}
-                    />
-                  )}
-                  keyExtractor={(item) => item.id.toString()}
-                  numColumns={3}
-                />
+                  <FlatList
+                    data={recipients}
+                    renderItem={({ item }) => (
+                      <Reciever
+                        id={item.id}
+                        first_name={item.first_name}
+                        last_name={item.last_name}
+                        image_url={item.image_url}
+                        onPress={() => {
+                          select(item);
+                        }}
+                        isSelected={
+                          selectedRecipient && selectedRecipient.id === item.id
+                        }
+                      />
+                    )}
+                    keyExtractor={(item) => item.id.toString()}
+                    numColumns={3}
+                  />
                 </View>
 
                 <Pressable
                   style={[styles.button]}
                   onPress={() => {
-                    setModalVisible(!modalVisible)
-                    setSelectedRecipient(potentialRecipient);
-                  }
-                }
+                    setModalVisible(!modalVisible);
+                    handleRecieverChange(potentialRecipient);
+                    // setSelectedRecipient(potentialRecipient);
+                  }}
                 >
                   <Text style={styles.textStyle}>Done</Text>
                 </Pressable>
@@ -386,20 +354,19 @@ export default function Home() {
         >
           {selectedRecipient && (
             <>
-              {/* <Image source={{ uri: selectedRecipient.image_url }} style={styles.profileImage} /> */}
-              <Text style={styles.personNameText}>{selectedRecipient.first_name}</Text>
+              <Text style={styles.personNameText}>
+                {selectedRecipient.first_name}
+              </Text>
             </>
           )}
-          
-          {/* <Text style={styles.personNameText}>Greg</Text> */}
-            <Icon
-              name="account-edit"
-              type="material-community"
-              color="#23AFBB"
-              size={50}
-              style={{ marginLeft: "auto" }}
-              onPress={() => setModalVisible(true)}
-            />
+          <Icon
+            name="account-edit"
+            type="material-community"
+            color="#23AFBB"
+            size={50}
+            style={{ marginLeft: "auto" }}
+            onPress={() => setModalVisible(true)}
+          />
         </View>
 
         <View style={styles.container}>
