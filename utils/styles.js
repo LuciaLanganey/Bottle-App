@@ -316,7 +316,8 @@ export const AppStyles = () => {
       textAlign: "left",
       fontFamily: theme.textFont,
       fontSize: 16,
-      marginTop: 8,
+      marginTop: 0,
+      paddingTop: 0,
       marginBottom: 5,
     },
     momentBottle: {
