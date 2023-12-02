@@ -296,5 +296,10 @@ export const AppStyles = () => {
       fontSize: 16,
       fontWeight: "bold",
     },
+    selectMedia: {
+      backgroundColor: 'white',
+      borderRadius: 73,
+      borderOutlineColor: 'gray',
+    }
   });
 };
