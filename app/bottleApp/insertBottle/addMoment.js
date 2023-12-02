@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { Text, View, Image, ImageBackground } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import { AppStyles } from "../../../utils/styles";
@@ -6,11 +6,12 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Link } from "expo-router";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
-
+import { useFocusEffect } from '@react-navigation/native';
 
 
 export default function addMoment() {
   const styles = AppStyles();
+
   return (
     <ImageBackground
       source={require("../../../assets/background.png")}
