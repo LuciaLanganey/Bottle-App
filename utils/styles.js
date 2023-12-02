@@ -298,12 +298,27 @@ export const AppStyles = () => {
     },
     selectMedia: {
       backgroundColor: 'white',
-      borderRadius: 73,
+      borderRadius: 82,
       borderOutlineColor: 'gray',
     },
     mediaButton: {
       padding: 10,
       alignItems: 'center',
+    },
+    momentTimeText: {
+      color: theme.primaryColor,
+      textAlign: "left",
+      fontFamily: theme.textFont,
+      fontSize: 13,
+      paddingBottom: 10
+    }, 
+    momentCaptionText: {
+      color: theme.primaryColor,
+      textAlign: "left",
+      fontFamily: theme.textFont,
+      fontSize: 16,
+      marginTop: 8,
+      marginBottom: 5,
     }
   });
 };

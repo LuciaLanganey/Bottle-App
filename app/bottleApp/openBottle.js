@@ -21,26 +21,34 @@ const styles2 = {
     resizeMode: 'contain', // Maintain aspect ratio while fitting within width
   },
   profileImage: {
-    width: 80,
-    height: 80,
+    width: 100,
+    height: 100,
     borderRadius: 60,
     marginTop: 10,
     marginBottom: 10,
   },
+  momentsImage: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    width: windowWidth * 0.8,
+    resizeMode: 'contain',
+    alignItems: "center",
+    alignSelf: "center",
+  },
   centeredView: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-end",
     alignItems: "center",
-    marginTop: 22,
+    marginBottom: 105,
   },
   modalView: {
     width: windowWidth * 0.8,
-    height: windowHeight * 0.6,
+    height: windowHeight * 0.4,
     margin: 20,
     backgroundColor: "white",
     borderRadius: 20,
     padding: 35,
-    alignItems: "center",
+    alignItems: "left",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -64,7 +72,7 @@ export default function openBottle() {
           style={styles.backgroundImage}
         >
           <View style={styles2.container}>
-            <View style={{marginBottom: 50}}>
+            <View style={{marginBottom: 30}}>
               <Image
                 source={require("../../assets/graphics/bottle-reverse.png")}
                 style={styles2.bottleImage}
@@ -94,26 +102,24 @@ export default function openBottle() {
                 {/* Modal Content */}
                 <View style={styles2.centeredView}>
                   <View style={styles2.modalView}>
-                    <View style={styles2.closeIconContainer}>
-                      <Icon
-                        name="close"
-                        type="ionicons"
-                        color="#23AFBB"
-                        size={30}
-                        onPress={() => setModalVisible(!modalVisible)}
-                      />
-                    </View>
-                    <Text style={styles.modalText}>Moment</Text>
-                    <Pressable
+                    <Image 
+                      source={require("../../assets/moments/knitting.jpeg")}
+                      style={styles2.momentsImage}/>
+                    <Text style={styles.momentCaptionText}>Went to my weekly knitting club</Text>
+                    <Text style={styles.momentTimeText}>Today at 07:27 AM</Text>
+                    
+                    <View style={{alignSelf: "center"}}>
+                      <Pressable
                       style={[styles.button]}
                       onPress={() => {
                         setModalVisible(!modalVisible);
-                        handleRecieverChange(potentialRecipient);
-                        // setSelectedRecipient(potentialRecipient);
                       }}
                     >
-                      <Text style={styles.textStyle}>Done</Text>
+                      <Text style={styles.textStyle}>Close</Text>
+                      
                     </Pressable>
+                    </View>
+                    
                   </View>
                 </View>
               </Modal>
@@ -130,6 +136,14 @@ export default function openBottle() {
               >
                 <Text style={styles.textStyle}>Open</Text>
               </Pressable>
+              <Pressable
+                style={[styles.button]}
+                onPress={() => {
+                  setModalVisible(true)
+                }}
+              >
+                <Text style={styles.textStyle}>Archive</Text>
+              </Pressable>
             </View>
 
             <View
@@ -143,7 +157,7 @@ export default function openBottle() {
             >
               <View style={{ alignItems: "center" }}>
               <Image
-                source={require("../../assets/people/profile.jpg")}
+                source={require("../../assets/people/grandma.jpeg")}
                 style={styles2.profileImage}
               />
               </View>
