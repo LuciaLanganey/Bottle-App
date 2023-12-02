@@ -384,7 +384,7 @@ export default function Home() {
             bottom: "13%",
           }}
         >
-          <Link href={{ pathname: 'bottleApp/addMoment' }}>
+          <Link href={{ pathname: 'bottleApp/insertBottle/addMoment' }}>
             <Icon
               name="add-circle"
               type="ionicons"

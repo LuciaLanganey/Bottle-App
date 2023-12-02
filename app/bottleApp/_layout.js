@@ -62,6 +62,16 @@ export default function Layout() {
           href: null,
         }}
       />
+      <Tabs.Screen
+        name="insertBottle"
+        options={{
+          tabBarLabel: "addMoment",
+          tabBarIcon: ({ size, color }) => (
+            <Ionicons name="person" size={40} color={color} />
+          ),
+          href: null,
+        }}
+      />
     </Tabs>
   );
 }
