@@ -310,13 +310,14 @@ export const AppStyles = () => {
       textAlign: "left",
       fontFamily: theme.textFont,
       fontSize: 13,
+      paddingBottom: 10
     }, 
     momentCaptionText: {
       color: theme.primaryColor,
       textAlign: "left",
       fontFamily: theme.textFont,
       fontSize: 16,
-      marginTop: 5,
+      marginTop: 8,
       marginBottom: 5,
     }
   });

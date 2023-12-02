@@ -32,6 +32,8 @@ const styles2 = {
     justifyContent: 'flex-start',
     width: windowWidth * 0.8,
     resizeMode: 'contain',
+    alignItems: "center",
+    alignSelf: "center",
   },
   centeredView: {
     flex: 1,
@@ -46,7 +48,7 @@ const styles2 = {
     backgroundColor: "white",
     borderRadius: 20,
     padding: 35,
-    alignItems: "center",
+    alignItems: "left",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -105,14 +107,19 @@ export default function openBottle() {
                       style={styles2.momentsImage}/>
                     <Text style={styles.momentCaptionText}>Went to my weekly knitting club</Text>
                     <Text style={styles.momentTimeText}>Today at 07:27 AM</Text>
-                    <Pressable
+                    
+                    <View style={{alignSelf: "center"}}>
+                      <Pressable
                       style={[styles.button]}
                       onPress={() => {
                         setModalVisible(!modalVisible);
                       }}
                     >
                       <Text style={styles.textStyle}>Close</Text>
+                      
                     </Pressable>
+                    </View>
+                    
                   </View>
                 </View>
               </Modal>
