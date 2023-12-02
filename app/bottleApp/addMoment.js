@@ -15,12 +15,11 @@ export default function addMoment() {
         >
         <SafeAreaView style={styles.headerContainer}>
           <View style={styles.backIconContainer}>
-            <Link href="home" asChild>
+            <Link href={{ pathname: 'bottleApp/home' }}>
               <Ionicons
                 name="arrow-back-circle"
                 size={35}
                 color="#23AFBB"
-                onPress={() => console.log("back button pressed")}
               />
             </Link>
           </View>
