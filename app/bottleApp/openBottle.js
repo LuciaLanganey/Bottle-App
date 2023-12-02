@@ -1,9 +1,10 @@
-import React from "react";
-import { Text, View, ImageBackground, Image, Pressable, Modal } from "react-native";
-import { Ionicons } from '@expo/vector-icons'; 
+import React, { useState, useEffect } from "react";
+import { Text, View, ImageBackground, Image, Pressable, Modal, Dimensions } from "react-native";
+import { Icon } from "react-native-elements";
 import { AppStyles } from "../../utils/styles";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { Link } from "expo-router";
+
+const { height: windowHeight, width: windowWidth } = Dimensions.get("window");
 
 const styles2 = {
   container: {
@@ -25,11 +26,37 @@ const styles2 = {
     borderRadius: 60,
     marginTop: 10,
     marginBottom: 10,
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+  },
+  modalView: {
+    width: windowWidth * 0.8,
+    height: windowHeight * 0.6,
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
   }
 };
 
 export default function openBottle() {
   const styles = AppStyles();
+  // modal code
+  const [modalVisible, setModalVisible] = useState(false);
+
   return (
     <ImageBackground
           source={require("../../assets/background.png")}
@@ -43,22 +70,62 @@ export default function openBottle() {
                 style={styles2.bottleImage}
               />
             </View>
+
+            <View>
+              <Text style={styles.timeSubheadingText}>
+                Time to open
+              </Text>
+              <Text style={styles.personNameText}>
+                Grandma's
+              </Text>
+              <Text style={styles.timeSubheadingText}>
+                bottle
+              </Text>
+
+              <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                  Alert.alert("Modal has been closed.");
+                  setModalVisible(!modalVisible);
+                }}
+              >
+                {/* Modal Content */}
+                <View style={styles2.centeredView}>
+                  <View style={styles2.modalView}>
+                    <View style={styles2.closeIconContainer}>
+                      <Icon
+                        name="close"
+                        type="ionicons"
+                        color="#23AFBB"
+                        size={30}
+                        onPress={() => setModalVisible(!modalVisible)}
+                      />
+                    </View>
+                    <Text style={styles.modalText}>Moment</Text>
+                    <Pressable
+                      style={[styles.button]}
+                      onPress={() => {
+                        setModalVisible(!modalVisible);
+                        handleRecieverChange(potentialRecipient);
+                        // setSelectedRecipient(potentialRecipient);
+                      }}
+                    >
+                      <Text style={styles.textStyle}>Done</Text>
+                    </Pressable>
+                  </View>
+                </View>
+              </Modal>
+            </View>
             
-            <Text style={styles.timeSubheadingText}>
-              Time to open
-            </Text>
-            <Text style={styles.personNameText}>
-              Grandma's
-            </Text>
-            <Text style={styles.timeSubheadingText}>
-              bottle
-            </Text>
+            
 
             <View style={{ alignItems: "center", marginTop: 30 }}>
               <Pressable
                 style={[styles.button]}
                 onPress={() => {
-
+                  setModalVisible(true)
                 }}
               >
                 <Text style={styles.textStyle}>Open</Text>
