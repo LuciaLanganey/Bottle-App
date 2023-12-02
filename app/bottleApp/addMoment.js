@@ -4,6 +4,10 @@ import { Ionicons } from '@expo/vector-icons';
 import { AppStyles } from "../../utils/styles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link } from "expo-router";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
+
+
 
 export default function addMoment() {
   const styles = AppStyles();
@@ -42,7 +46,19 @@ export default function addMoment() {
           style={styles.bottleImage}
         />
         <View style={styles.selectMedia}>
-          <Text>Hello world</Text>
+          <Text style={styles.subHeading}>Add Moment</Text>
+          <Link to href="text.js" style={styles.mediaButton}>
+            <MaterialCommunityIcons name="pencil" size={24} color="black" />
+            <Text>Text</Text>
+          </Link>
+          <Link to href="photoVideo.js" style={styles.mediaButton}>
+            <Ionicons name="camera" size={24} color="black" />
+            <Text>Photo/Video</Text>
+          </Link>
+          <Link to href="audio.js" style={styles.mediaButton}>
+            <FontAwesome name="microphone" size={24} color="black" />
+            <Text>Voice</Text>
+          </Link>
         </View>
       </SafeAreaView>
     </ImageBackground>

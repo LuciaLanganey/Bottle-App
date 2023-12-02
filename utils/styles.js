@@ -300,6 +300,10 @@ export const AppStyles = () => {
       backgroundColor: 'white',
       borderRadius: 73,
       borderOutlineColor: 'gray',
+    },
+    mediaButton: {
+      padding: 10,
+      alignItems: 'center',
     }
   });
 };
