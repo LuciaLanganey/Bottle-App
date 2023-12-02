@@ -7,16 +7,6 @@ import { Link } from "expo-router";
 
 export default function addMoment() {
   const styles = AppStyles();
-  <Tabs
-      screenOptions={({ route }) => ({
-        tabBarStyle: {
-          display: route.name === 'example' ? 'none' : 'flex',
-        },
-      })}
-    >
-      <Tabs.Screen name="index" />
-      <Tabs.Screen name="(root)" options={{ href: null, }} />
-</Tabs>
   return (
     <ImageBackground
       source={require("../../assets/background.png")}
