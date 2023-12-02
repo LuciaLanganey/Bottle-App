@@ -27,35 +27,45 @@ export default function Layout() {
         }    
       }}
     >
+        <Tabs.Screen
+        name="addMoment"
+        options={{
+          tabBarLabel: "text",
+          tabBarIcon: ({ size, color }) => (
+            <FontAwesome5 name="" size={40} color={color} />
+          ),
+          href: null,
+        }}
+      />
       <Tabs.Screen
         name="text"
         options={{
-          tabBarLabel: "Text",
+          tabBarLabel: "text",
           tabBarIcon: ({ size, color }) => (
-            <FontAwesome5 name="home" size={40} color={color} />
+            <FontAwesome5 name="" size={40} color={color} />
           ),
         }}
       />
       <Tabs.Screen
-        name="Audio"
+        name="audio"
         options={{
-          tabBarLabel: "Archive",
+          tabBarLabel: "audio",
           tabBarIcon: ({ color }) => (
             <Ionicons name="heart" size={40} color={color} />
           ),
         }}
       />
       <Tabs.Screen
-        name="Photo/Video"
+        name="photo/video"
         options={{
-          tabBarLabel: "Profile",
+          tabBarLabel: "photo/video",
           tabBarIcon: ({ size, color }) => (
             <Ionicons name="person" size={40} color={color} />
           ),
         }}
       />
       <Tabs.Screen
-        name="Confirmation"
+        name="confirmation"
         options={{
           tabBarLabel: "Confirmation",
           tabBarIcon: ({ size, color }) => (
