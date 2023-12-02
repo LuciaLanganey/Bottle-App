@@ -1,15 +1,19 @@
 import React from "react";
-import { Tabs } from "expo-router";
+import { Tabs, useSegments } from "expo-router";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { FontAwesome5 } from "@expo/vector-icons";
 
 export default function Layout() {
+  const segments = useSegments();
+  // if screen is in the home or live stack, hide the tab bar
+  const hide = segments.includes("addMoment") || segments.includes("text") || segments.includes("audio") || segments.includes("photovideo") || segments.includes("confirmation")
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: "#23AFBB",
         tabBarStyle: {
+          display: hide ? "none" : "flex",
           backgroundColor: "white",
           height: 100,
           borderRadius: 35,
