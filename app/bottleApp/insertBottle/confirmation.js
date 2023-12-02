@@ -13,6 +13,8 @@ export default function openBottle() {
             opacity="0.5"
             style={styles.backgroundImage}
         >
+        <Text>Saved to My Bottle</Text>
+        <Image source={require('../../../assets/graphics/MediumFilledBottle.png')}></Image>
         </ImageBackground>
     );
 }
