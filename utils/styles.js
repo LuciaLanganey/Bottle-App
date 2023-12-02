@@ -277,8 +277,8 @@ export const AppStyles = () => {
 
     // reciever overlays
     checkmarkContainer: {
-      position: 'absolute',
-      position: 'absolute',
+      position: "absolute",
+      position: "absolute",
       top: 5,
       right: 5,
     },
@@ -288,13 +288,13 @@ export const AppStyles = () => {
       borderRadius: 12,
       width: 24,
       height: 24,
-      justifyContent: 'center',
-      alignItems: 'center',
+      justifyContent: "center",
+      alignItems: "center",
     },
     checkmarkText: {
-      color: 'white',
+      color: "white",
       fontSize: 16,
-      fontWeight: 'bold',
+      fontWeight: "bold",
     },
     selectMedia: {
       backgroundColor: 'white',
