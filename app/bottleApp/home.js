@@ -221,7 +221,7 @@ export default function Home() {
 
   return (
     <ImageBackground
-      source={require("/Users/lucialanganey/Bottle-App/assets/background.png")}
+      source={require("../../assets/background.png")}
       opacity="0.5"
       style={styles.backgroundImage}
     >
@@ -271,7 +271,7 @@ export default function Home() {
                 {/* Current Reciever Pic and Name*/}
                 <View style={{ alignItems: "center" }}>
                   <Image
-                    source={require("/Users/lucialanganey/Bottle-App/assets/people/profile.jpg")}
+                    source={require("../../assets/people/profile.jpg")}
                     style={styles.modalRecieverImage}
                   />
                   {selectedRecipient && (
@@ -340,7 +340,7 @@ export default function Home() {
 
           <View style={{ alignItems: "center" }}>
             <Image
-              source={require("/Users/lucialanganey/Bottle-App/assets/people/profile.jpg")}
+              source={require("../../assets/people/profile.jpg")}
               style={styles.profileImage}
             />
           </View>
@@ -371,7 +371,7 @@ export default function Home() {
 
         <View style={styles.container}>
           <Image
-            source={require("/Users/lucialanganey/Bottle-App/assets/graphics/bottle-cropped.png")}
+            source={require("../../assets/graphics/bottle-cropped.png")}
             style={styles.bottleImage}
           />
         </View>
@@ -384,7 +384,7 @@ export default function Home() {
             bottom: "13%",
           }}
         >
-          <Link href="/addMoment" asChild>
+          <Link href={{ pathname: 'bottleApp/addMoment' }}>
             <Icon
               name="add-circle"
               type="ionicons"
