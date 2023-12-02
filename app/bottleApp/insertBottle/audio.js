@@ -27,7 +27,7 @@ export default function openBottle() {
           </View>
         </View>
         <Image
-          source={require('../../../assets/graphics/EmptyBottle.png')}
+          source={require('../../../assets/graphics/EmptyBottle.png')} resizeMode={'contain'} style={styles.momentBottle}
         />
         </SafeAreaView>
         </ImageBackground>
