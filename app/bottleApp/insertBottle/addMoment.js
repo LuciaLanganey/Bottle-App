@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, View, Image, ImageBackground } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
-import { AppStyles } from "../../utils/styles";
+import { AppStyles } from "../../../utils/styles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link } from "expo-router";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -13,7 +13,7 @@ export default function addMoment() {
   const styles = AppStyles();
   return (
     <ImageBackground
-      source={require("../../assets/background.png")}
+      source={require("../../../assets/background.png")}
       opacity="0.5"
       style={styles.backgroundImage}
     >
@@ -38,11 +38,11 @@ export default function addMoment() {
             borderWidth: 3,
             borderColor: '#23AFBB'
           }}
-          source={require('../../assets/people/selena.jpg')}
+          source={require('../../../assets/people/selena.jpg')}
         />
         <Text style={styles.subHeading}>Selena</Text>
         <Image
-          source={require("../../assets/graphics/bottle-cropped.png")}
+          source={require("../../../assets/graphics/bottle-cropped.png")}
           style={styles.bottleImage}
         />
         <View style={styles.selectMedia}>
