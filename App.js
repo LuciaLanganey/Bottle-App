@@ -8,7 +8,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 import LoginScreen from "./app/LoginScreen.js";
 import ProfileScreen from "./app/profile.js";
-import SignupScreen from "./app/signup.js";
+import SignupScreen from "./app/index.js";
 import HomeScreen from "./app/addMoment.js";
 import Archive from "./app/archive.js";
 import BuildProfile from "./app/BuildProfile.js"
