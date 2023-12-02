@@ -261,7 +261,6 @@ export const AppStyles = () => {
       alignItems: "center",
       // borderColor: "blue",
       // borderWidth: 2,
-      margin: 5,
     },
 
     resultsName: {

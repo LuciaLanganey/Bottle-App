@@ -124,8 +124,15 @@ export default function Home() {
       }
 
       // Update the local state
-      setSelectedRecipient(potentialRecipient);
-      console.log("Recipient Changed");
+      if (potentialRecipient == null) {
+        setSelectedRecipient(selectedRecipient);
+        console.log("No new recipient selected");
+        
+      }
+      else {
+        setSelectedRecipient(potentialRecipient);
+        console.log("Recipient Changed");
+      }
     } catch (error) {
       console.error("Error updating is_selected field:", error);
     }

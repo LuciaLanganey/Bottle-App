@@ -8,13 +8,16 @@ import {
   Image,
   FlatList,
   Pressable,
+  Dimensions,
 } from "react-native";
 import { AppStyles } from "../../utils/styles";
 import { Icon } from "react-native-elements";
 import Supabase from "../../utils/Supabase";
 import Reciever from "../../components/Reciever";
+
  
 export default function Profile() {
+  const { height: windowHeight, width: windowWidth } = Dimensions.get("window");
   const styles = AppStyles();
   const [data, setData] = useState([]);
   const [recipients, setRecipients] = useState([]);
@@ -90,7 +93,8 @@ export default function Profile() {
         </View>
         <View style={{ }}>
           <Text>Contacts</Text>
-          <View style={styles.contactListContainer}>
+          <View style={{width: windowWidth*0.7,
+      height: windowHeight * 0.2, alignContent: "center", margin: 10}}>
             <FlatList
               data={data}
               renderItem={({ item }) => (
@@ -102,7 +106,7 @@ export default function Profile() {
               />
               )}
               keyExtractor={(item) => item.id.toString()}
-              numColumns={3}
+              numColumns={5}
             />
           </View>
           
