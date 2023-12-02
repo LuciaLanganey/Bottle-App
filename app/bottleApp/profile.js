@@ -80,7 +80,7 @@ export default function Profile() {
       style={styles.backgroundImage}
     >
       <SafeAreaView>
-        <View style={{ alignItems: "center", borderWidth: 2, borderColor: 'blue' }}>
+        <View style={{ alignItems: "center", borderWidth: 2, borderColor: 'blue'  }}>
           <Image
             source={require("../../assets/people/profile.jpg")}
             style={styles.modalRecieverImage}
@@ -88,7 +88,7 @@ export default function Profile() {
           <Text style={styles.personNameText}>Scarlet</Text>
           <Text style={styles.personNameText}>123 - 456 - 7890</Text>
         </View>
-        <View style={{ alignItems: "center", borderWidth: 2, borderColor: 'blue' }}>
+        <View style={{ }}>
           <Text>Contacts</Text>
           <View style={styles.contactListContainer}>
             <FlatList
