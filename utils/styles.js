@@ -319,6 +319,11 @@ export const AppStyles = () => {
       fontSize: 16,
       marginTop: 8,
       marginBottom: 5,
-    }
+    },
+    momentBottle: {
+      height: '75%',
+      alignSelf: 'center',
+
+    },
   });
 };
