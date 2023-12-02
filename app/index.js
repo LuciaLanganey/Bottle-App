@@ -1,4 +1,7 @@
+
 import React from 'react';
+
+import React from "react";
 import { useState } from 'react';
 import Supabase from "../utils/Supabase.js";
 import { View, ScrollView, Text, TextInput, Pressable, StyleSheet } from "react-native";

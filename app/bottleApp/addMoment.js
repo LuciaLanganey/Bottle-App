@@ -15,19 +15,19 @@ export default function addMoment() {
         >
         <SafeAreaView style={styles.headerContainer}>
           <View style={styles.backIconContainer}>
-            <Link href={{ pathname: 'bottleApp/home' }}>
+            <Link href={{ pathname: 'bottleApp/home' }} style={{ marginRight: 8 }}>
               <Ionicons
                 name="arrow-back-circle"
                 size={35}
                 color="#23AFBB"
               />
             </Link>
+            <Text style={styles.subHeading}>My Bottle</Text>
+
           </View>
-        <View style={styles.titleContainer}>
-          <View style={{flex: 1, borderWidth: 2, borderColor: 'blue'}}></View>
-          <Text style={styles.subHeading}>Add Moment</Text>
-          <View style={{flex: 1, borderWidth: 2, borderColor: 'blue'}}></View>
-        </View>
+        {/* <View style={styles.titleContainer}>
+          <Text style={styles.subHeading}>My Bottle</Text>
+        </View> */}
 
 
       </SafeAreaView>

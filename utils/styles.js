@@ -1,5 +1,6 @@
 import { StyleSheet, Dimensions } from "react-native";
 import { useFonts } from "expo-font";
+import React from 'react'
 
 export const AppStyles = () => {
   const theme = {
@@ -82,19 +83,16 @@ export const AppStyles = () => {
     },
 
     headerContainer: {
-      // display: flex,
-      // alignItems: flex-start, /* Change to flex-start for top alignment */
-      // justifyContent: 'center', /* Adjust as needed for horizontal alignment */
-      // borderWidth: 2,
-      // borderColor: 'blue'
-      // paddingHorizontal: 16,
-      // paddingTop: 16,
+      flexDirection: 'row', // Aligns children in a row
+      alignItems: 'flex-start', // Aligns children to the start of the cross axis (vertical)
+      justifyContent: 'center',
+      paddingTop: 20,
+      paddingHorizontal: 20,
     },
 
     backIconContainer: {
-      marginLeft: 5, // Adjust the margin as needed
-      paddingHorizontal: 16,
-      paddingTop: 16,
+      flexDirection: 'row',
+      alignItems: 'center',
     },
     button: {
       width: windowWidth * 0.4,

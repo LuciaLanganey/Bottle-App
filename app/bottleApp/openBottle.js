@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, ImageBackground } from "react-native";
+import { Text, View, ImageBackground, Image } from "react-native";
 import { Ionicons } from '@expo/vector-icons'; 
 import { AppStyles } from "../../utils/styles";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -14,8 +14,14 @@ export default function openBottle() {
           opacity="0.5"
           style={styles.backgroundImage}
         >
+          <View style={styles.container}>
+            <Image
+              source={require("../../assets/graphics/bottle-reverse.png")}
+              style={{ marginTop: 0, paddingTop: 0}}
+            />
+          </View>
         <SafeAreaView style={styles.headerContainer}>
-          <View style={styles.backIconContainer}>
+          {/* <View style={styles.backIconContainer}>
             <Link href="home" asChild>
               <Ionicons
                 name="arrow-back-circle"
@@ -24,12 +30,22 @@ export default function openBottle() {
                 onPress={() => console.log("back button pressed")}
               />
             </Link>
+          </View> */}
+          <Text style={styles.timeSubheadingText}>
+              Time to open
+          </Text>
+          <View style={{ alignItems: "center" }}>
+            <Image
+              source={require("../../assets/people/profile.jpg")}
+              style={styles.profileImage}
+            />
           </View>
-        <View style={styles.titleContainer}>
-          <View style={{flex: 1, borderWidth: 2, borderColor: 'blue'}}></View>
-          <Text style={styles.subHeading}>Add Moment</Text>
-          <View style={{flex: 1, borderWidth: 2, borderColor: 'blue'}}></View>
-        </View>
+          <Text style={styles.personNameText}>
+              Grandma's 
+          </Text>
+          <Text style={styles.timeSubheadingText}>
+              bottle
+          </Text>
 
 
       </SafeAreaView>
