@@ -30,7 +30,7 @@ const styles2 = {
   momentsImage: {
     flex: 1,
     justifyContent: 'flex-start',
-    width: windowWidth * 0.7,
+    width: windowWidth * 0.8,
     resizeMode: 'contain',
   },
   centeredView: {
@@ -103,7 +103,7 @@ export default function openBottle() {
                     <Image 
                       source={require("../../assets/moments/knitting.jpeg")}
                       style={styles2.momentsImage}/>
-                    <Text style={styles.modalText}>Went to my weekly knitting club</Text>
+                    <Text style={styles.momentCaptionText}>Went to my weekly knitting club</Text>
                     <Text style={styles.momentTimeText}>Today at 07:27 AM</Text>
                     <Pressable
                       style={[styles.button]}
