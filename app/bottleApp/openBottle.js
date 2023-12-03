@@ -160,14 +160,13 @@ export default function openBottle() {
   };
 
   const filteredMomentsByEmoji = (emoji) => {
-    const filtered = moments.filter((moment) => moment.emoji === emoji);
-    setFilteredMoments(filtered); // Update filtered moments state
+    console.log(moments.filter((moment) => moment.emoji === emoji));
+    setFilteredMoments(moments.filter((moment) => moment.emoji === emoji));
   };
 
-  const handleFilter = (emoji) => {
-    filteredMomentsByEmoji(emoji);
-    toggleFilterModal(); // Close the filter modal after selecting an emoji
-  };
+  useEffect(() => {
+    console.log(filteredMoments); // Logs the updated value of filteredMoments
+  }, [filteredMoments]);
 
   const toggleFilterModal = () => {
     setShowFilterModal(!showFilterModal);
@@ -225,14 +224,13 @@ export default function openBottle() {
 
                 {showFilterModal && (
                 <View style={styles2.filterCenteredView}>
-                  <View style={styles2.filterView}>
+                  <View style={styles.filterView}>
                     {/* Filter by emotion bar */}
-                    <Text style={styles2.tinyText}>Select an emotion:</Text>
+                    <Text style={styles.tinyText}>Select an emotion:</Text>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignContent: 'center' }}>
                       <Pressable
                         onPress={() => {
-                          const filteredMoments = filteredMomentsByEmoji("happy");
-                          console.log(filteredMoments);
+                          filteredMomentsByEmoji('happy');
                         }}
                       >
                         <Icon
@@ -240,13 +238,12 @@ export default function openBottle() {
                           type="material-community"
                           color="#23AFBB"
                           size={45}
-                          onPress={() => handleFilter('happy')}
+                          onPress={() => {filteredMomentsByEmoji('happy'); }}
                         />
                       </Pressable>
                       <Pressable
                         onPress={() => {
-                          const filteredMoments = filteredMomentsByEmoji("sad");
-                          console.log(filteredMoments);
+                          filteredMomentsByEmoji('sad')
                         }}
                       >
                         <Icon
@@ -255,13 +252,12 @@ export default function openBottle() {
                           color="#23AFBB"
 
                           size={45}
-                          onPress={() => navigateMoments('next')}
+                          onPress={() => filteredMomentsByEmoji('sad')}
                         />
                       </Pressable>
                       <Pressable
                         onPress={() => {
-                          const filteredMoments = filteredMomentsByEmoji("angry");
-                          console.log(filteredMoments);
+                          filteredMomentsByEmoji('angry')
                         }}
                       >
                         <Icon
@@ -270,13 +266,12 @@ export default function openBottle() {
                           color="#23AFBB"
 
                           size={45}
-                          onPress={() => navigateMoments('next')}
+                          onPress={() => filteredMomentsByEmoji('angry')}
                         />
                       </Pressable>
                       <Pressable
                         onPress={() => {
-                          const filteredMoments = filteredMomentsByEmoji("angry");
-                          console.log(filteredMoments);
+                          filteredMomentsByEmoji('neutral')
                         }}
                       >
                         <Icon
@@ -285,7 +280,7 @@ export default function openBottle() {
                           color="#23AFBB"
 
                           size={45}
-                          onPress={() => navigateMoments('next')}
+                          onPress={() => filteredMomentsByEmoji('neutral')}
                         />
                       </Pressable>
                     </View>
@@ -297,9 +292,25 @@ export default function openBottle() {
 
                 <View style={styles2.centeredView}>
                   <View style={styles2.modalView}>
+                  {filteredMoments.length > 0 && filteredMoments[momentIndex] && (
+                    // Display filtered moments when they exist
+                    <View>
+                      {filteredMoments[momentIndex].type === 'image' && (
+                        <Image
+                          source={filteredMoments[momentIndex].image}
+                          style={styles2.momentsImage}
+                        />
+                      )}
+                      {filteredMoments[momentIndex].type === 'text' && (
+                        <Text style={styles2.momentCaptionText}>{filteredMoments[momentIndex].caption}</Text>
+                      )}
+                      {filteredMoments[momentIndex].type === 'image' && (
+                        <Text style={styles.momentCaptionText}>{filteredMoments[momentIndex].caption}</Text>
+                      )}
+                      <Text style={styles2.momentTimeText}>{filteredMoments[momentIndex].time}</Text>
+                    </View>
+                  )}
 
-
-                    
                     {moments[momentIndex].type === 'image' && (
                       <Image
                         source={moments[momentIndex].image}
