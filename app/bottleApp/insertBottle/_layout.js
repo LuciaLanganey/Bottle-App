@@ -10,6 +10,8 @@ import { AppStyles } from "../../../utils/styles";
 export default function Layout() {
   const styles = AppStyles();
   const segments = useSegments();
+  // if screen is in the home or live stack, hide the tab bar
+  const hide = segments.includes("confirmation")
   
   // if screen is in the home or live stack, hide the tab bar
   return (
@@ -17,6 +19,7 @@ export default function Layout() {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
+          display: hide ? "none" : "flex",
           backgroundColor: "white",
           height: 200,
           borderTopLeftRadius: 40,
