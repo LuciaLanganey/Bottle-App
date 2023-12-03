@@ -100,7 +100,6 @@ export const AppStyles = () => {
       borderRadius: 17,
       backgroundColor: theme.buttonColor,
       justifyContent: "center",
-      marginTop: 10,
       marginBottom: 15,
     },
     buttonText: {
@@ -204,6 +203,7 @@ export const AppStyles = () => {
       color: "white",
       fontWeight: "bold",
       textAlign: "center",
+      fontSize: 20,
     },
     modalText: {
       color: theme.primaryColor,
@@ -372,7 +372,26 @@ export const AppStyles = () => {
     momentBottle: {
       height: '75%',
       alignSelf: 'center',
-
     },
+    
+    loginTitle: {
+      color: theme.primaryColor,
+      textAlign: "center",
+      fontFamily: theme.titleFont,
+      fontSize: 42,
+    },
+
+    loginSubtitle: {
+      color: theme.primaryColor,
+      textAlign: "center",
+      fontFamily: theme.titleFont,
+      fontSize: 24,
+      marginBottom: 40,
+    },
+
+
+
+    // login page styling
+
   });
 };
