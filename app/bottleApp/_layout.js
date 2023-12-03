@@ -6,7 +6,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 export default function Layout() {
   const segments = useSegments();
   // if screen is in the home or live stack, hide the tab bar
-  const hide = segments.includes("addMoment") || segments.includes("text") || segments.includes("audio") || segments.includes("photovideo") || segments.includes("confirmation") || segments.includes("openBottle")
+  const hide = segments.includes("addMoment") || segments.includes("text") || segments.includes("audio") || segments.includes("photovideo") || segments.includes("confirmation") || segments.includes("openBottle") || segments.includes("cameraScreen") || segments.includes("insertphotovideo")
   return (
     <Tabs
       screenOptions={{
