@@ -91,17 +91,17 @@ const styles2 = {
     flex: 1,
     justifyContent: "flex-end",
     alignItems: "center",
-    marginBottom: windowHeight * 0.5,
   },
   filterView: {
     width: windowWidth * 0.8,
     height: windowHeight * 0.1,
-    margin: 20,
     backgroundColor: "white",
     borderRadius: 20,
     paddingLeft: 20,
     paddingRight: 20,
-    alignItems: "left",
+    paddingTop: 10,
+    paddingBottom: 10,
+    alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -116,7 +116,7 @@ const styles2 = {
 export default function openBottle() {
   const styles = AppStyles();
   const [modalVisible, setModalVisible] = useState(false);
-  const [filterVisible, setFilterVisible] = useState(false);
+  const [showFilterModal, setShowFilterModal] = useState(false);
   const [momentIndex, setMomentIndex] = useState(0);
 
   const moments = [
@@ -156,6 +156,12 @@ export default function openBottle() {
     return moments.filter((moment) => moment.emoji === emoji);
   };
 
+  const toggleFilterModal = () => {
+    if (modalVisible) {
+      setShowFilterModal(true);
+    }
+  };
+
   return (
     <ImageBackground
           source={require("../../assets/background.png")}
@@ -169,18 +175,19 @@ export default function openBottle() {
                 style={styles2.bottleImage}
               />
             </View>
-
+            
           <View style={{
-            position: 'absolute', right: 20, top: 60
+            position: 'absolute', left: 20, top: 60
           }}>
-            <Icon
-              name="filter"
-              type="font-awesome"
-              color="#23AFBB"
+            <Link href={{ pathname: 'bottleApp/home' }}>
+              <Icon
+                name="close"
+                type="antdesign"
+                color="#23AFBB"
 
-              size={50}
-              onPress={() => setFilterVisible(true)}
-            />
+                size={40}
+              />
+            </Link>
           </View>
 
             <View>
@@ -197,18 +204,21 @@ export default function openBottle() {
               <Modal
                 animationType="slide"
                 transparent={true}
-                visible={filterVisible}
+                visible={showFilterModal || modalVisible}
                 onRequestClose={() => {
                   Alert.alert("Modal has been closed.");
-                  setFilterVisible(!filterVisible);
+                  setShowFilterModal(false);
+                  setModalVisible(false);
                 }}
               >
+                {/* Modal Content */}
+
+                {showFilterModal && (
                 <View style={styles2.filterCenteredView}>
                   <View style={styles2.filterView}>
                     {/* Filter by emotion bar */}
                     <Text style={styles2.tinyText}>Select an emotion:</Text>
-                    <View visible={filterVisible}
-                    style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 20, alignContent: 'center' }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignContent: 'center' }}>
                       <Pressable
                         onPress={() => {
                           const filteredMoments = filteredMomentsByEmoji("happy");
@@ -253,21 +263,28 @@ export default function openBottle() {
                           onPress={() => navigateMoments('next')}
                         />
                       </Pressable>
+                      <Pressable
+                        onPress={() => {
+                          const filteredMoments = filteredMomentsByEmoji("angry");
+                          console.log(filteredMoments);
+                        }}
+                      >
+                        <Icon
+                          name="emoticon-neutral"
+                          type="material-community"
+                          color="#23AFBB"
+
+                          size={45}
+                          onPress={() => navigateMoments('next')}
+                        />
+                      </Pressable>
                     </View>
                   </View>
                 </View>
-              </Modal>
+              )}
 
-              <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={() => {
-                  Alert.alert("Modal has been closed.");
-                  setModalVisible(!modalVisible);
-                }}
-              >
-                {/* Modal Content */}
+
+
                 <View style={styles2.centeredView}>
                   <View style={styles2.modalView}>
                     {moments[momentIndex].type === 'image' && (
@@ -324,6 +341,20 @@ export default function openBottle() {
                     </View>
                   </View>
                 </View>
+
+                <View style={{
+                  position: 'absolute', right: 20, top: 60
+                }}>
+                  <Icon
+                    name="filter"
+                    type="font-awesome"
+                    color="#23AFBB"
+
+                    size={50}
+                    onPress={() => {setShowFilterModal(true)}}
+                  />
+                </View>
+                
               </Modal>
             </View>
             
