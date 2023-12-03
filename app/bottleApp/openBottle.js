@@ -69,8 +69,6 @@ const styles2 = {
     borderRadius: 30,
     backgroundColor: "#23AFBB",
     justifyContent: "center",
-    marginTop: 10,
-    marginBottom: 15,
   },
   momentCaptionText: {
     color: "#186174",
@@ -81,6 +79,14 @@ const styles2 = {
     paddingTop: 15,
     marginBottom: 5,
   },
+  momentTimeText: {
+    color: "#186174",
+    textAlign: "left",
+    fontFamily: "Inter-Regular",
+    fontSize: 13,
+    paddingBottom: 20,
+    marginBottom: 60
+  }, 
   tinyText: {
     color: "#186174",
     textAlign: "center",
@@ -157,9 +163,7 @@ export default function openBottle() {
   };
 
   const toggleFilterModal = () => {
-    if (modalVisible) {
-      setShowFilterModal(true);
-    }
+    setShowFilterModal(!showFilterModal);
   };
 
   return (
@@ -202,7 +206,6 @@ export default function openBottle() {
               </Text>
 
               <Modal
-                animationType="slide"
                 transparent={true}
                 visible={showFilterModal || modalVisible}
                 onRequestClose={() => {
@@ -299,7 +302,7 @@ export default function openBottle() {
                     {moments[momentIndex].type === 'image' && (
                       <Text style={styles.momentCaptionText}>{moments[momentIndex].caption}</Text>
                     )}
-                    <Text style={styles.momentTimeText}>{moments[momentIndex].time}</Text>
+                    <Text style={styles2.momentTimeText}>{moments[momentIndex].time}</Text>
 
                     <View style={{
                       position: 'absolute', left: 8, bottom: 10, backgroundColor: 'white', borderRadius: '30', borderWidth: 3, borderColor:
@@ -316,7 +319,7 @@ export default function openBottle() {
                       />
                     </View>
                     <View style={{position: 'absolute', right: 8, bottom: 10, backgroundColor: 'white', borderRadius: '30', borderWidth: 3, borderColor: 
-                  'white'
+                    'white'
                     }}>
                       <Icon
                         name="rightcircle"
@@ -329,7 +332,7 @@ export default function openBottle() {
                       />
                     </View>
                     
-                    <View style={{alignSelf: "center"}}>
+                    <View style={{position: 'absolute', right: '40%', bottom: 10, alignSelf: "center"}}>
                       <Pressable
                       style={[styles2.cancelButton]}
                       onPress={() => {
@@ -351,7 +354,7 @@ export default function openBottle() {
                     color="#23AFBB"
 
                     size={50}
-                    onPress={() => {setShowFilterModal(true)}}
+                    onPress={toggleFilterModal}
                   />
                 </View>
                 
