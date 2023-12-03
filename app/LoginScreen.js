@@ -1,21 +1,23 @@
 import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Pressable} from 'react-native';
 
 export default function LogIn() {
   return (
-    <View style={styles.container}>
-      <Text>Hi Bottle team</Text>
-      <StatusBar style="auto" />
+    <View>
+      <Text>Bottle</Text>
+      <Text>Uncap your day with others</Text>
+      <Pressable
+        onPress={() => console.log('Sign in button clicked')
+        }
+      >
+        <Text>Done</Text>
+      </Pressable>
+      <Pressable
+        onPress={() => console.log('Sign in button clicked')
+        }
+      >
+        <Text>Done</Text>
+      </Pressable>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

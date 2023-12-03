@@ -100,7 +100,6 @@ export const AppStyles = () => {
       borderRadius: 17,
       backgroundColor: theme.buttonColor,
       justifyContent: "center",
-      marginTop: 10,
       marginBottom: 15,
     },
     buttonText: {
@@ -151,6 +150,13 @@ export const AppStyles = () => {
       fontFamily: theme.titleFont,
       fontSize: 30,
     },
+    personPhoneNumber: {
+      color: theme.primaryColor,
+      textAlign: "center",
+      fontFamily: theme.titleFont,
+      fontSize: 18,
+    },
+
     shadowProp: {
       shadowColor: "#171717",
       shadowOffset: { width: -2, height: 4 },
@@ -197,6 +203,7 @@ export const AppStyles = () => {
       color: "white",
       fontWeight: "bold",
       textAlign: "center",
+      fontSize: 20,
     },
     modalText: {
       color: theme.primaryColor,
@@ -209,6 +216,12 @@ export const AppStyles = () => {
     modalRecieverImage: {
       width: 80,
       height: 80,
+      borderRadius: 60,
+      margin: 5,
+    },
+    profileImage: {
+      width: 100,
+      height: 100,
       borderRadius: 60,
       margin: 5,
     },
@@ -256,12 +269,47 @@ export const AppStyles = () => {
       display: "flex",
     },
 
+    contactList: {
+      alignContent: "center",
+      alignItems: "left",
+      marginTop: 15,
+      flexDirection: 'row',
+      padding: 10,
+      justifyContent: "center"
+    },
+    
+    contact: {
+      margin: 5,
+    },
+
+    contactTitle: {
+      color: theme.primaryColor,
+      textAlign: "center",
+      fontFamily: theme.titleFont,
+      fontSize: 24,
+      marginLeft: 10,
+    },
+
+    contactName: {
+      color: theme.primaryColor,
+      textAlign: "center",
+      fontFamily: theme.titleFont,
+      fontSize: 18,
+    },
+
+    smallProfileImage: {
+      width: 80,
+      height: 80,
+      borderRadius: 40,
+      marginTop: 10,
+      marginBottom: 10,
+    },
+
     reciever: {
       flexDirection: "col",
       alignItems: "center",
       // borderColor: "blue",
       // borderWidth: 2,
-      margin: 5,
     },
 
     resultsName: {
@@ -317,31 +365,14 @@ export const AppStyles = () => {
       textAlign: "left",
       fontFamily: theme.textFont,
       fontSize: 16,
-      marginTop: 8,
+      marginTop: 5,
+      paddingTop: 5,
       marginBottom: 5,
     },
     momentBottle: {
       height: '75%',
       alignSelf: 'center',
 
-    },
-    textInput: {
-      backgroundColor: "#23AFBB",
-      borderRadius: 30,
-      height: 150,
-      paddingHorizontal: 20,
-      paddingVertical: 10,
-      color: 'black',
-      top: 0,
-      bottom: 0,
-      left: 0,
-      right: 0,
-      justifyContent: 'center', // Centers vertically
-      alignItems: 'center', // Centers horizontally
-    },
-    popupBox: {
-      position: 'absolute',
-      alignSelf: 'center',
     },
   });
 };
