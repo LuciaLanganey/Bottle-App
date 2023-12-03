@@ -67,15 +67,26 @@ export default function Layout() {
         }}
       />
       <Tabs.Screen
-        name="insertBottle"
+        name="openBottle"
         options={{
-          tabBarLabel: "addMoment",
+          tabBarLabel: "openBottle",
           tabBarIcon: ({ size, color }) => (
             <Ionicons name="person" size={40} color={color} />
           ),
           href: null,
         }}
       />
+      <Tabs.Screen
+        name="insertBottle"
+        options={{
+          tabBarLabel: "insertBottle",
+          tabBarIcon: ({ size, color }) => (
+            <Ionicons name="person" size={40} color={color} />
+          ),
+          href: null,
+        }}
+      />
+      
     </Tabs>
   );
 }
