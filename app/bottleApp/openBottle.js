@@ -62,17 +62,67 @@ const styles2 = {
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
-  }
+  },
+  cancelButton: {
+    width: windowWidth * 0.2,
+    height: windowHeight * 0.05,
+    borderRadius: 30,
+    backgroundColor: "#23AFBB",
+    justifyContent: "center",
+    marginTop: 10,
+    marginBottom: 15,
+  },
+  momentCaptionText: {
+    color: "#186174",
+    textAlign: "left",
+    fontFamily: "Inter-Regular",
+    fontSize: 16,
+    marginTop: 15,
+    paddingTop: 15,
+    marginBottom: 5,
+  },
 };
 
 export default function openBottle() {
   const styles = AppStyles();
   // modal code
   const [modalVisible, setModalVisible] = useState(false);
-  const [leftArrowVisible, setLeftArrowVisible] = useState(false);
-  const [momentImage, setMomentImage] = useState(require("../../assets/moments/knitting.jpeg"));
-  const [momentCaption, setMomentCaption] = useState("Went to my weekly knitting club");
-  const [momentTime, setMomentTime] = useState("Today at 07:27 AM");
+  // const [momentImage, setMomentImage] = useState(require("../../assets/moments/knitting.jpeg"));
+  // const [momentCaption, setMomentCaption] = useState("Went to my weekly knitting club");
+  // const [momentTime, setMomentTime] = useState("Today at 07:27 AM");
+
+  const [momentIndex, setMomentIndex] = useState(0);
+
+  // Define moments with their respective data
+  const moments = [
+    {
+      type: "image",
+      image: require("../../assets/moments/knitting.jpeg"),
+      caption: "Went to my weekly knitting club",
+      time: "Today at 07:27 AM",
+    },
+    {
+      type: "image",
+      image: require("../../assets/moments/audio.png"),
+      caption: "Wanted to share my lovely singing with you",
+      time: "Today at 02:29 PM",
+    },
+    {
+      type: "text",
+      caption: "Your grandfather forgot to feed the cats AGAIN. Always laying around reading a book instead of helping out.",
+      time: "Today at 08:00 PM",
+    },
+  ];
+
+  const navigateMoments = (direction) => {
+    let newIndex = momentIndex;
+    if (direction === 'next') {
+      newIndex = (momentIndex + 1) % moments.length;
+    } else if (direction === 'prev') {
+      newIndex = (momentIndex - 1 + moments.length) % moments.length;
+    }
+    setMomentIndex(newIndex);
+  };
 
   return (
     <ImageBackground
@@ -111,57 +161,57 @@ export default function openBottle() {
                 {/* Modal Content */}
                 <View style={styles2.centeredView}>
                   <View style={styles2.modalView}>
-                    <View visible={leftArrowVisible}
-                    style={{position: 'absolute', left: 8, top: 10, backgroundColor: 'white', borderRadius: '30', borderWidth: 3, borderColor: 
-                  'white'}}>
-                          <Icon
-                            name="leftcircle"
-                            type="ant-design"
-                            color="#23AFBB"
-                            
-                            size={40}
-                            style={{ alignSelf: "left" }}
-                            onPress={() => {
-                              setMomentImage(require("../../assets/moments/knitting.jpeg"));
-                              setMomentCaption("Went to my weekly knitting club");
-                              setMomentTime("Today at 07:27 AM");
-                              setLeftArrowVisible(false);
-                            }}
-                          />
-                        </View>
-                    <Image 
-                      source={momentImage}
-                      style={styles2.momentsImage}/>
-                    <View style={{position: 'absolute', right: 8, top: 10, backgroundColor: 'white', borderRadius: '30', borderWidth: 3, borderColor: 
-                  'white'}}>
-                          <Icon
-                            name="rightcircle"
-                            type="ant-design"
-                            color="#23AFBB"
-                            
-                            size={40}
-                            style={{ alignSelf: "left" }}
-                            onPress={() => {
-                              setMomentImage(require("../../assets/moments/audio.png"));
-                              setMomentCaption("wanted to share my lovely singing with you");
-                              setMomentTime("Today at 02:29 PM");
-                              setLeftArrowVisible(true);
-                            }}
-                          />
-                        </View>
-                    <Text style={styles.momentCaptionText}>{momentCaption}</Text>
-                    <Text style={styles.momentTimeText}>{momentTime}</Text>
+                    {moments[momentIndex].type === 'image' && (
+                      <Image
+                        source={moments[momentIndex].image}
+                        style={styles2.momentsImage}
+                      />
+                    )}
+                    {moments[momentIndex].type === 'text' && (
+                      <Text style={styles2.momentCaptionText}>{moments[momentIndex].caption}</Text>
+                    )}
+                    {moments[momentIndex].type === 'image' && (
+                      <Text style={styles.momentCaptionText}>{moments[momentIndex].caption}</Text>
+                    )}
+                    <Text style={styles.momentTimeText}>{moments[momentIndex].time}</Text>
+
+                    <View style={{
+                      position: 'absolute', left: 8, bottom: 10, backgroundColor: 'white', borderRadius: '30', borderWidth: 3, borderColor:
+                        'white'
+                    }}>
+                      <Icon
+                        name="leftcircle"
+                        type="ant-design"
+                        color="#23AFBB"
+
+                        size={40}
+                        style={{ alignSelf: "left" }}
+                        onPress={() => navigateMoments('prev')}
+                      />
+                    </View>
+                    <View style={{position: 'absolute', right: 8, bottom: 10, backgroundColor: 'white', borderRadius: '30', borderWidth: 3, borderColor: 
+                  'white'
+                    }}>
+                      <Icon
+                        name="rightcircle"
+                        type="ant-design"
+                        color="#23AFBB"
+
+                        size={40}
+                        style={{ alignSelf: "left" }}
+                        onPress={() => navigateMoments('next')}
+                      />
+                    </View>
                     
                     <View style={{alignSelf: "center"}}>
                       <Pressable
-                      style={[styles.button]}
+                      style={[styles2.cancelButton]}
                       onPress={() => {
                         setModalVisible(!modalVisible);
-                        setLeftArrowVisible(false);
                       }}
-                    >
-                        <Text style={styles.textStyle}>Close bottle</Text>
-                    </Pressable>
+                      >
+                        <Text style={styles.textStyle}>Close</Text>
+                      </Pressable>
                     </View>
                   </View>
                 </View>
@@ -210,18 +260,6 @@ export default function openBottle() {
             </View>
 
           </View>
-        {/* <SafeAreaView style={{ flex: 1, justifyContent: 'flex-start', marginTop: 0, paddingTop: 0 }}> */}
-          {/* <View style={styles.backIconContainer}>
-            <Link href="home" asChild>
-              <Ionicons
-                name="arrow-back-circle"
-                size={35}
-                color="#23AFBB"
-                onPress={() => console.log("back button pressed")}
-              />
-            </Link>
-          </View> */}
-      {/* </SafeAreaView> */}
     </ImageBackground>
     
   );
