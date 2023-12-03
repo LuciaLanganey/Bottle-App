@@ -427,6 +427,26 @@ export const AppStyles = () => {
       color: "#186174",
       font: "Inter-Bold",
       marginTop: '120%',
+    },
+
+    // insert audio
+    pressToRecordBox: {
+      position: 'absolute',
+      alignSelf: 'center',
+    },
+    popupAudioBox: {
+      borderRadius: 20,
+      borderColor: theme.borderOutlineColor,
+      backgroundColor: theme.secondaryColor,
+      width: windowWidth * 0.8,
+      height: windowHeight * 0.1,
+      margin: 12,
+      borderWidth: 1,
+      padding: 20,
+      paddingTop: 20,
+      color: 'white',
+      fontSize: 20,
+      font: "Inter-Regular"
     }
   });
 };
