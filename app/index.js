@@ -22,12 +22,17 @@ export default function SignUp() {
         <Text style={styles.loginTitle}>Bottle</Text>
         <Text style={styles.loginSubtitle}>Uncap your day with others</Text>
         
+        <View style={styles.button}>
           <Link href={{ pathname: 'bottleApp/home' }}>
             <Text style={styles.textStyle}>Log in</Text>
           </Link>
+        </View>
+        <View style={styles.button}>
           <Link href={{ pathname: 'bottleApp/home' }}>
             <Text style={styles.textStyle}>Sign in</Text>
           </Link>
+        </View>
+          
       </SafeAreaView>
     </ImageBackground>
   );
