@@ -151,6 +151,13 @@ export const AppStyles = () => {
       fontFamily: theme.titleFont,
       fontSize: 30,
     },
+    personPhoneNumber: {
+      color: theme.primaryColor,
+      textAlign: "center",
+      fontFamily: theme.titleFont,
+      fontSize: 18,
+    },
+
     shadowProp: {
       shadowColor: "#171717",
       shadowOffset: { width: -2, height: 4 },
@@ -212,6 +219,12 @@ export const AppStyles = () => {
       borderRadius: 60,
       margin: 5,
     },
+    profileImage: {
+      width: 100,
+      height: 100,
+      borderRadius: 60,
+      margin: 5,
+    },
     modalRecieverName: {
       color: theme.primaryColor,
       textAlign: "center",
@@ -254,6 +267,42 @@ export const AppStyles = () => {
       justifyContent: "center",
       alignItems: "center",
       display: "flex",
+    },
+
+    contactList: {
+      alignContent: "center",
+      alignItems: "left",
+      marginTop: 15,
+      flexDirection: 'row',
+      padding: 10,
+      justifyContent: "center"
+    },
+    
+    contact: {
+      margin: 5,
+    },
+
+    contactTitle: {
+      color: theme.primaryColor,
+      textAlign: "center",
+      fontFamily: theme.titleFont,
+      fontSize: 24,
+      marginLeft: 10,
+    },
+
+    contactName: {
+      color: theme.primaryColor,
+      textAlign: "center",
+      fontFamily: theme.titleFont,
+      fontSize: 18,
+    },
+
+    smallProfileImage: {
+      width: 80,
+      height: 80,
+      borderRadius: 40,
+      marginTop: 10,
+      marginBottom: 10,
     },
 
     reciever: {

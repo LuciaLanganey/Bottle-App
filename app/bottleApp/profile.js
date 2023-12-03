@@ -83,42 +83,49 @@ export default function Profile() {
       style={styles.backgroundImage}
     >
       <SafeAreaView>
-        <View style={{ alignItems: "center", borderWidth: 2, borderColor: 'blue'  }}>
+        <View style={{ alignItems: "center", marginBottom: 90,  }}>
           <Image
             source={require("../../assets/people/profile.jpg")}
-            style={styles.modalRecieverImage}
+            style={styles.profileImage}
           />
           <Text style={styles.personNameText}>Scarlet</Text>
-          <Text style={styles.personNameText}>123 - 456 - 7890</Text>
+          <Text style={styles.personPhoneNumber}>123 - 456 - 7890</Text>
         </View>
-        <View style={{ }}>
-          <Text>Contacts</Text>
-          <View style={{width: windowWidth*0.7,
-      height: windowHeight * 0.2, alignContent: "center", margin: 10}}>
-            <FlatList
-              data={data}
-              renderItem={({ item }) => (
-              <Reciever
-                id={item.id}
-                first_name={item.first_name}
-                last_name={item.last_name}
-                image_url={item.image_url}
+        <View style={{ alignItems: "left", marginLeft: 10, }}>
+          <Text style={styles.contactTitle}>Contacts</Text>
+          <View style={styles.contactList}>
+
+            <View style={styles.contact}>
+              <Image
+                source={require("../../assets/people/profile.jpg")}
+                style={styles.smallProfileImage}
               />
-              )}
-              keyExtractor={(item) => item.id.toString()}
-              numColumns={5}
+              <Text style={styles.contactName}>Scarlet</Text>
+            </View>
+            <View style={styles.contact}>
+              <Image
+                source={require("../../assets/people/profile.jpg")}
+                style={styles.smallProfileImage}
+              />
+              <Text style={styles.contactName}>Scarlet</Text>
+            </View>
+            <View style={styles.contact}>
+              <Image
+                source={require("../../assets/people/profile.jpg")}
+                style={styles.smallProfileImage}
+              />
+              <Text style={styles.contactName}>Scarlet</Text>
+            </View>
+            <Icon
+              name="add-circle"
+              type="ionicons"
+              color="#23AFBB"
+              size={65}
+              style={{ marginTop: 25, marginLeft: 5 }}
+              onPress={() => console.log('Add Recipient Button Pressed')}
             />
+
           </View>
-          
-          
-          <Icon
-            name="add-circle"
-            type="ionicons"
-            color="#23AFBB"
-            size={40}
-            style={{ alignSelf: "center", marginTop: 50, marginLeft: 10 }}
-            onPress={() => console.log('Add Recipient Button Pressed')}
-          />
          
         </View>
       </SafeAreaView>
