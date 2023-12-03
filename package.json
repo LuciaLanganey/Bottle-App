@@ -37,7 +37,7 @@
     "react-native-webview": "13.2.2",
     "react-navigation": "^5.0.0",
     "react-router-dom": "^6.19.0",
-    "save": "^2.9.0"
+    "expo-camera": "~13.4.4"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
