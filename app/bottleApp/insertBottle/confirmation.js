@@ -16,7 +16,7 @@ export default function openBottle() {
         <SafeAreaView style={{alignItems: 'center'}}>
         <Text style={styles.savedText}>Saved to My Bottle</Text>
         <Image style ={styles.mediumFilledBottle} source={require("../../../assets/graphics/MediumFilledBottle.png")}></Image>
-        </SafeAreaView>
+       </SafeAreaView>
         </ImageBackground>
     );
 }

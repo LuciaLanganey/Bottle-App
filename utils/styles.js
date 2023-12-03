@@ -59,6 +59,11 @@ export const AppStyles = () => {
       fontFamily: theme.textFont,
       color: theme.secondaryColor,
     },
+    darkText: {
+      fontSize: 16,
+      fontFamily: theme.textFont,
+      color: theme.primaryColor,
+    },
     title: {
       fontSize: 48,
       textAlign: "center",
@@ -281,7 +286,7 @@ export const AppStyles = () => {
       padding: 10,
       justifyContent: "center"
     },
-    
+
     contact: {
       margin: 5,
     },
@@ -363,7 +368,7 @@ export const AppStyles = () => {
       fontFamily: theme.textFont,
       fontSize: 13,
       paddingBottom: 10
-    }, 
+    },
     momentCaptionText: {
       color: theme.primaryColor,
       textAlign: "left",
@@ -420,13 +425,67 @@ export const AppStyles = () => {
       marginTop: '120%',
       height: undefined,
       aspectRatio: 1,
-    }, 
+    },
     savedText: {
       position: 'absolute',
       fontSize: 38,
       color: "#186174",
       font: "Inter-Bold",
       marginTop: '120%',
-    }
+    },
+    textInputBoxMessage: {
+      borderRadius: 20,
+      borderColor: theme.borderOutlineColor,
+      backgroundColor: 'white',
+      width: windowWidth * 0.8,
+      height: windowHeight * 0.25,
+      margin: 12,
+      borderWidth: 1,
+      padding: 20,
+      paddingTop: 20,
+      color: 'white',
+      fontSize: 20,
+      font: "Inter-Regular"
+    },
+    boxText: {
+      font: "Inter-Regular",
+      fontSize: 16,
+      color: theme.primaryColor,
+    },
+    timeSentText: {
+      font: "Inter-Regular",
+      fontSize: 12,
+      color: theme.primaryColor,
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      padding: 20,
+    },
+    filterView: {
+      width: windowWidth * 0.8,
+      height: windowHeight * 0.1,
+      backgroundColor: "white",
+      borderRadius: 20,
+      paddingLeft: 20,
+      paddingRight: 20,
+      paddingTop: 10,
+      paddingBottom: 10,
+      alignItems: "center",
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+      elevation: 5,
+    },
+    tinyText: {
+      color: "#186174",
+      textAlign: "center",
+      fontFamily: "Inter-Regular",
+      fontSize: 13,
+      paddingBottom: 8,
+    }, 
   });
 };

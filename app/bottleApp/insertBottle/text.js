@@ -4,11 +4,12 @@ import { Ionicons } from '@expo/vector-icons';
 import { AppStyles } from "../../../utils/styles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link } from "expo-router";
+import moment from 'moment';
 
 export default function openBottle() {
     const [text, setText] = useState(''); // State to keep track of text
     const styles = AppStyles();
-
+    var currentMoment = moment().format('hh:mm:ss a');
     const clearText = () => {
         setText(''); // Function to clear text
     };
@@ -42,8 +43,9 @@ export default function openBottle() {
                                 <Ionicons name="trash-sharp" size={25} color="#23AFBB" />
                             </Pressable>
                         </View>
-                        <View style={{padding: 10, position: 'absolute', left: '74%', bottom: 30, backgroundColor: 'white', borderRadius: 30 }}>
-                            <Link href={{pathname: 'bottleApp/insertBottle/confirmation'}}>
+                        <View style={{ padding: 10, position: 'absolute', left: '74%', bottom: 30, backgroundColor: 'white', borderRadius: 30 }}>
+                            <Link href={{
+                                pathname: '/bottleApp/insertBottle/insertTextMoment', params: {text: text, moment: currentMoment}}}>
                                 <Text style={{fontSize: 16, color: "#23AFBB", font: "Inter-Bold"}}>Next ></Text>
                             </Link>
                         </View>
