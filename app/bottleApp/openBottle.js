@@ -30,16 +30,20 @@ const styles2 = {
   momentsImage: {
     flex: 1,
     justifyContent: 'flex-start',
-    width: windowWidth * 0.8,
-    resizeMode: 'contain',
     alignItems: "center",
     alignSelf: "center",
+    resizeMode: 'contain',
+    width: '100%',
+    max_width: '60%',
+    margin: 0,
+    marginTop: 10,
+    marginBottom: 10,
   },
   centeredView: {
     flex: 1,
     justifyContent: "flex-end",
     alignItems: "center",
-    marginBottom: 105,
+    marginBottom: 80,
   },
   modalView: {
     width: windowWidth * 0.8,
@@ -47,7 +51,8 @@ const styles2 = {
     margin: 20,
     backgroundColor: "white",
     borderRadius: 20,
-    padding: 35,
+    paddingLeft: 20,
+    paddingRight: 20,
     alignItems: "left",
     shadowColor: "#000",
     shadowOffset: {
@@ -64,6 +69,10 @@ export default function openBottle() {
   const styles = AppStyles();
   // modal code
   const [modalVisible, setModalVisible] = useState(false);
+  const [leftArrowVisible, setLeftArrowVisible] = useState(false);
+  const [momentImage, setMomentImage] = useState(require("../../assets/moments/knitting.jpeg"));
+  const [momentCaption, setMomentCaption] = useState("Went to my weekly knitting club");
+  const [momentTime, setMomentTime] = useState("Today at 07:27 AM");
 
   return (
     <ImageBackground
@@ -102,24 +111,58 @@ export default function openBottle() {
                 {/* Modal Content */}
                 <View style={styles2.centeredView}>
                   <View style={styles2.modalView}>
+                    <View visible={leftArrowVisible}
+                    style={{position: 'absolute', left: 8, top: 10, backgroundColor: 'white', borderRadius: '30', borderWidth: 3, borderColor: 
+                  'white'}}>
+                          <Icon
+                            name="leftcircle"
+                            type="ant-design"
+                            color="#23AFBB"
+                            
+                            size={40}
+                            style={{ alignSelf: "left" }}
+                            onPress={() => {
+                              setMomentImage(require("../../assets/moments/knitting.jpeg"));
+                              setMomentCaption("Went to my weekly knitting club");
+                              setMomentTime("Today at 07:27 AM");
+                              setLeftArrowVisible(false);
+                            }}
+                          />
+                        </View>
                     <Image 
-                      source={require("../../assets/moments/knitting.jpeg")}
+                      source={momentImage}
                       style={styles2.momentsImage}/>
-                    <Text style={styles.momentCaptionText}>Went to my weekly knitting club</Text>
-                    <Text style={styles.momentTimeText}>Today at 07:27 AM</Text>
+                    <View style={{position: 'absolute', right: 8, top: 10, backgroundColor: 'white', borderRadius: '30', borderWidth: 3, borderColor: 
+                  'white'}}>
+                          <Icon
+                            name="rightcircle"
+                            type="ant-design"
+                            color="#23AFBB"
+                            
+                            size={40}
+                            style={{ alignSelf: "left" }}
+                            onPress={() => {
+                              setMomentImage(require("../../assets/moments/audio.png"));
+                              setMomentCaption("wanted to share my lovely singing with you");
+                              setMomentTime("Today at 02:29 PM");
+                              setLeftArrowVisible(true);
+                            }}
+                          />
+                        </View>
+                    <Text style={styles.momentCaptionText}>{momentCaption}</Text>
+                    <Text style={styles.momentTimeText}>{momentTime}</Text>
                     
                     <View style={{alignSelf: "center"}}>
                       <Pressable
                       style={[styles.button]}
                       onPress={() => {
                         setModalVisible(!modalVisible);
+                        setLeftArrowVisible(false);
                       }}
                     >
-                      <Text style={styles.textStyle}>Close</Text>
-                      
+                        <Text style={styles.textStyle}>Close bottle</Text>
                     </Pressable>
                     </View>
-                    
                   </View>
                 </View>
               </Modal>
@@ -138,8 +181,7 @@ export default function openBottle() {
               </Pressable>
               <Pressable
                 style={[styles.button]}
-                onPress={() => {
-                  setModalVisible(true)
+                onPress={() => { 
                 }}
               >
                 <Text style={styles.textStyle}>Archive</Text>
