@@ -297,6 +297,9 @@ export default function openBottle() {
 
                 <View style={styles2.centeredView}>
                   <View style={styles2.modalView}>
+
+
+                    
                     {moments[momentIndex].type === 'image' && (
                       <Image
                         source={moments[momentIndex].image}
