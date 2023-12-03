@@ -374,5 +374,22 @@ export const AppStyles = () => {
       alignSelf: 'center',
 
     },
+
+    // login style
+
+    loginTitle: {
+      textAlign: 'center',
+      fontFamily: theme.titleFont,
+      fontSize: 42,
+      color: theme.primaryColor,
+    },
+
+    loginSubtitle: {
+      textAlign: 'center',
+      fontFamily: theme.titleFont,
+      fontSize: 22,
+      color: theme.primaryColor,
+      marginBottom: 30,
+    }
   });
 };
