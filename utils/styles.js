@@ -325,5 +325,23 @@ export const AppStyles = () => {
       alignSelf: 'center',
 
     },
+    textInput: {
+      backgroundColor: "#23AFBB",
+      borderRadius: 30,
+      height: 150,
+      paddingHorizontal: 20,
+      paddingVertical: 10,
+      color: 'black',
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      justifyContent: 'center', // Centers vertically
+      alignItems: 'center', // Centers horizontally
+    },
+    popupBox: {
+      position: 'absolute',
+      alignSelf: 'center',
+    },
   });
 };
