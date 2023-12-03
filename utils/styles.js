@@ -123,12 +123,16 @@ export const AppStyles = () => {
     textInputBox: {
       borderRadius: 20,
       borderColor: theme.borderOutlineColor,
-      backgroundColor: theme.white,
+      backgroundColor: theme.secondaryColor,
       width: windowWidth * 0.8,
-      height: windowHeight * 0.05,
+      height: windowHeight * 0.25,
       margin: 12,
       borderWidth: 1,
-      padding: 10,
+      padding: 20,
+      paddingTop: 20,
+      color: 'white',
+      fontSize: 20,
+      font: "Inter-Regular"
     },
     timeLeftText: {
       color: theme.primaryColor,
@@ -390,6 +394,25 @@ export const AppStyles = () => {
       fontSize: 22,
       color: theme.primaryColor,
       marginBottom: 30,
-    }
+    },
+    // textInput: {
+    //   backgroundColor: "#23AFBB",
+    //   borderRadius: 30,
+    //   height: 150,
+    //   padding: 100,
+    //   color: 'black',
+    //   textAlignVertical: 'top', // Ensures text starts from the top on Android
+    //   overflow: 'hidden', // Prevents the box from expanding
+    // },
+    popupBox: {
+      position: 'absolute',
+      alignSelf: 'center',
+    },
+    deleteMessage: {
+      // position: 'absolute',
+      bottom: 0,
+      left: 0,
+      padding: 10,
+    },
   });
 };
