@@ -5,7 +5,7 @@ import { AppStyles } from "../../../utils/styles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link } from "expo-router";
 
-export default function openBottle() {
+export default function insertTextMoment() {
     const styles = AppStyles();
     return (
         <ImageBackground

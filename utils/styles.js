@@ -414,5 +414,19 @@ export const AppStyles = () => {
       left: 0,
       padding: 10,
     },
+    mediumFilledBottle: {
+      resizeMode: 'contain',
+      width: '220%',
+      marginTop: '120%',
+      height: undefined,
+      aspectRatio: 1,
+    }, 
+    savedText: {
+      position: 'absolute',
+      fontSize: 38,
+      color: "#186174",
+      font: "Inter-Bold",
+      marginTop: '120%',
+    }
   });
 };
