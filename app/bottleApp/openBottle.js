@@ -34,7 +34,7 @@ const styles2 = {
     alignSelf: "center",
     resizeMode: 'contain',
     width: '100%',
-    max_width: '60%',
+    maxWidth: '100%',
     margin: 0,
     marginTop: 10,
     marginBottom: 10,
@@ -124,6 +124,7 @@ export default function openBottle() {
   const [modalVisible, setModalVisible] = useState(false);
   const [showFilterModal, setShowFilterModal] = useState(false);
   const [momentIndex, setMomentIndex] = useState(0);
+  const [filteredMoments, setFilteredMoments] = useState([]);
 
   const moments = [
     {
@@ -159,7 +160,13 @@ export default function openBottle() {
   };
 
   const filteredMomentsByEmoji = (emoji) => {
-    return moments.filter((moment) => moment.emoji === emoji);
+    const filtered = moments.filter((moment) => moment.emoji === emoji);
+    setFilteredMoments(filtered); // Update filtered moments state
+  };
+
+  const handleFilter = (emoji) => {
+    filteredMomentsByEmoji(emoji);
+    toggleFilterModal(); // Close the filter modal after selecting an emoji
   };
 
   const toggleFilterModal = () => {
@@ -233,7 +240,7 @@ export default function openBottle() {
                           type="material-community"
                           color="#23AFBB"
                           size={45}
-                          onPress={() => navigateMoments('next')}
+                          onPress={() => handleFilter('happy')}
                         />
                       </Pressable>
                       <Pressable
