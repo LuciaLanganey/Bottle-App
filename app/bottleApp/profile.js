@@ -85,7 +85,7 @@ export default function Profile() {
       <SafeAreaView>
         <View style={{ alignItems: "center", marginBottom: 90,  }}>
           <Image
-            source={require("../../assets/people/profile.jpg")}
+            source={require("../../assets/people/Scarlet.jpeg")}
             style={styles.profileImage}
           />
           <Text style={styles.personNameText}>Scarlet</Text>
@@ -97,24 +97,24 @@ export default function Profile() {
 
             <View style={styles.contact}>
               <Image
-                source={require("../../assets/people/profile.jpg")}
+                source={require("../../assets/people/grandma.jpeg")}
                 style={styles.smallProfileImage}
               />
-              <Text style={styles.contactName}>Scarlet</Text>
+              <Text style={styles.contactName}>Grandma</Text>
             </View>
             <View style={styles.contact}>
               <Image
-                source={require("../../assets/people/profile.jpg")}
+                source={require("../../assets/people/mom.jpeg")}
                 style={styles.smallProfileImage}
               />
-              <Text style={styles.contactName}>Scarlet</Text>
+              <Text style={styles.contactName}>Mom</Text>
             </View>
             <View style={styles.contact}>
               <Image
-                source={require("../../assets/people/profile.jpg")}
+                source={require("../../assets/people/cynthia.jpeg")}
                 style={styles.smallProfileImage}
               />
-              <Text style={styles.contactName}>Scarlet</Text>
+              <Text style={styles.contactName}>Cynthia</Text>
             </View>
             <Icon
               name="add-circle"
