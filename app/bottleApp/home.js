@@ -155,28 +155,45 @@ export default function Home() {
     setDatePickerVisibility(false);
   };
 
+  
   const handleConfirm = (date) => {
-    let selectedHour = date.getHours();
+    const currentHour = new Date().getHours();
+    const selectedHour = date.getHours();
     const selectedMinute = date.getMinutes();
     let amPm = "AM";
-
+  
+    let formattedHour = selectedHour;
+  
     if (selectedHour >= 12) {
       amPm = "PM";
       if (selectedHour > 12) {
-        selectedHour -= 12;
+        formattedHour -= 12;
       }
     }
-
-    if (selectedHour === 0) {
-      selectedHour = 12;
+  
+    if (currentHour >= 12 && selectedHour < 12) {
+      formattedHour += 12;
     }
-
-    const formattedTime = `${selectedHour}:${
+  
+    const formattedTime = `${formattedHour}:${
       selectedMinute < 10 ? "0" + selectedMinute : selectedMinute
     } ${amPm}`;
-    setSelectedTime(formattedTime);
-    hideDatePicker();
+  
+    // Check if the time is 0:00 AM and navigate to another page
+    if (formattedTime === "0:00 AM") {
+      navigateToAnotherPage();
+    } else {
+      setSelectedTime(formattedTime);
+      hideDatePicker();
+    }
   };
+  
+  const navigateToAnotherPage = () => {
+    // Add your logic to navigate to another page here
+    console.log("Navigating to another page...");
+  };
+  
+    
 
   useEffect(() => {
     const interval = setInterval(() => {
