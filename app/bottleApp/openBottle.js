@@ -81,36 +81,64 @@ const styles2 = {
     paddingTop: 15,
     marginBottom: 5,
   },
+  tinyText: {
+    color: "#186174",
+    textAlign: "center",
+    fontFamily: "Inter-Regular",
+    fontSize: 13,
+  }, 
+  filterCenteredView: {
+    flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "center",
+    marginBottom: windowHeight * 0.5,
+  },
+  filterView: {
+    width: windowWidth * 0.8,
+    height: windowHeight * 0.1,
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    paddingLeft: 20,
+    paddingRight: 20,
+    alignItems: "left",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
 };
 
 export default function openBottle() {
   const styles = AppStyles();
-  // modal code
   const [modalVisible, setModalVisible] = useState(false);
-  // const [momentImage, setMomentImage] = useState(require("../../assets/moments/knitting.jpeg"));
-  // const [momentCaption, setMomentCaption] = useState("Went to my weekly knitting club");
-  // const [momentTime, setMomentTime] = useState("Today at 07:27 AM");
-
+  const [filterVisible, setFilterVisible] = useState(false);
   const [momentIndex, setMomentIndex] = useState(0);
 
-  // Define moments with their respective data
   const moments = [
     {
       type: "image",
       image: require("../../assets/moments/knitting.jpeg"),
       caption: "Went to my weekly knitting club",
       time: "Today at 07:27 AM",
+      emoji: "happy",
     },
     {
       type: "image",
       image: require("../../assets/moments/audio.png"),
       caption: "Wanted to share my lovely singing with you",
       time: "Today at 02:29 PM",
+      emoji: "sad",
     },
     {
       type: "text",
       caption: "Your grandfather forgot to feed the cats AGAIN. Always laying around reading a book instead of helping out.",
       time: "Today at 08:00 PM",
+      emoji: "angry",
     },
   ];
 
@@ -122,6 +150,10 @@ export default function openBottle() {
       newIndex = (momentIndex - 1 + moments.length) % moments.length;
     }
     setMomentIndex(newIndex);
+  };
+
+  const filteredMomentsByEmoji = (emoji) => {
+    return moments.filter((moment) => moment.emoji === emoji);
   };
 
   return (
@@ -138,6 +170,19 @@ export default function openBottle() {
               />
             </View>
 
+          <View style={{
+            position: 'absolute', right: 20, top: 60
+          }}>
+            <Icon
+              name="filter"
+              type="font-awesome"
+              color="#23AFBB"
+
+              size={50}
+              onPress={() => setFilterVisible(true)}
+            />
+          </View>
+
             <View>
               <Text style={styles.timeSubheadingText}>
                 Time to open
@@ -148,6 +193,70 @@ export default function openBottle() {
               <Text style={styles.timeSubheadingText}>
                 bottle
               </Text>
+
+              <Modal
+                animationType="slide"
+                transparent={true}
+                visible={filterVisible}
+                onRequestClose={() => {
+                  Alert.alert("Modal has been closed.");
+                  setFilterVisible(!filterVisible);
+                }}
+              >
+                <View style={styles2.filterCenteredView}>
+                  <View style={styles2.filterView}>
+                    {/* Filter by emotion bar */}
+                    <Text style={styles2.tinyText}>Select an emotion:</Text>
+                    <View visible={filterVisible}
+                    style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 20, alignContent: 'center' }}>
+                      <Pressable
+                        onPress={() => {
+                          const filteredMoments = filteredMomentsByEmoji("happy");
+                          console.log(filteredMoments);
+                        }}
+                      >
+                        <Icon
+                          name="emoticon"
+                          type="material-community"
+                          color="#23AFBB"
+                          size={45}
+                          onPress={() => navigateMoments('next')}
+                        />
+                      </Pressable>
+                      <Pressable
+                        onPress={() => {
+                          const filteredMoments = filteredMomentsByEmoji("sad");
+                          console.log(filteredMoments);
+                        }}
+                      >
+                        <Icon
+                          name="emoticon-sad"
+                          type="material-community"
+                          color="#23AFBB"
+
+                          size={45}
+                          onPress={() => navigateMoments('next')}
+                        />
+                      </Pressable>
+                      <Pressable
+                        onPress={() => {
+                          const filteredMoments = filteredMomentsByEmoji("angry");
+                          console.log(filteredMoments);
+                        }}
+                      >
+                        <Icon
+                          name="emoticon-angry"
+                          type="material-community"
+                          color="#23AFBB"
+
+                          size={45}
+                          onPress={() => navigateMoments('next')}
+                        />
+                      </Pressable>
+                    </View>
+                  </View>
+                </View>
+              </Modal>
 
               <Modal
                 animationType="slide"
