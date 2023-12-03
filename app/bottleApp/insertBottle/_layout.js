@@ -11,7 +11,7 @@ export default function Layout() {
   const styles = AppStyles();
   const segments = useSegments();
   // if screen is in the home or live stack, hide the tab bar
-  const hide = segments.includes("confirmation")
+  const hide = segments.includes("confirmation") || segments.includes("insertTextMoment")
   
   // if screen is in the home or live stack, hide the tab bar
   return (
@@ -88,6 +88,16 @@ export default function Layout() {
         name="confirmation"
         options={{
           tabBarLabel: "Confirmation",
+          tabBarIcon: ({ size, color }) => (
+            <Ionicons name="person" size={40} color={color} />
+          ),
+          href: null,
+        }}
+      />
+      <Tabs.Screen
+        name="insertTextMoment"
+        options={{
+          tabBarLabel: "insertTextMoment",
           tabBarIcon: ({ size, color }) => (
             <Ionicons name="person" size={40} color={color} />
           ),

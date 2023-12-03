@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useState, } from "react";
 import { Text, View, ImageBackground, Image, Pressable, Modal } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import { AppStyles } from "../../../utils/styles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link } from "expo-router";
+import { Camera, CameraType } from 'expo-camera';
 
 export default function openBottle() {
     const styles = AppStyles();
+    const [type, setType] = useState(CameraType.back);
+    const [permission, requestPermission] = Camera.useCameraPermissions();
+
+    function toggleCameraType() {
+      setType(current => (current === CameraType.back ? CameraType.front : CameraType.back));
+    }
     return (
         <ImageBackground
             source={require("../../../assets/background.png")}
