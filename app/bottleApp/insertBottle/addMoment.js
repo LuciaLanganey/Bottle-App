@@ -46,21 +46,6 @@ export default function addMoment() {
           source={require("../../../assets/graphics/bottle-cropped.png")}
           style={styles.bottleImage}
         />
-        <View style={styles.selectMedia}>
-          <Text style={styles.subHeading}>Add Moment</Text>
-          <Link to href={{pathname: 'bottleApp/insertBottle/text'}} style={styles.mediaButton}>
-            <MaterialCommunityIcons name="pencil" size={24} color="black" />
-            <Text>Text</Text>
-          </Link>
-          <Link to href={{pathname: 'bottleApp/insertBottle/photovideo'}} style={styles.mediaButton}>
-            <Ionicons name="camera" size={24} color="black" />
-            <Text>Photo/Video</Text>
-          </Link>
-          <Link to href={{pathname: 'bottleApp/insertBottle/audio'}} style={styles.mediaButton}>
-            <FontAwesome name="microphone" size={24} color="black" />
-            <Text>Voice</Text>
-          </Link>
-        </View>
       </SafeAreaView>
     </ImageBackground>
   );

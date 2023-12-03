@@ -372,26 +372,7 @@ export const AppStyles = () => {
     momentBottle: {
       height: '75%',
       alignSelf: 'center',
+
     },
-    
-    loginTitle: {
-      color: theme.primaryColor,
-      textAlign: "center",
-      fontFamily: theme.titleFont,
-      fontSize: 42,
-    },
-
-    loginSubtitle: {
-      color: theme.primaryColor,
-      textAlign: "center",
-      fontFamily: theme.titleFont,
-      fontSize: 24,
-      marginBottom: 40,
-    },
-
-
-
-    // login page styling
-
   });
 };
