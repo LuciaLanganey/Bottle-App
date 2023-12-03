@@ -177,10 +177,23 @@ export default function openBottle() {
               name="filter"
               type="font-awesome"
               color="#23AFBB"
-
               size={50}
               onPress={() => setFilterVisible(true)}
             />
+          </View>
+
+          <View style={{
+            position: 'absolute', left: 20, top: 60
+          }}>
+            <Link href={{ pathname: 'bottleApp/home' }}>
+              <Icon
+                name="close"
+                type="antdesign"
+                color="#23AFBB"
+
+                size={40}
+              />
+            </Link>
           </View>
 
             <View>
