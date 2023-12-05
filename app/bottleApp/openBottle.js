@@ -33,9 +33,9 @@ const styles2 = {
     alignItems: "center",
     alignSelf: "center",
     margin: 0,
-    marginTop: 10,
-    marginBottom: 10,
-    maxWidth: '90%',
+    marginTop: 15,
+    marginBottom: 5,
+    maxWidth: '100%',
     resizeMode: 'contain',
   },
   centeredView: {
@@ -124,6 +124,8 @@ export default function openBottle() {
   const [showFilterModal, setShowFilterModal] = useState(false);
   const [momentIndex, setMomentIndex] = useState(0);
   const [filteredMoments, setFilteredMoments] = useState([]);
+  const [selectedEmoji, setSelectedEmoji] = useState(null);
+
 
   const moments = [
     {
@@ -181,8 +183,8 @@ export default function openBottle() {
 
 
   const filteredMomentsByEmoji = (emoji) => {
-    console.log('filered by emoji clicked: ', moments.filter((moment) => moment.emoji === emoji));
     setFilteredMoments(moments.filter((moment) => moment.emoji === emoji));
+    setSelectedEmoji(emoji);
   };
 
   const toggleFilterModal = () => {
@@ -241,7 +243,7 @@ export default function openBottle() {
 
             {showFilterModal && (
               <View style={styles2.filterCenteredView}>
-                <View style={styles.filterView}>
+                <View style={styles2.filterView}>
                   {/* Filter by emotion bar */}
                   <Text style={styles.tinyText}>Select an emotion:</Text>
                   <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignContent: 'center' }}>
@@ -249,13 +251,17 @@ export default function openBottle() {
                       onPress={() => {
                         filteredMomentsByEmoji('emoticon');
                       }}
+                      style={{ backgroundColor: selectedEmoji === 'emoticon' ? 'white' : 'transparent', borderRadius: 5 }}
                     >
                       <Icon
                         name="emoticon"
                         type="material-community"
                         color="#23AFBB"
                         size={45}
-                        onPress={() => { filteredMomentsByEmoji('emoticon'); }}
+                        onPress={() => { 
+                          filteredMomentsByEmoji('emoticon'); 
+                      
+                      }}
                       />
                     </Pressable>
                     <Pressable
@@ -358,7 +364,8 @@ export default function openBottle() {
                   </View>
                 )} 
                 <View style={{
-                  position: 'absolute', right: 5, top: 10
+                  position: 'absolute', right: 5, top: 10, backgroundColor: 'white', borderRadius: '30', borderWidth: 1, borderColor:
+                  'white'
                 }}>
                   <Icon
                   name={

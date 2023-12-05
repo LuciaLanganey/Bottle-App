@@ -469,11 +469,9 @@ export const AppStyles = () => {
       borderRadius: 20,
       paddingLeft: 20,
       paddingRight: 20,
-      paddingTop: 15,
-      paddingBottom: 15,
+      paddingTop: 10,
+      paddingBottom: 10,
       alignItems: "center",
-      marginTop: 10,
-      marginBottom: 10,
       shadowColor: "#000",
       shadowOffset: {
         width: 0,
