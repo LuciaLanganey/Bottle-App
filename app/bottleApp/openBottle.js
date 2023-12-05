@@ -160,12 +160,12 @@ export default function openBottle() {
   };
 
   const filteredMomentsByEmoji = (emoji) => {
-    console.log(moments.filter((moment) => moment.emoji === emoji));
+    console.log('filered by emoji clicked: ', moments.filter((moment) => moment.emoji === emoji));
     setFilteredMoments(moments.filter((moment) => moment.emoji === emoji));
   };
 
   useEffect(() => {
-    console.log(filteredMoments); // Logs the updated value of filteredMoments
+    console.log('filtered moments: ', filteredMoments); // Logs the updated value of filteredMoments
   }, [filteredMoments]);
 
   const toggleFilterModal = () => {
