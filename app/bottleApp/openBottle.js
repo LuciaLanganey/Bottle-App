@@ -32,12 +32,11 @@ const styles2 = {
     justifyContent: 'flex-start',
     alignItems: "center",
     alignSelf: "center",
-    resizeMode: 'contain',
-    width: '100%',
-    maxWidth: '100%',
     margin: 0,
     marginTop: 10,
     marginBottom: 10,
+    maxWidth: '90%',
+    resizeMode: 'contain',
   },
   centeredView: {
     flex: 1,
@@ -340,6 +339,7 @@ export default function openBottle() {
                       <Image
                         source={moments[momentIndex].image}
                         style={styles2.momentsImage}
+                        visible="true"
                       />
                     )}
                     {moments[momentIndex].type === 'text' && (
@@ -356,9 +356,9 @@ export default function openBottle() {
                       {moments[momentIndex].time}
                     </Text>
                   </View>
-                {/* )} */}
+                )} 
                 <View style={{
-                  position: 'absolute', right: 10, top: 10
+                  position: 'absolute', right: 5, top: 10
                 }}>
                   <Icon
                   name={
