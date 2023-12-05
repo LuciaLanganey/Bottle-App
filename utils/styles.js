@@ -106,11 +106,12 @@ export const AppStyles = () => {
       backgroundColor: theme.buttonColor,
       justifyContent: "center",
       marginBottom: 15,
+      marginTop: 15,
     },
     buttonText: {
       fontSize: 16,
       textAlign: "center",
-      fontFamily: theme.textFont,
+      fontFamily: theme.titleFont,
       color: theme.white,
     },
     profileImage: {
@@ -468,9 +469,11 @@ export const AppStyles = () => {
       borderRadius: 20,
       paddingLeft: 20,
       paddingRight: 20,
-      paddingTop: 10,
-      paddingBottom: 10,
+      paddingTop: 15,
+      paddingBottom: 15,
       alignItems: "center",
+      marginTop: 10,
+      marginBottom: 10,
       shadowColor: "#000",
       shadowOffset: {
         width: 0,
@@ -487,5 +490,9 @@ export const AppStyles = () => {
       fontSize: 13,
       paddingBottom: 8,
     }, 
+    croppedBottle: {
+      // position: 'absolute',
+      bottom: 0,
+    }
   });
 };

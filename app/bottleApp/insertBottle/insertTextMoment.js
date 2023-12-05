@@ -101,6 +101,13 @@ export default function insertTextMoment() {
                         </Pressable>
                     </View>
                 </View>
+                <View style={styles.button}>
+                    <Link href={{ pathname: 'bottleApp/insertBottle/confirmation' }}>
+                        <Text style={styles.buttonText}>Insert Moment</Text>
+                    </Link>
+                </View>
+                <Image style={styles.croppedBottle} source={require("../../../assets/graphics/bottle-cropped.png")}>
+                </Image>
             </SafeAreaView>
         </ImageBackground>
     );
