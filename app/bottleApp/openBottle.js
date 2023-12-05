@@ -124,7 +124,13 @@ export default function openBottle() {
   const [showFilterModal, setShowFilterModal] = useState(false);
   const [momentIndex, setMomentIndex] = useState(0);
   const [filteredMoments, setFilteredMoments] = useState([]);
-  const [selectedEmoji, setSelectedEmoji] = useState(null);
+
+  const [emojiColors, setEmojiColors] = useState({
+    emoticon: false,
+    'emoticon-sad': false,
+    'emoticon-angry': false,
+    'emoticon-neutral': false,
+  });
 
 
   const moments = [
@@ -183,8 +189,15 @@ export default function openBottle() {
 
 
   const filteredMomentsByEmoji = (emoji) => {
+    const updatedColors = { ...emojiColors };
+    Object.keys(updatedColors).forEach((key) => {
+      if (key !== emoji) {
+        updatedColors[key] = false;
+      }
+    });
+    updatedColors[emoji] = !updatedColors[emoji];
+    setEmojiColors(updatedColors);
     setFilteredMoments(moments.filter((moment) => moment.emoji === emoji));
-    setSelectedEmoji(emoji);
   };
 
   const toggleFilterModal = () => {
@@ -251,12 +264,12 @@ export default function openBottle() {
                       onPress={() => {
                         filteredMomentsByEmoji('emoticon');
                       }}
-                      style={{ backgroundColor: selectedEmoji === 'emoticon' ? 'white' : 'transparent', borderRadius: 5 }}
+                      style={{borderRadius: 5 , marginRight: 10}}
                     >
                       <Icon
                         name="emoticon"
                         type="material-community"
-                        color="#23AFBB"
+                        color={emojiColors['emoticon'] ? '#186174' : '#23AFBB'}
                         size={45}
                         onPress={() => { 
                           filteredMomentsByEmoji('emoticon'); 
@@ -268,12 +281,12 @@ export default function openBottle() {
                       onPress={() => {
                         filteredMomentsByEmoji('sad')
                       }}
+                      style={{borderRadius: 5 , marginRight: 10}}
                     >
                       <Icon
                         name="emoticon-sad"
                         type="material-community"
-                        color="#23AFBB"
-
+                        color={emojiColors['emoticon-sad'] ? '#186174' : '#23AFBB'}
                         size={45}
                         onPress={() => { filteredMomentsByEmoji('emoticon-sad'); }}
                       />
@@ -282,12 +295,12 @@ export default function openBottle() {
                       onPress={() => {
                         filteredMomentsByEmoji('emoticon-angry')
                       }}
+                      style={{ borderRadius: 5 , marginRight: 10}}
                     >
                       <Icon
                         name="emoticon-angry"
                         type="material-community"
-                        color="#23AFBB"
-
+                        color={emojiColors['emoticon-angry'] ? '#186174' : '#23AFBB'}
                         size={45}
                         onPress={() => { filteredMomentsByEmoji('emoticon-angry'); }}
                       />
@@ -296,12 +309,12 @@ export default function openBottle() {
                       onPress={() => {
                         filteredMomentsByEmoji('neutral')
                       }}
+                      style={{ borderRadius: 5}}
                     >
                       <Icon
                         name="emoticon-neutral"
                         type="material-community"
-                        color="#23AFBB"
-
+                        color={emojiColors['emoticon-neutral'] ? '#186174' : '#23AFBB'}
                         size={45}
                         onPress={() => { filteredMomentsByEmoji('emoticon-neutral'); }}
                       />
