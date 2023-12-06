@@ -106,7 +106,7 @@ export default function insertTextMoment() {
                         <Text style={styles.buttonText}>Insert Moment</Text>
                     </Link>
                 </View>
-                <Image style={styles.croppedBottle} source={require("../../../assets/graphics/bottle-cropped.png")}>
+                <Image style={{height: 300, aspectRatio: 1, }} source={require("../../../assets/graphics/bottle-cropped.png")} resizeMode="contain">
                 </Image>
             </SafeAreaView>
         </ImageBackground>

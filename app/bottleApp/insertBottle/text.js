@@ -46,7 +46,7 @@ export default function openBottle() {
                         <View style={{ padding: 10, position: 'absolute', left: '74%', bottom: 30, backgroundColor: 'white', borderRadius: 30 }}>
                             <Link href={{
                                 pathname: '/bottleApp/insertBottle/insertTextMoment', params: {text: text, moment: currentMoment}}}>
-                                <Text style={{fontSize: 16, color: "#23AFBB", font: "Inter-Bold"}}>Next ></Text>
+                                <Text style={{fontSize: 16, color: "#23AFBB", font: "Inter-Bold"}}>Next &gt;</Text>
                             </Link>
                         </View>
                     </View>
