@@ -11,7 +11,7 @@ export default function Layout() {
   const styles = AppStyles();
   const segments = useSegments();
   // if screen is in the home or live stack, hide the tab bar
-  const hide = segments.includes("confirmation") || segments.includes("insertTextMoment")
+  const hide = segments.includes("confirmation") || segments.includes("insertTextMoment") || segments.includes("cameraScreen") || segments.includes("insertphotovideo")
   
   // if screen is in the home or live stack, hide the tab bar
   return (
@@ -35,9 +35,9 @@ export default function Layout() {
           width: 50,
           height: 100,
           borderWidth: 2,
-          borderColor: 'gray',
+          borderColor: '#D9D9D9',
           borderRadius: 20,
-          shadowColor: '#000',
+          shadowColor: '#D9D9D9',
           padding: 8,
           shadowOffset: { width: 0, height: 1 },
           shadowOpacity: 0.5,
@@ -69,7 +69,7 @@ export default function Layout() {
       <Tabs.Screen
         name="photovideo"
         options={{
-          tabBarLabel: "photo/video",
+          tabBarLabel: "camera",
           tabBarIcon: ({ size, color }) => (
             <Ionicons name="camera" size={40} color="#23AFBB" />
           ),
@@ -98,6 +98,26 @@ export default function Layout() {
         name="insertTextMoment"
         options={{
           tabBarLabel: "insertTextMoment",
+          tabBarIcon: ({ size, color }) => (
+            <Ionicons name="person" size={40} color={color} />
+          ),
+          href: null,
+        }}
+      />
+      <Tabs.Screen
+        name="cameraScreen"
+        options={{
+          tabBarLabel: "cameraScreen",
+          tabBarIcon: ({ size, color }) => (
+            <Ionicons name="person" size={40} color={color} />
+          ),
+          href: null,
+        }}
+      />
+      <Tabs.Screen
+        name="insertphotovideo"
+        options={{
+          tabBarLabel: "insertphotovideo",
           tabBarIcon: ({ size, color }) => (
             <Ionicons name="person" size={40} color={color} />
           ),
