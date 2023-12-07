@@ -47,7 +47,7 @@ export default function openBottle() {
               
                         </View>
                         <View style={{ position: 'absolute', left: 25, bottom: 25, backgroundColor: 'white', borderRadius: 50, }}>
-                            <Pressable  >
+                            <Pressable style={styles.deleteMessage} >
                                 <Ionicons name="trash-sharp" size={25} color="#23AFBB" />
                             </Pressable>
                         </View>
