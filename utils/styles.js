@@ -392,7 +392,7 @@ export const AppStyles = () => {
       marginBottom: 5,
     },
     momentBottle: {
-      height: '70%',
+      height: '68%',
       alignSelf: 'center',
 
     },
