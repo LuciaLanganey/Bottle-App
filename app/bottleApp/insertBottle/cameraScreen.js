@@ -126,7 +126,7 @@ export default function CameraScreen() {
               <Link
                 href={{
                   pathname: "bottleApp/insertBottle/insertphotovideo",
-                  params: { photo: photo.uri, video: undefined, moment: currentMoment },
+                  params: { photo: photo, video: undefined, moment: currentMoment },
                 }}
               >
                 <Text style={styles2.buttonText}>Use</Text>

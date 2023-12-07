@@ -9,20 +9,22 @@ import {
   TextInput,
   Button,
   Platform,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 import { AppStyles } from "../../../utils/styles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link } from "expo-router";
 import { Feather } from "@expo/vector-icons";
 import { Camera, CameraType } from "expo-camera";
 import * as ImagePicker from "expo-image-picker";
+import moment from "moment";
 
 export default function openBottle() {
   const styles = AppStyles();
+  var currentMoment = moment().format("hh:mm:ss a");
 
-  //Image picker Code
   const [image, setImage] = useState(null);
 
   const pickImage = async () => {
@@ -36,8 +38,10 @@ export default function openBottle() {
 
     console.log(result);
 
+    setImage(result.assets[0]);
+
     if (!result.canceled) {
-      setImage(result.assets[0].uri);
+      s;
     }
   };
 
@@ -48,6 +52,10 @@ export default function openBottle() {
       style={styles.backgroundImage}
     >
       <SafeAreaView>
+        {/* <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <Button title="Pick an image from camera roll" onPress={pickImage} />
+          {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+        </View> */}
         <View style={styles.headerContainer}>
           <View style={styles.backIconContainer}>
             <Link
@@ -88,12 +96,6 @@ export default function openBottle() {
                 style={{ marginRight: 5 }}
               />
               <Text style={styles.text}>Upload</Text>
-              {/* {image && (
-                <Image
-                  source={{ uri: image }}
-                  style={{ width: 200, height: 200 }}
-                />r
-              )} */}
             </View>
           </Pressable>
           <View
@@ -103,18 +105,73 @@ export default function openBottle() {
               marginVertical: 10,
             }}
           ></View>
-          <Link
-              href={{ pathname: "bottleApp/insertBottle/cameraScreen" }}>
+          <Link href={{ pathname: "bottleApp/insertBottle/cameraScreen" }}>
             <View style={{ flexDirection: "row", margin: 5 }}>
-              <Ionicons
-                name="camera"
-                size={20}
-                color="#23AFBB"
-                style={{ marginRight: 5 }}
-              />
+              <Ionicons name="camera" size={20} color="#23AFBB" style={{}} />
               <Text style={styles.text}>Take photo/video</Text>
             </View>
           </Link>
+          {image && (
+            <View
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <View
+                style={{
+                  backgroundColor: "white",
+                  borderRadius: 20,
+                  borderColor: "gray",
+                  width: 350,
+                  height: 350,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  padding: 10,
+                }}
+              >
+                <Image
+                  source={{ uri: image.uri }}
+                  style={{
+                    width: 200,
+                    height: 200,
+                    alignSelf: "center",
+                    padding: 20,
+                  }}
+                />
+                <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
+                  <View style={styles.button}>
+                    <Link
+                      href={{
+                        pathname: "bottleApp/insertBottle/insertphotovideo",
+                        params: { photo: image.uri, moment: currentMoment },
+                      }}
+                    >
+                      <Text style={styles.buttonText}>Use</Text>
+                    </Link>
+                  </View>
+
+                  <View style={styles.button}>
+                    <Pressable
+                      onPress={() => {
+                        setImage(undefined);
+                        console.log(
+                          "photo discarded, photo and video set to undefined"
+                        );
+                      }}
+                    >
+                      <Text style={styles.buttonText}>Discard</Text>
+                    </Pressable>
+                  </View>
+                </View>
+              </View>
+            </View>
+          )}
         </View>
       </SafeAreaView>
     </ImageBackground>

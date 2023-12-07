@@ -16,12 +16,11 @@ import { Link, useLocalSearchParams } from "expo-router";
 import { Video } from "expo-av";
 import { AppStyles } from "../../../utils/styles";
 import { TextInput } from "react-native-gesture-handler";
-import { MaterialCommunityIcons } from '@expo/vector-icons'; 
-
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import moment from "moment";
 
 export default function PreviewScreen() {
   const styles = AppStyles();
-
   const params = useLocalSearchParams();
   const { photo, video, moment } = params;
   console.log("photo uri: ", photo);
@@ -33,12 +32,15 @@ export default function PreviewScreen() {
       opacity="0.5"
       style={styles.backgroundImage}
     >
-      <SafeAreaView style={{ alignItems: 'center' }}>
+      <SafeAreaView style={{ alignItems: "center" }}>
         {/* header */}
         <View style={styles.headerContainer}>
           <View style={styles.backIconContainer}>
             <Link
-              href={{ pathname: "bottleApp/cameraScreen" }}
+              href={{
+                pathname: "bottleApp/insertBottle/photovideo",
+                params: { photo: undefined, video: undefined }, // Check if video is defined
+              }}
               style={{ marginRight: 8 }}
             >
               <Ionicons name="arrow-back-circle" size={35} color="#23AFBB" />
@@ -47,86 +49,117 @@ export default function PreviewScreen() {
           </View>
         </View>
 
-        <View style={{ borderRadius: 20,
-          // borderColor: theme.borderOutlineColor,
-          backgroundColor: 'white',
-          borderOutlineColor: 'gray',
-          // width: windowWidth * 0.8,
-          // height: windowHeight * 0.25,
-          margin: 12,
-          borderWidth: 1,
-          padding: 20,
-          paddingTop: 20,
-          width: 320,
-          height: 280,
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexDirection: 'column',
-          // color: 'white',
-          // fontSize: 20,
-          // font: "Inter-Regular"
-          
-          }}>
-            {video ? (
-              <Video
-                style={{ width: 250, height: 200 }}
-                source={{ uri: video }}
-                useNativeControls
-                resizeMode="contain"
-                isLooping
-              />
-            ) : (
-              <Image
-                source={{ uri: photo }}
-                style={{ width: 250, height: 200 }}
-                // resizeMode="contain"
-              />
-            )}
-            <TextInput style={{}} multiline numberOfLines={2} placeholder="Caption here"/>
-            <Text style={styles.timeSentText}>Today at {moment}</Text>
+        <View
+          style={{
+            borderRadius: 20,
+            borderColor: "#D9D9D9",
+            backgroundColor: "white",
+            // borderOutlineColor: "white",
+            // width: windowWidth * 0.8,
+            // height: windowHeight * 0.25,
+            margin: 12,
+            borderWidth: 1,
+            padding: 20,
+            paddingTop: 20,
+            width: 320,
+            height: 280,
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "column",
+            // color: 'white',
+            // fontSize: 20,
+            // font: "Inter-Regular"
+          }}
+        >
+          {video ? (
+            <Video
+              style={{ width: 250, height: 200 }}
+              source={{ uri: video }}
+              useNativeControls
+              resizeMode="contain"
+              isLooping
+            />
+          ) : (
+            <Image
+              source={{ uri: photo }}
+              style={{ width: 250, height: 200 }}
+            />
+          )}
+          <TextInput
+            style={{ width: 270, margin: 5, alignSelf: "left", padding: 5 }}
+            numberOfLines={1}
+            placeholder="Caption here"
+          />
+          <Text
+            style={{
+              font: "Inter-Regular",
+              fontSize: 16,
+              alignSelf: "center",
+              color: "#186174",
+              width: 260,
+            }}
+          >
+            Today at {moment}
+          </Text>
         </View>
 
         <View style={styles.filterView}>
-                    {/* Filter by emotion bar */}
-                    <Text style={styles.tinyText}>Select an emotion:</Text>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignContent: 'center' }}>
-                        <Pressable
-                            onPress={() => console.log('emoji pressed')
-                          }
-                        >
-                            <MaterialCommunityIcons name="emoticon" size={45} color="#23AFBB" />
-                        </Pressable>
-                        <Pressable
-                            onPress={() => console.log('emoji pressed')
-                          }
-                        >
-                          <MaterialCommunityIcons name="emoticon-sad" size={45} color="#23AFBB" />
-                        </Pressable>
-                        <Pressable
-                            onPress={() => console.log('emoji pressed')
-                          }
-                        >
-                          <MaterialCommunityIcons name="emoticon-sad" size={45} color="#23AFBB" />
-                        </Pressable>
-                        <Pressable
-                            onPress={() => console.log('emoji pressed')
-                            }
-                        >
-                          <MaterialCommunityIcons name="emoticon-sad" size={45} color="#23AFBB" />
-                        </Pressable>
-                    </View>
-                </View>
-
+          {/* Filter by emotion bar */}
+          <Text style={styles.tinyText}>Select an emotion:</Text>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignContent: "center",
+            }}
+          >
+            <Pressable onPress={() => console.log("emoji pressed")}>
+              <MaterialCommunityIcons
+                name="emoticon"
+                size={45}
+                color="#23AFBB"
+              />
+            </Pressable>
+            <Pressable onPress={() => console.log("emoji pressed")}>
+              <MaterialCommunityIcons
+                name="emoticon-sad"
+                size={45}
+                color="#23AFBB"
+              />
+            </Pressable>
+            <Pressable onPress={() => console.log("emoji pressed")}>
+              <MaterialCommunityIcons
+                name="emoticon-sad"
+                size={45}
+                color="#23AFBB"
+              />
+            </Pressable>
+            <Pressable onPress={() => console.log("emoji pressed")}>
+              <MaterialCommunityIcons
+                name="emoticon-sad"
+                size={45}
+                color="#23AFBB"
+              />
+            </Pressable>
+          </View>
+        </View>
 
         <View style={styles.button}>
-          <Link href={{ pathname: "bottleApp/insertBottle/confirmation" }}>
+          <Link
+            href={{
+              pathname: "bottleApp/insertBottle/confirmation",
+              params: { photo: undefined, video: undefined },
+            }}
+          >
             <Text style={styles.buttonText}>Insert Moment</Text>
           </Link>
         </View>
-        <Image style={{height: 300, aspectRatio: 1, }} source={require("../../../assets/graphics/bottle-cropped.png")} resizeMode="contain"/>
-
+        <Image
+          style={{ height: 300, aspectRatio: 1 }}
+          source={require("../../../assets/graphics/bottle-cropped.png")}
+          resizeMode="contain"
+        />
       </SafeAreaView>
-      
     </ImageBackground>
   );
 }
