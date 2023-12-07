@@ -433,8 +433,8 @@ export const AppStyles = () => {
       position: "absolute",
       alignSelf: "center",
       borderRadius: 20,
-      borderColor: "red",
-      borderWidth: 3,
+      // borderColor: "red",
+      // borderWidth: 3,
     },
     audioBox: {
       borderRadius: 20,
