@@ -76,7 +76,7 @@ export default function openBottle() {
           }}
         >
           <Pressable onPress={pickImage}>
-            <View style={{ flexDirection: "row", margin: 5}}>
+            <View style={{ flexDirection: "row" }}>
               <Feather
                 name="upload"
                 size={20}
@@ -90,13 +90,13 @@ export default function openBottle() {
             style={{
               borderWidth: 1,
               borderColor: "#D9D9D9",
-              marginVertical: 10,
+              margin: 10,
             }}
           ></View>
           <Link
             href={{ pathname: "bottleApp/insertBottle/cameraScreen" }}>
-            <View style={{ flexDirection: "row", margin: 5 }}>
-              <Ionicons name="camera" size={20} color="#23AFBB" style={{}} />
+            <View style={{ flexDirection: "row" }}>
+              <Ionicons name="camera" size={20} color="#23AFBB" style={{ marginRight: 5 }} />
               <Text style={styles.text}>Take photo/video</Text>
             </View>
           </Link>

@@ -69,7 +69,7 @@ export default function Layout() {
       <Tabs.Screen
         name="photovideo"
         options={{
-          tabBarLabel: "photo/video",
+          tabBarLabel: "camera",
           tabBarIcon: ({ size, color }) => (
             <Ionicons name="camera" size={40} color="#23AFBB" />
           ),
