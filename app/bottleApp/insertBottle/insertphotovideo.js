@@ -28,6 +28,11 @@ export default function PreviewScreen() {
   const [isAngrySelected, setAngrySelected] = useState(false);
   const [isNeutralSelected, setNeutralSelected] = useState(false);
 
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import moment from "moment";
+
+export default function PreviewScreen() {
+  const styles = AppStyles();
   const params = useLocalSearchParams();
   const { photo, video, moment } = params;
   console.log("photo uri: ", photo);
@@ -115,14 +120,18 @@ export default function PreviewScreen() {
 
 
         <View style={styles.button}>
-          <Link href={{ pathname: "bottleApp/insertBottle/confirmation" }}>
+          <Link
+            href={{
+              pathname: "bottleApp/insertBottle/confirmation",
+              params: { photo: undefined, video: undefined },
+            }}
+          >
             <Text style={styles.buttonText}>Insert Moment</Text>
           </Link>
         </View>
         <Image style={{height: 300, aspectRatio: 1, }} source={require("../../../assets/graphics/bottle-cropped.png")} resizeMode="contain"/>
         </View>
       </SafeAreaView>
-      
     </ImageBackground>
   );
 }

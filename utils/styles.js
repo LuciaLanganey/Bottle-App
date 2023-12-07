@@ -116,6 +116,7 @@ export const AppStyles = () => {
       justifyContent: "center",
       marginBottom: 15,
       marginTop: 15,
+      marginHorizontal: 5,
     },
     buttonText: {
       fontSize: 16,
