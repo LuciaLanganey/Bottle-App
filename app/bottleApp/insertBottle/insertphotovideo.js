@@ -18,7 +18,7 @@ import { AppStyles } from "../../../utils/styles";
 import { TextInput } from "react-native-gesture-handler";
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import Header from '../../header';
-
+import moment from "moment";
 
 
 export default function PreviewScreen() {
@@ -28,11 +28,6 @@ export default function PreviewScreen() {
   const [isAngrySelected, setAngrySelected] = useState(false);
   const [isNeutralSelected, setNeutralSelected] = useState(false);
 
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import moment from "moment";
-
-export default function PreviewScreen() {
-  const styles = AppStyles();
   const params = useLocalSearchParams();
   const { photo, video, moment } = params;
   console.log("photo uri: ", photo);
