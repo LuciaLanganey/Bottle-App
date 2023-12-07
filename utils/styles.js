@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions } from "react-native";
 import { useFonts } from "expo-font";
-import React from 'react'
+import React from "react";
 
 export const AppStyles = () => {
   const theme = {
@@ -83,16 +83,16 @@ export const AppStyles = () => {
     },
 
     headerContainer: {
-      flexDirection: 'row', // Aligns children in a row
-      alignItems: 'flex-start', // Aligns children to the start of the cross axis (vertical)
-      justifyContent: 'center',
+      flexDirection: "row", // Aligns children in a row
+      alignItems: "flex-start", // Aligns children to the start of the cross axis (vertical)
+      justifyContent: "center",
       paddingTop: 20,
       paddingHorizontal: 20,
     },
 
     backIconContainer: {
-      flexDirection: 'row',
-      alignItems: 'center',
+      flexDirection: "row",
+      alignItems: "center",
     },
     button: {
       width: windowWidth * 0.4,
@@ -130,9 +130,9 @@ export const AppStyles = () => {
       borderWidth: 1,
       padding: 20,
       paddingTop: 20,
-      color: 'white',
+      color: "white",
       fontSize: 20,
-      font: "Inter-Regular"
+      font: "Inter-Regular",
     },
     timeLeftText: {
       color: theme.primaryColor,
@@ -277,11 +277,11 @@ export const AppStyles = () => {
       alignContent: "center",
       alignItems: "left",
       marginTop: 15,
-      flexDirection: 'row',
+      flexDirection: "row",
       padding: 10,
-      justifyContent: "center"
+      justifyContent: "center",
     },
-    
+
     contact: {
       margin: 5,
     },
@@ -349,21 +349,21 @@ export const AppStyles = () => {
       fontWeight: "bold",
     },
     selectMedia: {
-      backgroundColor: 'white',
+      backgroundColor: "white",
       borderRadius: 82,
-      borderOutlineColor: 'gray',
+      borderOutlineColor: "gray",
     },
     mediaButton: {
       padding: 10,
-      alignItems: 'center',
+      alignItems: "center",
     },
     momentTimeText: {
       color: theme.primaryColor,
       textAlign: "left",
       fontFamily: theme.textFont,
       fontSize: 13,
-      paddingBottom: 10
-    }, 
+      paddingBottom: 10,
+    },
     momentCaptionText: {
       color: theme.primaryColor,
       textAlign: "left",
@@ -374,22 +374,21 @@ export const AppStyles = () => {
       marginBottom: 5,
     },
     momentBottle: {
-      height: '75%',
-      alignSelf: 'center',
-
+      height: "75%",
+      alignSelf: "center",
     },
 
     // login style
 
     loginTitle: {
-      textAlign: 'center',
+      textAlign: "center",
       fontFamily: theme.titleFont,
       fontSize: 42,
       color: theme.primaryColor,
     },
 
     loginSubtitle: {
-      textAlign: 'center',
+      textAlign: "center",
       fontFamily: theme.titleFont,
       fontSize: 22,
       color: theme.primaryColor,
@@ -405,8 +404,8 @@ export const AppStyles = () => {
     //   overflow: 'hidden', // Prevents the box from expanding
     // },
     popupBox: {
-      position: 'absolute',
-      alignSelf: 'center',
+      position: "absolute",
+      alignSelf: "center",
     },
     deleteMessage: {
       // position: 'absolute',
@@ -415,38 +414,51 @@ export const AppStyles = () => {
       padding: 10,
     },
     mediumFilledBottle: {
-      resizeMode: 'contain',
-      width: '220%',
-      marginTop: '120%',
+      resizeMode: "contain",
+      width: "220%",
+      marginTop: "120%",
       height: undefined,
       aspectRatio: 1,
-    }, 
+    },
     savedText: {
-      position: 'absolute',
+      position: "absolute",
       fontSize: 38,
       color: "#186174",
       font: "Inter-Bold",
-      marginTop: '120%',
+      marginTop: "120%",
     },
 
     // insert audio
     pressToRecordBox: {
-      position: 'absolute',
-      alignSelf: 'center',
+      position: "absolute",
+      alignSelf: "center",
+      borderRadius: 20,
+      borderColor: "red",
+      borderWidth: 3,
     },
     popupAudioBox: {
       borderRadius: 20,
       borderColor: theme.borderOutlineColor,
       backgroundColor: theme.secondaryColor,
       width: windowWidth * 0.8,
-      height: windowHeight * 0.1,
+      height: windowHeight * 0.15,
       margin: 12,
       borderWidth: 1,
       padding: 20,
       paddingTop: 20,
-      color: 'white',
+      color: "white",
       fontSize: 20,
-      font: "Inter-Regular"
-    }
+      font: "Inter-Regular",
+    },
+    audioPlayContainer: {
+      resizeMode: "contain",
+      alignItems: "center",
+    },
+    audioContainer: {
+      flex: 1,
+      justifyContent: "flex-start",
+      width: "80%",
+      resizeMode: "contain",
+    },
   });
 };
