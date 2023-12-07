@@ -429,19 +429,19 @@ export const AppStyles = () => {
     },
 
     // insert audio
-    pressToRecordBox: {
+    popupAudioBox: {
       position: "absolute",
       alignSelf: "center",
       borderRadius: 20,
       borderColor: "red",
       borderWidth: 3,
     },
-    popupAudioBox: {
+    audioBox: {
       borderRadius: 20,
       borderColor: theme.borderOutlineColor,
       backgroundColor: theme.secondaryColor,
       width: windowWidth * 0.8,
-      height: windowHeight * 0.15,
+      height: windowHeight * 0.17,
       margin: 12,
       borderWidth: 1,
       padding: 20,
@@ -450,9 +450,12 @@ export const AppStyles = () => {
       fontSize: 20,
       font: "Inter-Regular",
     },
-    audioPlayContainer: {
+    audioFile: {
       resizeMode: "contain",
       alignItems: "center",
+      maxHeight: 100,
+      maxWidth: 300,
+
     },
     audioContainer: {
       flex: 1,
