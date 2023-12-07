@@ -76,6 +76,14 @@ export const AppStyles = () => {
       fontFamily: theme.titleFont,
       color: theme.primaryColor,
     },
+    myBottleSubheading: {
+        fontSize: 30,
+        textAlign: "center",
+        fontFamily: theme.titleFont,
+        color: theme.primaryColor,
+        // position: 'absolute',
+        paddingLeft: '26%',
+    },
 
     titleContainer: {
       flexDirection: "row",
@@ -90,14 +98,15 @@ export const AppStyles = () => {
     headerContainer: {
       flexDirection: 'row', // Aligns children in a row
       alignItems: 'flex-start', // Aligns children to the start of the cross axis (vertical)
-      justifyContent: 'center',
+      // marginTop: '-10%',
       paddingTop: 20,
       paddingHorizontal: 20,
+      paddingBottom: 20,
     },
 
     backIconContainer: {
       flexDirection: 'row',
-      alignItems: 'center',
+      // left: 0,
     },
     button: {
       width: windowWidth * 0.4,
@@ -123,6 +132,7 @@ export const AppStyles = () => {
     },
     bottleImage: {
       marginTop: 15,
+      alignSelf: 'center',
       width: windowWidth * 0.7,
       height: windowHeight * 0.5,
     },
@@ -133,6 +143,7 @@ export const AppStyles = () => {
       width: windowWidth * 0.8,
       height: windowHeight * 0.25,
       margin: 12,
+      marginTop: '95%',
       borderWidth: 1,
       padding: 20,
       paddingTop: 20,
@@ -380,7 +391,7 @@ export const AppStyles = () => {
       marginBottom: 5,
     },
     momentBottle: {
-      height: '75%',
+      height: '70%',
       alignSelf: 'center',
 
     },
@@ -423,16 +434,17 @@ export const AppStyles = () => {
     mediumFilledBottle: {
       resizeMode: 'contain',
       width: '220%',
-      marginTop: '120%',
+      marginTop: '8%',
       height: undefined,
       aspectRatio: 1,
     },
     savedText: {
-      position: 'absolute',
+      //position: 'absolute',
       fontSize: 38,
       color: "#186174",
       font: "Inter-Bold",
-      marginTop: '120%',
+      marginTop: '20%',
+      marginBottom: '8%',
     },
     textInputBoxMessage: {
       borderRadius: 20,

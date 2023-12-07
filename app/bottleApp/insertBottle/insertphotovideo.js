@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
   View,
   Image,
@@ -17,10 +17,16 @@ import { Video } from "expo-av";
 import { AppStyles } from "../../../utils/styles";
 import { TextInput } from "react-native-gesture-handler";
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+import Header from '../../header';
+
 
 
 export default function PreviewScreen() {
   const styles = AppStyles();
+  const [isHappySelected, setHappySelected] = useState(false);
+  const [isSadSelected, setSadSelected] = useState(false);
+  const [isAngrySelected, setAngrySelected] = useState(false);
+  const [isNeutralSelected, setNeutralSelected] = useState(false);
 
   const params = useLocalSearchParams();
   const { photo, video, moment } = params;
@@ -33,20 +39,9 @@ export default function PreviewScreen() {
       opacity="0.5"
       style={styles.backgroundImage}
     >
-      <SafeAreaView style={{ alignItems: 'center' }}>
-        {/* header */}
-        <View style={styles.headerContainer}>
-          <View style={styles.backIconContainer}>
-            <Link
-              href={{ pathname: "bottleApp/cameraScreen" }}
-              style={{ marginRight: 8 }}
-            >
-              <Ionicons name="arrow-back-circle" size={35} color="#23AFBB" />
-            </Link>
-            <Text style={styles.subHeading}>My Bottle</Text>
-          </View>
-        </View>
-
+      <SafeAreaView style={{ flex: 1}}>
+       <Header/>
+      <View style={{alignItems: 'center'}}>
         <View style={{ borderRadius: 20,
           // borderColor: theme.borderOutlineColor,
           backgroundColor: 'white',
@@ -91,28 +86,29 @@ export default function PreviewScreen() {
                     <Text style={styles.tinyText}>Select an emotion:</Text>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignContent: 'center' }}>
                         <Pressable
-                            onPress={() => console.log('emoji pressed')
-                          }
+                            onPress={() => {
+                              setHappySelected(!isHappySelected);
+                          }}
                         >
-                            <MaterialCommunityIcons name="emoticon" size={45} color="#23AFBB" />
+                            <MaterialCommunityIcons name="emoticon" size={45} color={isHappySelected ? "#186174" : "#23AFBB"} />
                         </Pressable>
                         <Pressable
-                            onPress={() => console.log('emoji pressed')
+                            onPress={() => setSadSelected(!isSadSelected)
                           }
                         >
-                          <MaterialCommunityIcons name="emoticon-sad" size={45} color="#23AFBB" />
+                          <MaterialCommunityIcons name="emoticon-sad" size={45} color={isSadSelected ? "#186174" : "#23AFBB"} />
                         </Pressable>
                         <Pressable
-                            onPress={() => console.log('emoji pressed')
+                            onPress={() => setAngrySelected(!isAngrySelected)
                           }
                         >
-                          <MaterialCommunityIcons name="emoticon-sad" size={45} color="#23AFBB" />
+                          <MaterialCommunityIcons name="emoticon-angry" size={45} color={isAngrySelected ? "#186174" : "#23AFBB"} />
                         </Pressable>
                         <Pressable
-                            onPress={() => console.log('emoji pressed')
+                            onPress={() => setNeutralSelected(!isNeutralSelected)
                             }
                         >
-                          <MaterialCommunityIcons name="emoticon-sad" size={45} color="#23AFBB" />
+                          <MaterialCommunityIcons name="emoticon-neutral" size={45} color={isHappySelected ? "#186174" : "#23AFBB"} />
                         </Pressable>
                     </View>
                 </View>
@@ -124,7 +120,7 @@ export default function PreviewScreen() {
           </Link>
         </View>
         <Image style={{height: 300, aspectRatio: 1, }} source={require("../../../assets/graphics/bottle-cropped.png")} resizeMode="contain"/>
-
+        </View>
       </SafeAreaView>
       
     </ImageBackground>

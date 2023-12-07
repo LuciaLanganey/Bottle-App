@@ -13,10 +13,15 @@ export default function openBottle() {
             opacity="0.5"
             style={styles.backgroundImage}
         >
-        <SafeAreaView style={{alignItems: 'center'}}>
-        <Text style={styles.savedText}>Saved to My Bottle</Text>
-        <Image style ={styles.mediumFilledBottle} source={require("../../../assets/graphics/MediumFilledBottle.png")}></Image>
-       </SafeAreaView>
+            <SafeAreaView style={{ flex: 1, alignItems: 'center'}}>
+                <Text style={styles.savedText}>Saved to My Bottle</Text>
+                <View style={styles.button}>
+                    <Link href={{ pathname: 'bottleApp/home' }}>
+                        <Text style={styles.buttonText}>Return to home</Text>
+                    </Link>
+                </View>
+                <Image style={styles.mediumFilledBottle} source={require("../../../assets/graphics/MediumFilledBottle.png")}></Image>
+            </SafeAreaView>
         </ImageBackground>
     );
 }

@@ -18,6 +18,8 @@ import { Link } from "expo-router";
 import { Feather } from "@expo/vector-icons";
 import { Camera, CameraType } from "expo-camera";
 import * as ImagePicker from "expo-image-picker";
+import Header from '../../header';
+
 
 export default function openBottle() {
   const styles = AppStyles();
@@ -47,22 +49,10 @@ export default function openBottle() {
       opacity="0.5"
       style={styles.backgroundImage}
     >
-      <SafeAreaView>
-        <View style={styles.headerContainer}>
-          <View style={styles.backIconContainer}>
-            <Link
-              href={{ pathname: "bottleApp/insertBottle/addMoment" }}
-              style={{ marginRight: 8 }}
-            >
-              <Ionicons name="arrow-back-circle" size={35} color="#23AFBB" />
-            </Link>
-            <Text style={styles.subHeading}>My Bottle</Text>
-          </View>
-        </View>
+      <SafeAreaView style={{flex:1}}>
+        <Header />
         <Image
-          source={require("../../../assets/graphics/EmptyBottle.png")}
-          resizeMode={"contain"}
-          style={styles.momentBottle}
+          source={require('../../../assets/graphics/EmptyBottle.png')} resizeMode={'contain'} style={styles.momentBottle}
         />
 
         <View
@@ -75,12 +65,14 @@ export default function openBottle() {
             marginHorizontal: 100,
             marginVertical: 300,
             backgroundColor: "white",
+            alignSelf: 'center',
             borderRadius: 20,
             padding: 10,
+            marginTop: '80%',
           }}
         >
           <Pressable onPress={pickImage}>
-            <View style={{ flexDirection: "row", margin: 5 }}>
+            <View style={{ flexDirection: "row", margin: 5}}>
               <Feather
                 name="upload"
                 size={20}
@@ -104,7 +96,7 @@ export default function openBottle() {
             }}
           ></View>
           <Link
-              href={{ pathname: "bottleApp/insertBottle/cameraScreen" }}>
+            href={{ pathname: "bottleApp/insertBottle/cameraScreen" }}>
             <View style={{ flexDirection: "row", margin: 5 }}>
               <Ionicons
                 name="camera"
