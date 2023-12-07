@@ -45,7 +45,7 @@ export default function PreviewScreen() {
         <View style={{ borderRadius: 20,
           // borderColor: theme.borderOutlineColor,
           backgroundColor: 'white',
-          borderOutlineColor: 'white',
+          borderColor: 'white',
           // width: windowWidth * 0.8,
           // height: windowHeight * 0.25,
           margin: 12,
@@ -77,8 +77,8 @@ export default function PreviewScreen() {
                 // resizeMode="contain"
               />
             )}
-            <TextInput style={{ alignSelf: 'left', width: 265, margin: 5, borderColor: 'black', borderWidth: 2 }} multiline numberOfLines={1} placeholder="Caption here"/>
-            <Text style={{ alignSelf: 'left', width: 265, marginHorizontal: 5, marginBottom: 5, color: "#186174", borderColor: 'black', borderWidth: 2 }}>Today at {moment}</Text>
+            <TextInput style={{ alignSelf: 'left', width: 265, margin: 5, }} multiline numberOfLines={1} placeholder="Caption here"/>
+            <Text style={{ alignSelf: 'left', width: 265, marginHorizontal: 5, marginBottom: 5, color: "#186174" }}>Today at {moment}</Text>
         </View>
 
         <View style={styles.filterView}>
