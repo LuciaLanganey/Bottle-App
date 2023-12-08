@@ -41,9 +41,9 @@ export default function addMoment() {
             alignSelf: 'center',
             borderColor: '#23AFBB'
           }}
-          source={require('../../../assets/people/Scarlet.jpeg')}
+          source={require('../../../assets/people/grandma.jpeg')}
         />
-        <Text style={styles.subHeading}>Scarlet</Text>
+        <Text style={styles.subHeading}>Grandma</Text>
         <Image
           source={require("../../../assets/graphics/bottle-cropped.png")}
           style={styles.bottleImage}

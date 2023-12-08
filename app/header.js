@@ -17,7 +17,6 @@ const Header = () => {
           color="#23AFBB"
         />
       </Link>
-      <Text style={styles.myBottleSubheading}>My Bottle</Text>
     </View>
   );
 };
