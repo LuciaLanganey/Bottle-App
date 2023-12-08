@@ -55,7 +55,7 @@ export default function openBottle() {
                     </Link>
                 </View>
                 {/* Press Hold to record Pop up */}
-                <View style={{ alignItems: 'center' }}>
+                <View style={{ alignItems: 'center', position: 'relative' }}>
                     <Modal
                         animationType="slide"
                         transparent={true}
@@ -139,21 +139,21 @@ export default function openBottle() {
                     {/* end modal content */}
 
                     {/* <View style={audiostyles.recordBox}> */}
-                    <Pressable onPress={() => setModalVisible(true)}>
+                    <Image
+                        source={require("../../../assets/graphics/EmptyBottle.png")}
+                        resizeMode={"contain"}
+                        style={{height: '80%'}}
+                    />
+                    <Pressable onPress={() => setModalVisible(true)} style={audiostyles.recordPressable}>
                         <Image
                             source={require("../../../assets/moments/record.png")}
                             opacity="0.7"
                             style={[audiostyles.record]}
                         ></Image>
                     </Pressable>
-                    <Text style={styles.textStyle}>Press Hold To Record</Text>
+                    <Text style={audiostyles.textStyle}>Press Hold To Record</Text>
                     {/* </View> */}
 
-                    <Image
-                        source={require("../../../assets/graphics/EmptyBottle.png")}
-                        resizeMode={"contain"}
-                        style={styles.momentBottle}
-                    />
                 </View>
             </SafeAreaView>
         </ImageBackground>
@@ -161,6 +161,12 @@ export default function openBottle() {
 }
 
 const audiostyles = StyleSheet.create({
+    recordPressable: {
+        position: 'absolute',
+        top: "25%", // adjust this value to position inside the bottle
+        //left: "50%",
+        // transform: [{ translateX: -50 }, { translateY: -50 }],
+    },
     centeredView: {
         flex: 1,
         justifyContent: "center",
@@ -194,9 +200,13 @@ const audiostyles = StyleSheet.create({
         backgroundColor: "#2196F3",
     },
     textStyle: {
-        color: "white",
+        color: "#186174",
         fontWeight: "bold",
         textAlign: "center",
+        position: 'absolute',
+        top: "48%", // adjust this value to place the text below the button
+        width: '100%',
+        fontSize: 11,
     },
     modalText: {
         marginBottom: 15,
@@ -242,11 +252,13 @@ const audiostyles = StyleSheet.create({
         resizeMode: "contain",
     },
     record: {
+        position: 'absolute',
         borderRadius: 15,
         borderColor: "#23AFBB",
         borderWidth: 10,
-        width: 120,
-        height: 120,
+        width: 100,
+        height: 100,
+        alignSelf: 'center',
     },
     recordBox: {
         alignItems: "center",
