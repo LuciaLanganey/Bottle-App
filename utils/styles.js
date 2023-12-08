@@ -97,14 +97,13 @@ export const AppStyles = () => {
 
     headerContainer: {
       flexDirection: 'row', // Aligns children in a row
-      alignItems: 'flex-start', // Aligns children to the start of the cross axis (vertical)
+      justifyContent: 'flex-start', // Aligns children to the start of the cross axis (vertical)
       // marginTop: '-10%',
-      flexDirection: "row", // Aligns children in a row
-      alignItems: "flex-start", // Aligns children to the start of the cross axis (vertical)
-      justifyContent: "center",
       paddingTop: 20,
       paddingHorizontal: 20,
       paddingBottom: 20,
+      borderColor: 'black',
+      borderWidth: 2,
     },
 
     backIconContainer: {
