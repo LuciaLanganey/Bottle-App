@@ -7,7 +7,6 @@ import { Link } from "expo-router";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
-import Header from '../../header';
 
 
 export default function addMoment() {
@@ -19,9 +18,8 @@ export default function addMoment() {
       opacity="0.5"
       style={styles.backgroundImage}
     >
-      <SafeAreaView style={{flex: 1}}>
-        <Header/>
-        {/* <View style={styles.headerContainer}>
+      <SafeAreaView>
+        <View style={styles.headerContainer}>
           <View style={styles.backIconContainer}>
             <Link href={{ pathname: 'bottleApp/home' }} style={{ marginRight: 8 }}>
               <Ionicons
@@ -30,20 +28,20 @@ export default function addMoment() {
                 color="#23AFBB"
               />
             </Link>
-            <Text style={styles.myBottleSubheading}>My Bottle</Text>
+            <Text style={styles.subHeading}>My Bottle</Text>
           </View>
-        </View> */}
+        </View>
         <Image
           style={{
             width: 100,
             height: 100,
             borderRadius: 50,
-            alignSelf: 'center',
+            borderWidth: 3,
             borderColor: '#23AFBB'
           }}
-          source={require('../../../assets/people/Scarlet.jpeg')}
+          source={require('../../../assets/people/selena.jpg')}
         />
-        <Text style={styles.subHeading}>Scarlet</Text>
+        <Text style={styles.subHeading}>Selena</Text>
         <Image
           source={require("../../../assets/graphics/bottle-cropped.png")}
           style={styles.bottleImage}
