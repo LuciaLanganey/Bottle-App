@@ -59,6 +59,11 @@ export const AppStyles = () => {
       fontFamily: theme.textFont,
       color: theme.secondaryColor,
     },
+    darkText: {
+      fontSize: 16,
+      fontFamily: theme.textFont,
+      color: theme.primaryColor,
+    },
     title: {
       fontSize: 48,
       textAlign: "center",
@@ -70,6 +75,14 @@ export const AppStyles = () => {
       textAlign: "center",
       fontFamily: theme.titleFont,
       color: theme.primaryColor,
+    },
+    myBottleSubheading: {
+        fontSize: 30,
+        textAlign: "center",
+        fontFamily: theme.titleFont,
+        color: theme.primaryColor,
+        // position: 'absolute',
+        paddingLeft: '26%',
     },
 
     titleContainer: {
@@ -83,16 +96,20 @@ export const AppStyles = () => {
     },
 
     headerContainer: {
+      flexDirection: 'row', // Aligns children in a row
+      alignItems: 'flex-start', // Aligns children to the start of the cross axis (vertical)
+      // marginTop: '-10%',
       flexDirection: "row", // Aligns children in a row
       alignItems: "flex-start", // Aligns children to the start of the cross axis (vertical)
       justifyContent: "center",
       paddingTop: 20,
       paddingHorizontal: 20,
+      paddingBottom: 20,
     },
 
     backIconContainer: {
-      flexDirection: "row",
-      alignItems: "center",
+      flexDirection: 'row',
+      alignItems: 'center',
     },
     button: {
       width: windowWidth * 0.4,
@@ -101,11 +118,13 @@ export const AppStyles = () => {
       backgroundColor: theme.buttonColor,
       justifyContent: "center",
       marginBottom: 15,
+      marginTop: 15,
+      marginHorizontal: 5,
     },
     buttonText: {
       fontSize: 16,
       textAlign: "center",
-      fontFamily: theme.textFont,
+      fontFamily: theme.titleFont,
       color: theme.white,
     },
     profileImage: {
@@ -117,6 +136,7 @@ export const AppStyles = () => {
     },
     bottleImage: {
       marginTop: 15,
+      alignSelf: 'center',
       width: windowWidth * 0.7,
       height: windowHeight * 0.5,
     },
@@ -127,6 +147,7 @@ export const AppStyles = () => {
       width: windowWidth * 0.8,
       height: windowHeight * 0.25,
       margin: 12,
+      marginTop: '95%',
       borderWidth: 1,
       padding: 20,
       paddingTop: 20,
@@ -362,8 +383,8 @@ export const AppStyles = () => {
       textAlign: "left",
       fontFamily: theme.textFont,
       fontSize: 13,
-      paddingBottom: 10,
-    },
+      paddingBottom: 10
+    }, 
     momentCaptionText: {
       color: theme.primaryColor,
       textAlign: "left",
@@ -374,8 +395,9 @@ export const AppStyles = () => {
       marginBottom: 5,
     },
     momentBottle: {
-      height: "75%",
-      alignSelf: "center",
+      height: '75%',
+      alignSelf: 'center',
+
     },
 
     // login style
@@ -414,54 +436,18 @@ export const AppStyles = () => {
       padding: 10,
     },
     mediumFilledBottle: {
-      resizeMode: "contain",
-      width: "220%",
-      marginTop: "120%",
+      resizeMode: 'contain',
+      width: '220%',
+      marginTop: '120%',
       height: undefined,
       aspectRatio: 1,
     },
     savedText: {
-      position: "absolute",
+      position: 'absolute',
       fontSize: 38,
       color: "#186174",
       font: "Inter-Bold",
-      marginTop: "120%",
-    },
-
-    // insert audio
-    popupAudioBox: {
-      position: "absolute",
-      alignSelf: "center",
-      borderRadius: 20,
-      // borderColor: "red",
-      // borderWidth: 3,
-    },
-    audioBox: {
-      borderRadius: 20,
-      borderColor: theme.borderOutlineColor,
-      backgroundColor: theme.secondaryColor,
-      width: windowWidth * 0.8,
-      height: windowHeight * 0.17,
-      margin: 12,
-      borderWidth: 1,
-      padding: 20,
-      paddingTop: 20,
-      color: "white",
-      fontSize: 20,
-      font: "Inter-Regular",
-    },
-    audioFile: {
-      resizeMode: "contain",
-      alignItems: "center",
-      maxHeight: 100,
-      maxWidth: 300,
-
-    },
-    audioContainer: {
-      flex: 1,
-      justifyContent: "flex-start",
-      width: "80%",
-      resizeMode: "contain",
-    },
+      marginTop: '120%',
+    }
   });
 };
