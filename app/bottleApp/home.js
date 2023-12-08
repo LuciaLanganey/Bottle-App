@@ -50,7 +50,7 @@ export default function Home() {
     console.log("UPDATE", payload);
     setRecipients((oldRecipients) => {
       const updatedRecipients = oldRecipients.map((recipient) =>
-        recipient.id === payload.new.id ? payload.new : recipient
+        recipient.first_name === payload.new.first_name ? payload.new : recipient
       );
       return updatedRecipients;
     });
@@ -71,7 +71,7 @@ export default function Home() {
   const handleRecordDeleted = (payload) => {
     console.log("DELETE", payload);
     setRecipients((oldRecipients) =>
-      oldRecipients.filter((recipient) => recipient.id !== payload.old.id)
+      oldRecipients.filter((recipient) => recipient.first_name !== payload.old.first_name)
     );
   };
 
@@ -144,13 +144,13 @@ export default function Home() {
       // Update the new recipient's is_selected field to true
       await Supabase.from("Friends")
         .update([{ is_selected: true }])
-        .eq("id", potentialRecipient.id);
+        .eq("first_name", potentialRecipient.first_name);
 
       // Update the previously selected recipient's is_selected field to false
       if (selectedRecipient) {
         await Supabase.from("Friends")
           .update([{ is_selected: false }])
-          .eq("id", selectedRecipient.id);
+          .eq("first_name", selectedRecipient.first_name);
       }
 
       // Update the local state
@@ -369,7 +369,7 @@ export default function Home() {
                     data={recipients}
                     renderItem={({ item }) => (
                       <Reciever
-                        id={item.id}
+                        // id={item.id}
                         first_name={item.first_name}
                         last_name={item.last_name}
                         image_url={item.image_url}
@@ -377,11 +377,11 @@ export default function Home() {
                           select(item);
                         }}
                         isSelected={
-                          selectedRecipient && selectedRecipient.id === item.id
+                          selectedRecipient && selectedRecipient.first_name === item.first_name
                         }
                       />
                     )}
-                    keyExtractor={(item) => item.id.toString()}
+                    // keyExtractor={(item) => item.id.toString()}
                     numColumns={3}
                   />
                 </View>
