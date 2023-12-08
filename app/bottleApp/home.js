@@ -371,10 +371,14 @@ export default function Home() {
           </Modal>
 
           <View style={{ alignItems: "center" }}>
-          <Image
+          {selectedRecipient && (
+                    <>
+                      <Image
                       source={{ uri: constructImageUrl(selectedRecipient.image_url) }}
-                      style={styles.profileImage}
+                      style={styles.modalRecieverImage}
                     />
+                    </>
+                  )}
           </View>
         </View>
         <View
