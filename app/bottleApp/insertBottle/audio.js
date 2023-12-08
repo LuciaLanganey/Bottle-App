@@ -7,20 +7,11 @@ import { Link } from "expo-router";
 
 export default function openBottle() {
     const [text, setText] = useState(''); // State to keep track of text
-    // const ImageChangeComponent = () => {
-    //   const [currentImage, setCurrentImage] = useState('path/to/first/image.jpg');
-    // }
-    //   const handleButtonClick = () => {
-    //     // Change the image file path when the button is clicked
-    //     setCurrentImage('path/to/second/image.jpg');
-    //   };
     const styles = AppStyles();
-    
 
-    
     // const ImageDisappearComponent = () => {
-    //   const [imageVisible, setImageVisible] = useState(true);
-    // }
+    // const [imageVisible, setImageVisible] = useState(true);
+
     // const handlePress = () => {
     //   setImageVisible(false);
     // };
