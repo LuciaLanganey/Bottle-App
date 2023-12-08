@@ -15,7 +15,7 @@ import {
 import { AppStyles } from "../../utils/styles";
 import { Icon } from "react-native-elements";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import Supabase from "../../utils/Supabase";
+import { Supabase, getImage } from "../../utils/Supabase";
 import Reciever from "../../components/Reciever";
 import { Link } from "expo-router";
 
@@ -31,6 +31,13 @@ export default function Home() {
       );
       return updatedRecipients;
     });
+  };
+
+  const constructImageUrl = (imagePath) => {
+    // Replace 'your-supabase-bucket-url' with your actual Supabase storage bucket URL
+    const supabaseBucketUrl = 'https://supabase.com/dashboard/project/xtdwstdpktqgpnqyjamj/storage/buckets/files';
+    console.log('image url given: ', imagePath)
+    return `https://xtdwstdpktqgpnqyjamj.supabase.co/storage/v1/object/public/files/${imagePath}`;
   };
 
   const handleRecordInserted = (payload) => {
@@ -189,7 +196,7 @@ export default function Home() {
   };
   
   const navigateToAnotherPage = () => {
-    // Add your logic to navigate to another page here
+    // Add your logic to navigate to anIother page here
     console.log("Navigating to another page...");
   };
   
@@ -294,12 +301,13 @@ export default function Home() {
                 <Text style={styles.modalText}>Current reciever:</Text>
                 {/* Current Reciever Pic and Name*/}
                 <View style={{ alignItems: "center" }}>
-                  <Image
-                    source={require("../../assets/people/profile.jpg")}
-                    style={styles.modalRecieverImage}
-                  />
+                  
                   {selectedRecipient && (
                     <>
+                      <Image
+                      source={{ uri: constructImageUrl(selectedRecipient.image_url) }}
+                      style={styles.modalRecieverImage}
+                    />
                       <Text style={styles.personNameText}>
                         {selectedRecipient.first_name}
                       </Text>
@@ -363,10 +371,10 @@ export default function Home() {
           </Modal>
 
           <View style={{ alignItems: "center" }}>
-            <Image
-              source={require("../../assets/people/profile.jpg")}
-              style={styles.profileImage}
-            />
+          <Image
+                      source={{ uri: constructImageUrl(selectedRecipient.image_url) }}
+                      style={styles.profileImage}
+                    />
           </View>
         </View>
         <View
