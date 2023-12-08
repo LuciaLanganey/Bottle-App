@@ -104,7 +104,7 @@ export default function openBottle() {
           <Link
             href={{ pathname: "bottleApp/insertBottle/cameraScreen" }}>
             <View style={{ flexDirection: "row" }}>
-              <Ionicons name="camera" size={20} color="#23AFBB" style={{ marginRight: 5 }} />
+              <Ionicons name="camera" size={20} color="#23AFBB" style={{marginRight: 5, marginBottom: 5 }} />
               <Text style={styles.text}>Take photo/video</Text>
             </View>
           </Link>
