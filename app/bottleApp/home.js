@@ -11,6 +11,7 @@ import {
   Pressable,
   TextInput,
   FlatList,
+  Dimensions
 } from "react-native";
 import { AppStyles } from "../../utils/styles";
 import { Icon } from "react-native-elements";
@@ -18,6 +19,28 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Supabase, getImage } from "../../utils/Supabase";
 import Reciever from "../../components/Reciever";
 import { Link } from "expo-router";
+
+const { height: windowHeight, width: windowWidth } = Dimensions.get("window");
+
+const styles2 = {
+  modalView: {
+    width: windowWidth * 0.8,
+    height: windowHeight * 0.3,
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+}
 
 export default function Home() {
   const styles = AppStyles();
@@ -162,6 +185,26 @@ export default function Home() {
     setDatePickerVisibility(false);
   };
 
+  const [countdownModalVisible, setCountdownModalVisible] = useState(false);
+  const [modalShown, setModalShown] = useState(false);
+
+  useEffect(() => {
+    const showCountdownModal = () => {
+      setCountdownModalVisible(true);
+      setModalShown(true);
+  
+      setTimeout(() => {
+        setCountdownModalVisible(false);
+      }, 180000);
+    };
+  
+    setTimeout(() => {
+      if (!modalShown) {
+        showCountdownModal();
+      }
+    }, 45000);
+  }, [modalShown]);
+
   
   const handleConfirm = (date) => {
     const currentHour = new Date().getHours();
@@ -185,48 +228,35 @@ export default function Home() {
     const formattedTime = `${formattedHour}:${
       selectedMinute < 10 ? "0" + selectedMinute : selectedMinute
     } ${amPm}`;
-  
-    // Check if the time is 0:00 AM and navigate to another page
-    if (formattedTime === "0:00 AM") {
-      navigateToAnotherPage();
-    } else {
-      setSelectedTime(formattedTime);
-      hideDatePicker();
-    }
+
+    setSelectedTime(formattedTime);
+    hideDatePicker();
   };
-  
-  const navigateToAnotherPage = () => {
-    // Add your logic to navigate to anIother page here
-    console.log("Navigating to another page...");
-  };
-  
     
 
   useEffect(() => {
     const interval = setInterval(() => {
       const now = new Date();
       const selected = new Date();
-      const [hours, minutes] = selectedTime
-        .split(":")
-        .map((str) => parseInt(str));
-      selected.setHours(hours);
+      
+      const [time, meridiem] = selectedTime.split(" ");
+      const [hours, minutes] = time.split(":").map((str) => parseInt(str));
+
+      selected.setHours(hours + (meridiem === "PM" && hours !== 12 ? 12 : 0));
       selected.setMinutes(minutes);
 
-      let difference = selected.getTime() - now.getTime();
-
-      if (difference < 0) {
+      if (selected < now) {
         selected.setDate(selected.getDate() + 1);
-        difference = selected.getTime() - now.getTime();
       }
 
-      const hoursLeft = Math.floor(difference / (1000 * 60 * 60));
-      const minutesLeft = Math.floor(
-        (difference % (1000 * 60 * 60)) / (1000 * 60)
-      );
+      let difference = selected - now;
 
-      const formattedTimeLeft = `${hoursLeft
-        .toString()
-        .padStart(2, "0")}h ${minutesLeft.toString().padStart(2, "0")}m`;
+      const hoursLeft = Math.floor(difference / (1000 * 60 * 60));
+      difference -= hoursLeft * 1000 * 60 * 60;
+      
+      const minutesLeft = Math.floor(difference / (1000 * 60));
+
+      const formattedTimeLeft = `${hoursLeft.toString().padStart(2, "0")}h ${minutesLeft.toString().padStart(2, "0")}m`;
       setTimeLeft(formattedTimeLeft);
     }, 1000);
 
@@ -504,6 +534,46 @@ export default function Home() {
             </TouchableOpacity>
           )}
         />
+
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={countdownModalVisible}
+          onRequestClose={() => {
+            Alert.alert("Modal has been closed.");
+            setCountdownModalVisible(!countdownModalVisible);
+          }}
+        >
+          {/* Modal Content */}
+          <View style={styles.centeredView}>
+            <View style={styles2.modalView}>
+              <View style={styles.closeIconContainer}>
+                <Icon
+                  name="close"
+                  type="ionicons"
+                  color="#23AFBB"
+                  size={30}
+                  onPress={() => setCountdownModalVisible(!countdownModalVisible)}
+                />
+              </View>
+              <Text style={styles.modalText}>Time to open a bottle!</Text>
+              <View style={{ alignItems: "center" }}>
+                <Image
+                  source={require("../../assets/people/grandma.jpeg")}
+                  style={styles.modalRecieverImage}
+                />
+              </View>
+
+              <View style={[styles.button]}>
+                <Link href={{pathname: 'bottleApp/openBottle'}}>
+                  <Text style={styles.textStyle}>Open</Text>
+                </Link>
+              </View>
+              
+            </View>
+          </View>
+        </Modal>
+
       </SafeAreaView>
     </ImageBackground>
   );
