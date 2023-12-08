@@ -202,7 +202,7 @@ export default function Home() {
       if (!modalShown) {
         showCountdownModal();
       }
-    }, 45000);
+    }, 30000);
   }, [modalShown]);
 
   
