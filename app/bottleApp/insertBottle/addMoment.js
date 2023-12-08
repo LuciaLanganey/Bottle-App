@@ -21,18 +21,6 @@ export default function addMoment() {
     >
       <SafeAreaView style={{flex: 1}}>
         <Header/>
-        {/* <View style={styles.headerContainer}>
-          <View style={styles.backIconContainer}>
-            <Link href={{ pathname: 'bottleApp/home' }} style={{ marginRight: 8 }}>
-              <Ionicons
-                name="arrow-back-circle"
-                size={35}
-                color="#23AFBB"
-              />
-            </Link>
-            <Text style={styles.myBottleSubheading}>My Bottle</Text>
-          </View>
-        </View> */}
         <Image
           style={{
             width: 100,

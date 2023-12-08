@@ -26,7 +26,15 @@ export default function insertTextMoment() {
             style={styles.backgroundImage}
         >
             <SafeAreaView style={{ flex: 1 }}>
-                <Header />
+                <View style={styles.headerContainer}>
+                    <Link href={{ pathname: 'bottleApp/insertBottle/text' }} style={styles.backIconContainer}>
+                        <Ionicons
+                            name="arrow-back-circle"
+                            size={35}
+                            color="#23AFBB"
+                        />
+                    </Link>
+                </View>
                 <View style={{ alignItems: 'center' }}>
                     <View style={styles.textInputBoxMessage}>
                         <Text style={styles.boxText}>{text}</Text>

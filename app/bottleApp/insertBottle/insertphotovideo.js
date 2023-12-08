@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import {
   View,
   Image,
@@ -16,7 +16,7 @@ import { Link, useLocalSearchParams } from "expo-router";
 import { Video } from "expo-av";
 import { AppStyles } from "../../../utils/styles";
 import { TextInput } from "react-native-gesture-handler";
-import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Header from '../../header';
 import moment from "moment";
 
@@ -39,28 +39,37 @@ export default function PreviewScreen() {
       opacity="0.5"
       style={styles.backgroundImage}
     >
-      <SafeAreaView style={{ flex: 1}}>
-       <Header/>
-      <View style={{alignItems: 'center'}}>
-        <View style={{ borderRadius: 20,
-          // borderColor: theme.borderOutlineColor,
-          backgroundColor: 'white',
-          borderColor: 'white',
-          // width: windowWidth * 0.8,
-          // height: windowHeight * 0.25,
-          margin: 12,
-          borderWidth: 1,
-          padding: 20,
-          paddingTop: 20,
-          width: 320,
-          height: 280,
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexDirection: 'column',
-          // color: 'white',
-          // fontSize: 20,
-          // font: "Inter-Regular"
-          
+      <SafeAreaView style={{ flex: 1 }}>
+        <View style={styles.headerContainer}>
+          <Link href={{ pathname: 'bottleApp/insertBottle/photovideo' }} style={styles.backIconContainer}>
+            <Ionicons
+              name="arrow-back-circle"
+              size={35}
+              color="#23AFBB"
+            />
+          </Link>
+        </View>
+        <View style={{ alignItems: 'center' }}>
+          <View style={{
+            borderRadius: 20,
+            // borderColor: theme.borderOutlineColor,
+            backgroundColor: 'white',
+            borderColor: 'white',
+            // width: windowWidth * 0.8,
+            // height: windowHeight * 0.25,
+            margin: 12,
+            borderWidth: 1,
+            padding: 20,
+            paddingTop: 20,
+            width: 320,
+            height: 280,
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexDirection: 'column',
+            // color: 'white',
+            // fontSize: 20,
+            // font: "Inter-Regular"
+
           }}>
             {video ? (
               <Video
@@ -74,57 +83,57 @@ export default function PreviewScreen() {
               <Image
                 source={{ uri: photo }}
                 style={{ width: 250, height: 200 }}
-                // resizeMode="contain"
+              // resizeMode="contain"
               />
             )}
-            <TextInput style={{ alignSelf: 'left', width: 265, margin: 5, }} multiline numberOfLines={1} placeholder="Caption here"/>
+            <TextInput style={{ alignSelf: 'left', width: 265, margin: 5, }} multiline numberOfLines={1} placeholder="Caption here" />
             <Text style={{ alignSelf: 'left', width: 265, marginHorizontal: 5, marginBottom: 5, color: "#186174" }}>Today at {moment}</Text>
-        </View>
+          </View>
 
-        <View style={styles.filterView}>
-                    {/* Filter by emotion bar */}
-                    <Text style={styles.tinyText}>Select an emotion:</Text>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignContent: 'center' }}>
-                        <Pressable
-                            onPress={() => {
-                              setHappySelected(!isHappySelected);
-                          }}
-                        >
-                            <MaterialCommunityIcons name="emoticon" size={45} color={isHappySelected ? "#186174" : "#23AFBB"} />
-                        </Pressable>
-                        <Pressable
-                            onPress={() => setSadSelected(!isSadSelected)
-                          }
-                        >
-                          <MaterialCommunityIcons name="emoticon-sad" size={45} color={isSadSelected ? "#186174" : "#23AFBB"} />
-                        </Pressable>
-                        <Pressable
-                            onPress={() => setAngrySelected(!isAngrySelected)
-                          }
-                        >
-                          <MaterialCommunityIcons name="emoticon-angry" size={45} color={isAngrySelected ? "#186174" : "#23AFBB"} />
-                        </Pressable>
-                        <Pressable
-                            onPress={() => setNeutralSelected(!isNeutralSelected)
-                            }
-                        >
-                          <MaterialCommunityIcons name="emoticon-neutral" size={45} color={isNeutralSelected ? "#186174" : "#23AFBB"} />
-                        </Pressable>
-                    </View>
-                </View>
+          <View style={styles.filterView}>
+            {/* Filter by emotion bar */}
+            <Text style={styles.tinyText}>Select an emotion:</Text>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignContent: 'center' }}>
+              <Pressable
+                onPress={() => {
+                  setHappySelected(!isHappySelected);
+                }}
+              >
+                <MaterialCommunityIcons name="emoticon" size={45} color={isHappySelected ? "#186174" : "#23AFBB"} />
+              </Pressable>
+              <Pressable
+                onPress={() => setSadSelected(!isSadSelected)
+                }
+              >
+                <MaterialCommunityIcons name="emoticon-sad" size={45} color={isSadSelected ? "#186174" : "#23AFBB"} />
+              </Pressable>
+              <Pressable
+                onPress={() => setAngrySelected(!isAngrySelected)
+                }
+              >
+                <MaterialCommunityIcons name="emoticon-angry" size={45} color={isAngrySelected ? "#186174" : "#23AFBB"} />
+              </Pressable>
+              <Pressable
+                onPress={() => setNeutralSelected(!isNeutralSelected)
+                }
+              >
+                <MaterialCommunityIcons name="emoticon-neutral" size={45} color={isNeutralSelected ? "#186174" : "#23AFBB"} />
+              </Pressable>
+            </View>
+          </View>
 
 
-        <View style={styles.button}>
-          <Link
-            href={{
-              pathname: "bottleApp/insertBottle/confirmation",
-              params: { photo: undefined, video: undefined, image: undefined },
-            }}
-          >
-            <Text style={styles.buttonText}>Insert Moment</Text>
-          </Link>
-        </View>
-        <Image style={{height: 300, aspectRatio: 1, }} source={require("../../../assets/graphics/bottle-cropped.png")} resizeMode="contain"/>
+          <View style={styles.button}>
+            <Link
+              href={{
+                pathname: "bottleApp/insertBottle/confirmation",
+                params: { photo: undefined, video: undefined, image: undefined },
+              }}
+            >
+              <Text style={styles.buttonText}>Insert Moment</Text>
+            </Link>
+          </View>
+          <Image style={{ height: 300, aspectRatio: 1, }} source={require("../../../assets/graphics/bottle-cropped.png")} resizeMode="contain" />
         </View>
       </SafeAreaView>
     </ImageBackground>

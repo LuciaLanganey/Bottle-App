@@ -77,12 +77,12 @@ export const AppStyles = () => {
       color: theme.primaryColor,
     },
     myBottleSubheading: {
-        fontSize: 30,
-        textAlign: "center",
-        fontFamily: theme.titleFont,
-        color: theme.primaryColor,
-        // position: 'absolute',
-        paddingLeft: '26%',
+      fontSize: 30,
+      textAlign: "center",
+      fontFamily: theme.titleFont,
+      color: theme.primaryColor,
+      // position: 'absolute',
+      paddingLeft: '26%',
     },
 
     titleContainer: {
@@ -102,13 +102,10 @@ export const AppStyles = () => {
       paddingTop: 20,
       paddingHorizontal: 20,
       paddingBottom: 20,
-      borderColor: 'black',
-      borderWidth: 2,
     },
 
     backIconContainer: {
       flexDirection: 'row',
-      alignItems: 'center',
     },
     button: {
       width: windowWidth * 0.4,
@@ -383,7 +380,7 @@ export const AppStyles = () => {
       fontFamily: theme.textFont,
       fontSize: 13,
       paddingBottom: 10
-    }, 
+    },
     momentCaptionText: {
       color: theme.primaryColor,
       textAlign: "left",
@@ -394,7 +391,7 @@ export const AppStyles = () => {
       marginBottom: 5,
     },
     momentBottle: {
-      height: '75%',
+      height: '68%',
       alignSelf: 'center',
 
     },
@@ -437,16 +434,71 @@ export const AppStyles = () => {
     mediumFilledBottle: {
       resizeMode: 'contain',
       width: '220%',
-      marginTop: '120%',
+      marginTop: '8%',
       height: undefined,
       aspectRatio: 1,
     },
     savedText: {
-      position: 'absolute',
+      // position: 'absolute',
       fontSize: 38,
       color: "#186174",
       font: "Inter-Bold",
-      marginTop: '120%',
-    }
+      marginTop: '20%',
+      marginBottom: '8%'
+    },
+    textInputBoxMessage: {
+      borderRadius: 20,
+      borderColor: theme.borderOutlineColor,
+      backgroundColor: 'white',
+      width: windowWidth * 0.8,
+      height: windowHeight * 0.25,
+      margin: 12,
+      borderWidth: 1,
+      padding: 20,
+      paddingTop: 20,
+      color: 'white',
+      fontSize: 20,
+      font: "Inter-Regular"
+    },
+    boxText: {
+      font: "Inter-Regular",
+      fontSize: 16,
+      color: theme.primaryColor,
+    },
+    timeSentText: {
+      font: "Inter-Regular",
+      fontSize: 12,
+      color: theme.primaryColor,
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      padding: 20,
+    },
+    filterView: {
+      width: windowWidth * 0.8,
+      height: windowHeight * 0.1,
+      backgroundColor: "white",
+      borderRadius: 20,
+      paddingLeft: 20,
+      paddingRight: 20,
+      paddingTop: 10,
+      paddingBottom: 10,
+      alignItems: "center",
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+      elevation: 5,
+    },
+    tinyText: {
+      color: "#186174",
+      textAlign: "center",
+      fontFamily: "Inter-Regular",
+      fontSize: 13,
+      paddingBottom: 8,
+    },
   });
 };
