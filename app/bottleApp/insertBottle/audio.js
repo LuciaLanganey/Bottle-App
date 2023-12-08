@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, modalVisible } from "react";
 import { Text, View, ImageBackground, Image, TextInput, Pressable, Modal } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import { AppStyles } from "../../../utils/styles";
@@ -7,6 +7,8 @@ import { Link } from "expo-router";
 
 export default function openBottle() {
     const [text, setText] = useState(''); // State to keep track of text
+    const [modalVisible, setModalVisible] = useState(false);
+
     // const ImageChangeComponent = () => {
     //   const [currentImage, setCurrentImage] = useState('path/to/first/image.jpg');
     // }
@@ -47,6 +49,15 @@ export default function openBottle() {
                 <Image
                     source={require('../../../assets/graphics/EmptyBottle.png')} resizeMode={'contain'} style={styles.momentBottle}
                 />
+                <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => {
+              Alert.alert("Modal has been closed.");
+              setModalVisible(!modalVisible);
+            }}
+          >
                 <View style={styles.popupAudioBox}>
                     <View style={styles.audioBox} />
                     <View style>
@@ -67,6 +78,7 @@ export default function openBottle() {
                         </View>
                     </View>
                 </View>
+                </Modal>ins
             </SafeAreaView>
         </ImageBackground>
     );
