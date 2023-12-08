@@ -117,7 +117,7 @@ export default function openBottle() {
                                         >
                                             <Link
                                                 href={{
-                                                    pathname: "bottleApp/insertBottle/confirmation",
+                                                    pathname: "bottleApp/insertBottle/insertAudioMoments",
                                                 }}
                                             >
                                                 <Text
@@ -142,7 +142,7 @@ export default function openBottle() {
                     <Image
                         source={require("../../../assets/graphics/EmptyBottle.png")}
                         resizeMode={"contain"}
-                        style={{height: '80%'}}
+                        style={{height: '82.5%'}}
                     />
                     <Pressable onPress={() => setModalVisible(true)} style={audiostyles.recordPressable}>
                         <Image
@@ -216,6 +216,7 @@ const audiostyles = StyleSheet.create({
         position: "absolute",
         alignSelf: "center",
         borderRadius: 20,
+        bottom: '60%',
         // borderColor: "red",
         // borderWidth: 3,
     },
