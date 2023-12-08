@@ -462,13 +462,11 @@ export default function openBottle() {
           >
             <Text style={styles.textStyle}>Open</Text>
           </Pressable>
-          <Pressable
-            style={[styles.button]}
-            onPress={() => {
-            }}
-          >
-            <Text style={styles.textStyle}>Archive</Text>
-          </Pressable>
+          <View style={[styles.button]}>
+            <Link href={{pathname: 'bottleApp/archive'}}>
+              <Text style={styles.textStyle}>Save</Text>
+            </Link>
+          </View>
         </View>
 
         <View
