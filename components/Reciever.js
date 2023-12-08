@@ -38,7 +38,11 @@ const Reciever = ({ id, first_name, last_name, image_url, onPress }) => {
   return (
     <TouchableOpacity onPress={handlePress}>
       <View style={{ flexDirection: 'column', alignItems: 'center', margin: 5 }}>
+        {image_url ? (
           <Image source={{ uri: constructImageUrl(image_url) }} style={styles.resultsImage} />
+        ) : (
+          <Image source={require('../assets/people/profile.jpg')} style={styles.resultsImage} />
+        )}
         {isSelected && (
           <View style={styles.checkmarkContainer}>
             <View style={styles.checkmarkCircle}>

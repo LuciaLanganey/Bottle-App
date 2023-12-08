@@ -125,7 +125,7 @@ export default function openBottle() {
                   backgroundColor: "white",
                   borderRadius: 20,
                   borderColor: "gray",
-                  width: 350,
+                  width: 370,
                   height: 350,
                   justifyContent: 'center',
                   alignItems: 'center',
@@ -153,7 +153,7 @@ export default function openBottle() {
                     </Link>
                   </View>
 
-                  <View style={styles.button}>
+                  <View style={[styles.button, {margin: 10}]}>
                     <Pressable
                       onPress={() => {
                         setImage(undefined);

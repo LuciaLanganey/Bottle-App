@@ -5,6 +5,15 @@ import { View, Text, SafeAreaView, Pressable, Image, ImageBackground } from "rea
 import { AppStyles } from "../utils/styles.js";
 import { Link } from "expo-router";
 
+// import { LogBox } from 'react-native';
+
+// // Ignore specific warnings
+// LogBox.ignoreLogs(['Warning: ...']);
+
+// // Ignore all logs
+// LogBox.ignoreAllLogs();
+
+
 export default function SignUp() {
   const styles = AppStyles();
 
