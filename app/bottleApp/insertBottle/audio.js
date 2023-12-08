@@ -23,8 +23,6 @@ export default function openBottle() {
    //   };
    const styles = AppStyles();
   
-
-
   
    // const ImageDisappearComponent = () => {
    //   const [imageVisible, setImageVisible] = useState(true);
@@ -35,69 +33,50 @@ export default function openBottle() {
 
 
    return (
-       <ImageBackground
-           source={require("../../../assets/background.png")}
-           opacity="0.5"
-           style={styles.backgroundImage}
-       >
-           <SafeAreaView style={styles.centeredView}>
-               <View style={styles.headerContainer}>
-                   <View style={styles.backIconContainer}>
-                       <Link href={{ pathname: 'bottleApp/insertBottle/addMoment' }} style={{ marginRight: 8 }}>
-                           <Ionicons
-                               name="arrow-back-circle"
-                               size={35}
-                               color="#23AFBB"
-                           />
-                       </Link>
-                       <Text style={styles.subHeading}>My Bottle</Text>
-                   </View>
-               </View>
-               <Image
-                   source={require('../../../assets/graphics/EmptyBottle.png')} resizeMode={'contain'} style={styles.momentBottle}
-               />
-               <Pressable
-                 style={[styles.button]}
-                 onPress={() => {
-                   setModalVisible(!modalVisible);
-                   // setSelectedRecipient(potentialRecipient);
-                 }}
-               >
-                 <Text style={styles.textStyle}>Done</Text>
-               </Pressable>
-               <Modal
-           animationType="slide"
-           transparent={true}
-           visible={modalVisible}
-           onRequestClose={() => {
-             Alert.alert("Modal has been closed.");
-             setModalVisible(!modalVisible);
-           }}
-         >
-               <View style={audiostyles.popupAudioBox}>
-                   <View style={audiostyles.audioBox} />
-                   <View style>
-                   <View style={{ position: 'absolute', left: 25, bottom: 60, borderRadius: 50, }}>
-                           <Image source={require('../../../assets/moments/audioBlue.png')} resizeMode={'contain'} style = {styles.audioFile}
-               />
-            
-                       </View>
-                       <View style={{ position: 'absolute', left: 25, bottom: 25, backgroundColor: 'white', borderRadius: 50, }}>
-                           <Pressable style={audiostyles.deleteMessage} >
-                               <Ionicons name="trash-sharp" size={25} color="#23AFBB" />
-                           </Pressable>
-                       </View>
-                       <View style={{padding: 10, position: 'absolute', left: '74%', bottom: 30, backgroundColor: 'white', borderRadius: 30 }}>
-                           <Link href={{pathname: 'bottleApp/insertBottle/confirmation'}}>
-                               <Text style={{fontSize: 16, color: "#23AFBB", font: "Inter-Bold"}}> Next </Text>
-                           </Link>
-                       </View>
-                   </View>
-               </View>
-               </Modal>
-           </SafeAreaView>
-       </ImageBackground>
-   );
+    <ImageBackground
+        source={require("../../../assets/background.png")}
+        opacity="0.5"
+        style={styles.backgroundImage}
+    >
+        <SafeAreaView style={styles.centeredView}>
+            <View style={styles.headerContainer}>
+                <View style={styles.backIconContainer}>
+                    <Link href={{ pathname: 'bottleApp/insertBottle/addMoment' }} style={{ marginRight: 8 }}>
+                        <Ionicons
+                            name="arrow-back-circle"
+                            size={35}
+                            color="#23AFBB"
+                        />
+                    </Link>
+                    <Text style={styles.subHeading}>My Bottle</Text>
+                </View>
+            </View>
+            <Image
+                source={require('../../../assets/graphics/EmptyBottle.png')} resizeMode={'contain'} style={styles.momentBottle}
+            />
+            <View style={audiostyles.popupAudioBox}>
+                <View style={audiostyles.audioBox} />
+                <View style>
+                <View style={{ position: 'absolute', left: 25, bottom: 60, borderRadius: 50, }}>
+                        <Image source={require('../../../assets/moments/audioBlue.png')} resizeMode={'contain'} style = {audiostyles.audioFile}
+            />
+          
+                    </View>
+                    <View style={{ position: 'absolute', left: 25, bottom: 25, backgroundColor: 'white', borderRadius: 50, }}>
+                        <Pressable style = {audiostyles.deleteMessage}>
+                            <Ionicons name="trash-sharp" size={25} color="#23AFBB" />
+                        </Pressable>
+                    </View>
+                    <View style={{padding: 10, position: 'absolute', left: '74%', bottom: 30, backgroundColor: 'white', borderRadius: 30 }}>
+                        <Link href={{pathname: 'bottleApp/insertBottle/confirmation'}}>
+                            <Text style={{fontSize: 16, color: "#23AFBB", font: "Inter-Bold"}}>Next ></Text>
+                        </Link>
+                    </View>
+                </View>
+            </View>
+        </SafeAreaView>
+    </ImageBackground>
+);
 }
 
 
@@ -117,8 +96,8 @@ const audiostyles = StyleSheet.create ({
      },
      audioBox: {
        borderRadius: 20,
-       // borderColor: theme.borderOutlineColor,
-       // backgroundColor: theme.secondaryColor,
+       borderColor: "#23AFBB",
+       backgroundColor: "#23AFBB",
        width: windowWidth * 0.8,
        height: windowHeight * 0.17,
        margin: 12,
