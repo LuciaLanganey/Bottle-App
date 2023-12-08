@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions } from "react-native";
 import { useFonts } from "expo-font";
-import React from 'react'
+import React from "react";
 
 export const AppStyles = () => {
   const theme = {
@@ -99,6 +99,9 @@ export const AppStyles = () => {
       flexDirection: 'row', // Aligns children in a row
       alignItems: 'flex-start', // Aligns children to the start of the cross axis (vertical)
       // marginTop: '-10%',
+      flexDirection: "row", // Aligns children in a row
+      alignItems: "flex-start", // Aligns children to the start of the cross axis (vertical)
+      justifyContent: "center",
       paddingTop: 20,
       paddingHorizontal: 20,
       paddingBottom: 20,
@@ -106,7 +109,7 @@ export const AppStyles = () => {
 
     backIconContainer: {
       flexDirection: 'row',
-      // left: 0,
+      alignItems: 'center',
     },
     button: {
       width: windowWidth * 0.4,
@@ -148,9 +151,9 @@ export const AppStyles = () => {
       borderWidth: 1,
       padding: 20,
       paddingTop: 20,
-      color: 'white',
+      color: "white",
       fontSize: 20,
-      font: "Inter-Regular"
+      font: "Inter-Regular",
     },
     timeLeftText: {
       color: theme.primaryColor,
@@ -295,9 +298,9 @@ export const AppStyles = () => {
       alignContent: "center",
       alignItems: "left",
       marginTop: 15,
-      flexDirection: 'row',
+      flexDirection: "row",
       padding: 10,
-      justifyContent: "center"
+      justifyContent: "center",
     },
 
     contact: {
@@ -367,13 +370,13 @@ export const AppStyles = () => {
       fontWeight: "bold",
     },
     selectMedia: {
-      backgroundColor: 'white',
+      backgroundColor: "white",
       borderRadius: 82,
-      borderOutlineColor: 'gray',
+      borderOutlineColor: "gray",
     },
     mediaButton: {
       padding: 10,
-      alignItems: 'center',
+      alignItems: "center",
     },
     momentTimeText: {
       color: theme.primaryColor,
@@ -381,7 +384,7 @@ export const AppStyles = () => {
       fontFamily: theme.textFont,
       fontSize: 13,
       paddingBottom: 10
-    },
+    }, 
     momentCaptionText: {
       color: theme.primaryColor,
       textAlign: "left",
@@ -392,7 +395,7 @@ export const AppStyles = () => {
       marginBottom: 5,
     },
     momentBottle: {
-      height: '68%',
+      height: '75%',
       alignSelf: 'center',
 
     },
@@ -400,14 +403,14 @@ export const AppStyles = () => {
     // login style
 
     loginTitle: {
-      textAlign: 'center',
+      textAlign: "center",
       fontFamily: theme.titleFont,
       fontSize: 42,
       color: theme.primaryColor,
     },
 
     loginSubtitle: {
-      textAlign: 'center',
+      textAlign: "center",
       fontFamily: theme.titleFont,
       fontSize: 22,
       color: theme.primaryColor,
@@ -423,8 +426,8 @@ export const AppStyles = () => {
     //   overflow: 'hidden', // Prevents the box from expanding
     // },
     popupBox: {
-      position: 'absolute',
-      alignSelf: 'center',
+      position: "absolute",
+      alignSelf: "center",
     },
     deleteMessage: {
       // position: 'absolute',
@@ -435,75 +438,16 @@ export const AppStyles = () => {
     mediumFilledBottle: {
       resizeMode: 'contain',
       width: '220%',
-      marginTop: '8%',
+      marginTop: '120%',
       height: undefined,
       aspectRatio: 1,
     },
     savedText: {
-      //position: 'absolute',
+      position: 'absolute',
       fontSize: 38,
       color: "#186174",
       font: "Inter-Bold",
-      marginTop: '20%',
-      marginBottom: '8%',
-    },
-    textInputBoxMessage: {
-      borderRadius: 20,
-      borderColor: theme.borderOutlineColor,
-      backgroundColor: 'white',
-      width: windowWidth * 0.8,
-      height: windowHeight * 0.25,
-      margin: 12,
-      borderWidth: 1,
-      padding: 20,
-      paddingTop: 20,
-      color: 'white',
-      fontSize: 20,
-      font: "Inter-Regular"
-    },
-    boxText: {
-      font: "Inter-Regular",
-      fontSize: 16,
-      color: theme.primaryColor,
-    },
-    timeSentText: {
-      font: "Inter-Regular",
-      fontSize: 12,
-      color: theme.primaryColor,
-      position: 'absolute',
-      bottom: 0,
-      left: 0,
-      padding: 20,
-    },
-    filterView: {
-      width: windowWidth * 0.8,
-      height: windowHeight * 0.1,
-      backgroundColor: "white",
-      borderRadius: 20,
-      paddingLeft: 20,
-      paddingRight: 20,
-      paddingTop: 10,
-      paddingBottom: 10,
-      alignItems: "center",
-      shadowColor: "#000",
-      shadowOffset: {
-        width: 0,
-        height: 2,
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 4,
-      elevation: 5,
-    },
-    tinyText: {
-      color: "#186174",
-      textAlign: "center",
-      fontFamily: "Inter-Regular",
-      fontSize: 13,
-      paddingBottom: 8,
-    }, 
-    croppedBottle: {
-      // position: 'absolute',
-      bottom: 0,
+      marginTop: '120%',
     }
   });
 };
