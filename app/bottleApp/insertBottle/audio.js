@@ -31,6 +31,12 @@ export default function openBottle() {
     const [modalVisible, setModalVisible] = useState(false);
 
     const styles = AppStyles();
+    const handleEmojiSelect = (emoji) => {
+        setHappySelected(emoji === 'happy');
+        setSadSelected(emoji === 'sad');
+        setAngrySelected(emoji === 'angry');
+        setNeutralSelected(emoji === 'neutral');
+    };
 
     return (
         <ImageBackground

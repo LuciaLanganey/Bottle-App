@@ -23,7 +23,7 @@ export default function openBottle() {
         >
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={styles.headerContainer}>
-                    <Link href={{ pathname: 'bottleApp/insertBottle/addMoment' }} style={styles.backIconContainer}>
+                    <Link href={{ pathname: 'bottleApp/insertBottle/addMoment.js' }} style={styles.backIconContainer}>
                         <Ionicons
                             name="arrow-back-circle"
                             size={35}

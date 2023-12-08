@@ -6,6 +6,8 @@ import { AppStyles } from "../../../utils/styles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link, useLocalSearchParams } from "expo-router";
 import Header from '../../header';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 
 export default function insertTextMoment() {
     const params = useLocalSearchParams();
@@ -17,7 +19,12 @@ export default function insertTextMoment() {
     const [isAngrySelected, setAngrySelected] = useState(false);
     const [isNeutralSelected, setNeutralSelected] = useState(false);
 
-
+    const handleEmojiSelect = (emoji) => {
+        setHappySelected(emoji === 'happy');
+        setSadSelected(emoji === 'sad');
+        setAngrySelected(emoji === 'angry');
+        setNeutralSelected(emoji === 'neutral');
+    };
 
     return (
         <ImageBackground
@@ -46,51 +53,28 @@ export default function insertTextMoment() {
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignContent: 'center' }}>
                             <Pressable
                                 onPress={() => {
-                                    setHappySelected(!isHappySelected);
+                                    handleEmojiSelect('happy');
                                 }}
                             >
-                                <Icon
-                                    name="emoticon"
-                                    type="material-community"
-                                    color={isHappySelected ? "#186174" : "#23AFBB"}
-                                    size={45}
-                                />
+                                <MaterialCommunityIcons name="emoticon" size={45} color={isHappySelected ? "#186174" : "#23AFBB"} />
                             </Pressable>
                             <Pressable
-                                onPress={() => {
-                                    setSadSelected(!isSadSelected)
-                                }}
+                                onPress={() => handleEmojiSelect('sad')
+                                }
                             >
-                                <Icon
-                                    name="emoticon-sad"
-                                    type="material-community"
-                                    color={isSadSelected ? "#186174" : "#23AFBB"}
-                                    size={45}
-                                />
+                                <MaterialCommunityIcons name="emoticon-sad" size={45} color={isSadSelected ? "#186174" : "#23AFBB"} />
                             </Pressable>
                             <Pressable
-                                onPress={() => {
-                                    setAngrySelected(!isAngrySelected)
-                                }}
+                                onPress={() => handleEmojiSelect('angry')
+                                }
                             >
-                                <Icon
-                                    name="emoticon-angry"
-                                    type="material-community"
-                                    color={isAngrySelected ? "#186174" : "#23AFBB"}
-                                    size={45}
-                                />
+                                <MaterialCommunityIcons name="emoticon-angry" size={45} color={isAngrySelected ? "#186174" : "#23AFBB"} />
                             </Pressable>
                             <Pressable
-                                onPress={() => {
-                                    setNeutralSelected(!isNeutralSelected)
-                                }}
+                                onPress={() => handleEmojiSelect('neutral')
+                                }
                             >
-                                <Icon
-                                    name="emoticon-neutral"
-                                    type="material-community"
-                                    color={isNeutralSelected ? "#186174" : "#23AFBB"}
-                                    size={45}
-                                />
+                                <MaterialCommunityIcons name="emoticon-neutral" size={45} color={isNeutralSelected ? "#186174" : "#23AFBB"} />
                             </Pressable>
                         </View>
                     </View>

@@ -33,6 +33,13 @@ export default function PreviewScreen() {
   console.log("photo uri: ", photo);
   console.log("video uri: ", video);
 
+  const handleEmojiSelect = (emoji) => {
+    setHappySelected(emoji === 'happy');
+    setSadSelected(emoji === 'sad');
+    setAngrySelected(emoji === 'angry');
+    setNeutralSelected(emoji === 'neutral');
+  };
+
   return (
     <ImageBackground
       source={require("../../../assets/background.png")}
@@ -96,25 +103,25 @@ export default function PreviewScreen() {
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignContent: 'center' }}>
               <Pressable
                 onPress={() => {
-                  setHappySelected(!isHappySelected);
+                  handleEmojiSelect('happy');
                 }}
               >
                 <MaterialCommunityIcons name="emoticon" size={45} color={isHappySelected ? "#186174" : "#23AFBB"} />
               </Pressable>
               <Pressable
-                onPress={() => setSadSelected(!isSadSelected)
+                onPress={() => handleEmojiSelect('sad')
                 }
               >
                 <MaterialCommunityIcons name="emoticon-sad" size={45} color={isSadSelected ? "#186174" : "#23AFBB"} />
               </Pressable>
               <Pressable
-                onPress={() => setAngrySelected(!isAngrySelected)
+                onPress={() => handleEmojiSelect('angry')
                 }
               >
                 <MaterialCommunityIcons name="emoticon-angry" size={45} color={isAngrySelected ? "#186174" : "#23AFBB"} />
               </Pressable>
               <Pressable
-                onPress={() => setNeutralSelected(!isNeutralSelected)
+                onPress={() => handleEmojiSelect('neutral')
                 }
               >
                 <MaterialCommunityIcons name="emoticon-neutral" size={45} color={isNeutralSelected ? "#186174" : "#23AFBB"} />
