@@ -12,7 +12,6 @@ import {
 } from "react-native";
 import { AppStyles } from "../../utils/styles";
 import { Icon } from "react-native-elements";
-import Supabase from "../../utils/Supabase";
 import Reciever from "../../components/Reciever";
 
  
@@ -21,59 +20,6 @@ export default function Profile() {
   const styles = AppStyles();
   const [data, setData] = useState([]);
   const [recipients, setRecipients] = useState([]);
-
-  const handleRecordUpdated = (payload) => {
-    console.log("UPDATE", payload);
-    setRecipients((oldRecipients) => {
-      const updatedRecipients = oldRecipients.map((recipient) =>
-        recipient.id === payload.new.id ? payload.new : recipient
-      );
-      return updatedRecipients;
-    });
-  };
-
-  const handleRecordInserted = (payload) => {
-    console.log("INSERT", payload);
-    setRecipients((oldRecipients) => [...oldRecipients, payload.new]);
-  };
-
-  const handleRecordDeleted = (payload) => {
-    console.log("DELETE", payload);
-    setRecipients((oldRecipients) =>
-      oldRecipients.filter((recipient) => recipient.id !== payload.old.id)
-    );
-  };
-
-  useEffect(() => {
-    // Listen for changes to db
-    // From https://supabase.com/docs/guides/realtime/concepts#postgres-changes
-    Supabase.channel("schema-db-changes")
-      .on(
-        "postgres_changes",
-        { event: "UPDATE", schema: "public", table: "Friends" },
-        handleRecordUpdated
-      )
-      .on(
-        "postgres_changes",
-        { event: "INSERT", schema: "public", table: "Friends" },
-        handleRecordInserted
-      )
-      .on(
-        "postgres_changes",
-        { event: "DELETE", schema: "public", table: "Friends" },
-        handleRecordDeleted
-      )
-      .subscribe();
-  }, []);
-
-  useEffect(() => {
-    // Fetch data on initial load
-    const fetchData = async () => {
-      const response = await Supabase.from("Friends").select("*");
-      setData(response.data);
-    };
-    fetchData();
-  }, []);
 
 
   return (
