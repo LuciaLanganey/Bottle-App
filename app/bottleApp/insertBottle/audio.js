@@ -16,6 +16,8 @@ import { AppStyles } from "../../../utils/styles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
+import moment from 'moment';
+
 
 // const ImageDisappearComponent = () => {
 //      const [imageVisible, setImageVisible] = useState(true);
@@ -28,6 +30,12 @@ const { height: windowHeight, width: windowWidth } = Dimensions.get("window");
 
 export default function audio() {
   const styles = AppStyles();
+
+  const [text, setText] = useState(''); // State to keep track of text
+  var currentMoment = moment().format('hh:mm:ss a');
+  const clearText = () => {
+      setText(''); // Function to clear text
+  };
 
   return (
     <ImageBackground
@@ -51,14 +59,14 @@ export default function audio() {
             resizeMode={"contain"}
             style={{ height: "82.5%" }}
           />
-          <Link style={audiostyles.recordPressable} href={{ pathname: "bottleApp/insertBottle/insertAudioMoments" }}>
+          <Link style={audiostyles.recordPressable} href={{ pathname: "bottleApp/insertBottle/audioMoment" , params: { text: text, moment: currentMoment }} }>
             <View
               style={{
                 borderRadius: 20,
                 borderWidth: 2,
                 backgroundColor: "#23AFBB",
                 width: 100,
-                borderColor: "white",
+                borderColor: "#D9D9D9",
                 height: 100,
                 alignItems: "center",
                 justifyContent: "center",

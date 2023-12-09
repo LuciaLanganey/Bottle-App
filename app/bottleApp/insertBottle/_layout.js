@@ -11,8 +11,8 @@ export default function Layout() {
   const styles = AppStyles();
   const segments = useSegments();
   // if screen is in the home or live stack, hide the tab bar
-  const hide = segments.includes("confirmation") || segments.includes("insertTextMoment") || segments.includes("cameraScreen") || segments.includes("insertphotovideo") || segments.includes("insertAudioMoments") 
-  
+  const hide = segments.includes("confirmation") || segments.includes("insertTextMoment") || segments.includes("cameraScreen") || segments.includes("insertphotovideo") || segments.includes("insertAudioMoments")
+
   // if screen is in the home or live stack, hide the tab bar
   return (
     <Tabs
@@ -144,8 +144,18 @@ export default function Layout() {
           href: null,
         }}
       />
+            <Tabs.Screen
+        name="audioMoment"
+        options={{
+          tabBarLabel: "audioMoment",
+          tabBarIcon: ({ size, color }) => (
+            <Ionicons name="person" size={40} color={color} />
+          ),
+          href: null,
+        }}
+      />
     </Tabs>
-    
-  
+
+
   );
 }

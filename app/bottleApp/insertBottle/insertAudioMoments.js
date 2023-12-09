@@ -5,6 +5,7 @@ import { Icon } from "react-native-elements";
 import { AppStyles } from "../../../utils/styles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link, useLocalSearchParams } from "expo-router";
+import { TextInput } from "react-native-gesture-handler";
 import Header from '../../header';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -42,9 +43,11 @@ export default function insertTextMoment() {
                         />
                     </Link>
                 </View>
-                <View style={{ alignItems: 'center' }}>
+                <View style={{ alignItems: 'center'}}>
                     <View style={styles.textInputBoxMessage}>
+                    <Image source={require("../../../assets/audio.jpeg")} style={{marginTop: '15%'}}/>
                         <Text style={styles.boxText}>{text}</Text>
+                        <TextInput style={{ alignSelf: 'left', width: 265, marginTop: 30, fontSize: 12}} multiline numberOfLines={1} placeholder="Caption here" />
                         <Text style={styles.timeSentText}>Today at {moment}</Text>
                     </View>
                     <View style={styles.filterView}>
