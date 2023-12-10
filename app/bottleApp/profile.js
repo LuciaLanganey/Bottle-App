@@ -176,11 +176,9 @@ export default function Profile() {
           }}
         >
           <Text style={styles.contactTitle}>Contacts</Text>
-          {/* <View
+          <View
             style={{
               width: windowWidth * 0.9,
-              borderColor: "black",
-              borderWidth: 2,
             }}
           >
             <FlatList
@@ -199,9 +197,9 @@ export default function Profile() {
               // keyExtractor={(item) => item.id.toString()}
               numColumns={5}
             />
-          </View> */}
+          </View>
 
-          <View style={styles.contactList}>
+          {/* <View style={styles.contactList}>
             <View style={styles.contact}>
               <Image
                 source={require("../../assets/people/grandma.jpeg")}
@@ -233,12 +231,12 @@ export default function Profile() {
               onPress={() => console.log('button pressed')}
             />
             </View>
-            </View>
+            </View> */}
            
-          {/* <View
+          <View
             style={{
-              borderColor: "black",
-              borderWidth: 2,
+              // borderColor: "black",
+              // borderWidth: 2,
               flexDirection: "row",
               justifyContent: "flex-end",
               width: windowWidth * 0.9,
@@ -252,9 +250,9 @@ export default function Profile() {
               style={{}}
               onPress={() => setModalVisible(!modalVisible)}
             />
-          </View> */}
+          </View>
 
-          {/* <Modal
+          <Modal
             animationType="slide"
             transparent={true}
             visible={modalVisible}
@@ -264,7 +262,7 @@ export default function Profile() {
             }}
           >
             {/* Modal Content */}
-            {/* <View style={styles.centeredView}>
+            <View style={styles.centeredView}>
               <View
                 style={{
                   width: windowWidth * 0.8,
@@ -353,8 +351,8 @@ export default function Profile() {
                   <Text style={styles.textStyle}>Done</Text>
                 </Pressable>
               </View>
-            </View> */}
-          {/* </Modal> */}
+            </View>
+          </Modal>
         </View>
       </SafeAreaView>
     </ImageBackground>
