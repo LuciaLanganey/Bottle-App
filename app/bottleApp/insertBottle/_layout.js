@@ -5,6 +5,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { AppStyles } from "../../../utils/styles";
+import { Dimensions } from 'react-native';
 
 
 export default function Layout() {
@@ -12,6 +13,7 @@ export default function Layout() {
   const segments = useSegments();
   // if screen is in the home or live stack, hide the tab bar
   const hide = segments.includes("confirmation") || segments.includes("insertTextMoment") || segments.includes("cameraScreen") || segments.includes("insertphotovideo") || segments.includes("insertAudioMoments")
+  const { height: windowHeight, width: windowWidth } = Dimensions.get("window");
 
   // if screen is in the home or live stack, hide the tab bar
   return (
@@ -21,7 +23,7 @@ export default function Layout() {
         tabBarStyle: {
           display: hide ? "none" : "flex",
           backgroundColor: "white",
-          height: 200,
+          height: windowHeight * 0.2,
           borderTopLeftRadius: 40,
           borderTopRightRadius: 40,
           overflow: "hidden",
@@ -30,20 +32,25 @@ export default function Layout() {
         },
         tabBarItemStyle: {
           backgroundColor: 'white',
+          flexDirection: 'column',
           margin: 20,
-          marginTop: 30,
-          width: 50,
-          height: 100,
+          // marginTop: 30,
+          width: windowWidth * 0.3,
+          height: windowHeight * 0.15,
           borderWidth: 2,
           borderColor: '#D9D9D9',
           borderRadius: 20,
           shadowColor: '#D9D9D9',
-          padding: 8,
+          padding: 10,
           shadowOffset: { width: 0, height: 1 },
           shadowOpacity: 0.5,
+          // borderColor: 'black',
+          // borderWidth: 2,
         },
         tabBarLabelStyle: {
-          fontSize: 14,
+          // borderColor: 'black',
+          // borderWidth: 2,
+          fontSize: 20,
           color: "#23AFBB",
         }
       }}

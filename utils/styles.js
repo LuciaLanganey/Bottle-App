@@ -51,7 +51,7 @@ export const AppStyles = () => {
       flex: 1,
       justifyContent: "center",
       resizeMode: "cover",
-      width: "100%",
+      // width: "100%",
       height: "100%",
     },
     text: {
@@ -133,8 +133,9 @@ export const AppStyles = () => {
     bottleImage: {
       marginTop: 15,
       alignSelf: 'center',
+      resizeMode: 'contain',
       width: windowWidth * 0.7,
-      height: windowHeight * 0.5,
+      height: windowHeight * 0.6,
     },
     textInputBox: {
       borderRadius: 20,

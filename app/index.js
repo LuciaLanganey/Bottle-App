@@ -1,20 +1,22 @@
 import React from "react";
 import { useState } from "react";
 import Supabase from "../utils/Supabase.js";
-import { View, Text, SafeAreaView, Pressable, Image, ImageBackground } from "react-native";
+import { View, Text, SafeAreaView, Pressable, Image, ImageBackground, Dimensions } from "react-native";
 import { AppStyles } from "../utils/styles.js";
 import { Link } from "expo-router";
 
-// import { LogBox } from 'react-native';
+import { LogBox } from 'react-native';
 
-// // Ignore specific warnings
-// LogBox.ignoreLogs(['Warning: ...']);
+// Ignore specific warnings
+LogBox.ignoreLogs(['Warning: ...']);
 
-// // Ignore all logs
-// LogBox.ignoreAllLogs();
+// Ignore all logs
+LogBox.ignoreAllLogs();
 
 
 export default function SignUp() {
+  const { height: windowHeight, width: windowWidth } = Dimensions.get("window");
+  
   const styles = AppStyles();
 
   return (
@@ -26,7 +28,7 @@ export default function SignUp() {
       <SafeAreaView style={{ alignItems: 'center' }}>
         <Image
           source={require("../assets/FilledBottle.png")}
-          style={{ resizeMode: "contain", height: 400 }}
+          style={{ resizeMode: "contain", height: windowHeight * 0.5 }}
         />
         <Text style={styles.loginTitle}>Bottle</Text>
         <Text style={styles.loginSubtitle}>Uncap your day with others</Text>

@@ -331,13 +331,14 @@ export default function Home() {
                 <Text style={styles.modalText}>Current reciever:</Text>
                 {/* Current Reciever Pic and Name*/}
                 <View style={{ alignItems: "center" }}>
-                  
                   {selectedRecipient && (
                     <>
                       <Image
-                      source={{ uri: constructImageUrl(selectedRecipient.image_url) }}
-                      style={styles.modalRecieverImage}
-                    />
+                        source={{
+                          uri: constructImageUrl(selectedRecipient.image_url),
+                        }}
+                        style={styles.modalRecieverImage}
+                      />
                       <Text style={styles.personNameText}>
                         {selectedRecipient.first_name}
                       </Text>
@@ -377,7 +378,8 @@ export default function Home() {
                           select(item);
                         }}
                         isSelected={
-                          selectedRecipient && selectedRecipient.first_name === item.first_name
+                          selectedRecipient &&
+                          selectedRecipient.first_name === item.first_name
                         }
                       />
                     )}
@@ -401,14 +403,16 @@ export default function Home() {
           </Modal>
 
           <View style={{ alignItems: "center" }}>
-          {selectedRecipient && (
-                    <>
-                      <Image
-                      source={{ uri: constructImageUrl(selectedRecipient.image_url) }}
-                      style={styles.modalRecieverImage}
-                    />
-                    </>
-                  )}
+            {selectedRecipient && (
+              <>
+                <Image
+                  source={{
+                    uri: constructImageUrl(selectedRecipient.image_url),
+                  }}
+                  style={styles.modalRecieverImage}
+                />
+              </>
+            )}
           </View>
         </View>
         <View
@@ -450,14 +454,16 @@ export default function Home() {
             bottom: "13%",
           }}
         >
-          <Link href={{ pathname: 'bottleApp/insertBottle/addMoment' }}>
-            <Icon
-              name="add-circle"
-              type="ionicons"
-              color="#23AFBB"
-              size={100}
-            />
-          </Link>
+          <View style={{ margin: 40 }}>
+            <Link href={{ pathname: "bottleApp/insertBottle/addMoment" }}>
+              <Icon
+                name="add-circle"
+                type="ionicons"
+                color="#23AFBB"
+                size={100}
+              />
+            </Link>
+          </View>
           {/* NOTE: add button is here - change link to next screen with onPress */}
         </View>
 
@@ -553,7 +559,9 @@ export default function Home() {
                   type="ionicons"
                   color="#23AFBB"
                   size={30}
-                  onPress={() => setCountdownModalVisible(!countdownModalVisible)}
+                  onPress={() =>
+                    setCountdownModalVisible(!countdownModalVisible)
+                  }
                 />
               </View>
               <Text style={styles.modalText}>Time to open a bottle!</Text>
@@ -565,15 +573,13 @@ export default function Home() {
               </View>
 
               <View style={[styles.button]}>
-                <Link href={{pathname: 'bottleApp/openBottle'}}>
+                <Link href={{ pathname: "bottleApp/openBottle" }}>
                   <Text style={styles.textStyle}>Open</Text>
                 </Link>
               </View>
-              
             </View>
           </View>
         </Modal>
-
       </SafeAreaView>
     </ImageBackground>
   );
