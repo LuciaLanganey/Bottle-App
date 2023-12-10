@@ -31,6 +31,9 @@ import moment from 'moment';
 
 export default function CameraScreen() {
   const styles2 = AppStyles();
+  const { height: windowHeight, width: windowWidth } = Dimensions.get("window");
+
+
 
   var currentMoment = moment().format('hh:mm:ss a');
 
@@ -98,18 +101,16 @@ export default function CameraScreen() {
         opacity="0.5"
         style={styles2.backgroundImage}
       >
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView>
           <View
             style={{
               justifyContent: "center",
-              alignSelf: "stretch",
               marginTop: 20,
               marginHorizontal: 20,
-              height: 600,
             }}
           >
             <Image
-              style={{ aspectRatio: 6 / 10 }}
+              style={{ aspectRatio: 6 / 10, height: windowHeight * 0.7, alignSelf: 'center' }}
               source={{ uri: "data:image/jpg;base64," + photo.base64 }}
             />
           </View>
@@ -241,7 +242,7 @@ export default function CameraScreen() {
 
     <View style={{ flex: 1 }}>
       <Camera style={styles.container} ref={cameraRef}>
-        <View style={{ width: 390, flex: 1, paddingTop: 45, paddingHorizontal: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
+        <View style={{ width: windowWidth, flex: 1, paddingTop: 45, paddingHorizontal: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
           <Link href={{ pathname: "bottleApp/insertBottle/photovideo" }}>
             <Ionicons name="arrow-back-circle" size={50} color="#23AFBB" />
           </Link>
@@ -253,8 +254,8 @@ export default function CameraScreen() {
         </View>
         <View
           style={{
-            width: 390,
-            height: 150,
+            width: windowWidth,
+            height: windowHeight * 0.15,
             flexDirection: "row",
             justifyContent: "space-between",
             borderWidth: 2,

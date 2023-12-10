@@ -23,6 +23,8 @@ import moment from "moment";
 
 export default function PreviewScreen() {
   const styles = AppStyles();
+  const { height: windowHeight, width: windowWidth } = Dimensions.get("window");
+
   const [isHappySelected, setHappySelected] = useState(false);
   const [isSadSelected, setSadSelected] = useState(false);
   const [isAngrySelected, setAngrySelected] = useState(false);
@@ -67,9 +69,9 @@ export default function PreviewScreen() {
             margin: 12,
             borderWidth: 1,
             padding: 20,
-            paddingTop: 20,
-            width: 320,
-            height: 280,
+            // paddingTop: 30,
+            width: windowWidth * 0.8,
+            height: windowHeight*0.35,
             alignItems: 'center',
             justifyContent: 'center',
             flexDirection: 'column',
@@ -80,7 +82,7 @@ export default function PreviewScreen() {
           }}>
             {video ? (
               <Video
-                style={{ width: 250, height: 200 }}
+                style={{ width: windowWidth * 0.8, height:  windowHeight*0.3 }}
                 source={{ uri: video }}
                 useNativeControls
                 resizeMode="contain"
@@ -100,7 +102,7 @@ export default function PreviewScreen() {
           <View style={styles.filterView}>
             {/* Filter by emotion bar */}
             <Text style={styles.tinyText}>Select an emotion:</Text>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignContent: 'center' }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', alignContent: 'center' }}>
               <Pressable
                 onPress={() => {
                   handleEmojiSelect('happy');
@@ -140,7 +142,7 @@ export default function PreviewScreen() {
               <Text style={styles.buttonText}>Insert Moment</Text>
             </Link>
           </View>
-          <Image style={{ height: 300, aspectRatio: 1, }} source={require("../../../assets/graphics/bottle-cropped.png")} resizeMode="contain" />
+          <Image style={{ height: windowHeight*0.3, aspectRatio: 1, }} source={require("../../../assets/graphics/bottle-cropped.png")} resizeMode="contain" />
         </View>
       </SafeAreaView>
     </ImageBackground>

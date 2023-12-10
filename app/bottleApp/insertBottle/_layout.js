@@ -26,6 +26,8 @@ export default function Layout() {
           height: windowHeight * 0.2,
           borderTopLeftRadius: 40,
           borderTopRightRadius: 40,
+          borderBottomLeftRadius: 0,
+          borderBottomRightRadius: 0,
           overflow: "hidden",
           position: "absolute",
           alignItems: 'center',
@@ -33,6 +35,7 @@ export default function Layout() {
         tabBarItemStyle: {
           backgroundColor: 'white',
           flexDirection: 'column',
+          justifyContent: 'space-evenly',
           margin: 20,
           // marginTop: 30,
           width: windowWidth * 0.3,

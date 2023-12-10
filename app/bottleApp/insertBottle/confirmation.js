@@ -17,7 +17,7 @@ export default function openBottle() {
                 <Text style={styles.savedText}>Saved to My Bottle</Text>
                 <View style={styles.button}>
                     <Link href={{ pathname: 'bottleApp/home' }}>
-                        <Text style={styles.buttonText}>Return to Home</Text>
+                        <Text style={styles.buttonText}>Return Home</Text>
                     </Link>
                 </View>
                 <Image style={styles.mediumFilledBottle} source={require("../../../assets/graphics/MediumFilledBottle.png")}></Image>

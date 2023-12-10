@@ -2,9 +2,12 @@ import React from "react";
 import { Tabs, useSegments } from "expo-router";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { StyleSheet, Dimensions } from "react-native";
 
 export default function Layout() {
   const segments = useSegments();
+  const { height: windowHeight, width: windowWidth } = Dimensions.get("window");
+
   // if screen is in the home or live stack, hide the tab bar
   const hide = segments.includes("addMoment") || segments.includes("text") || segments.includes("audio") || segments.includes("photovideo") || segments.includes("confirmation") || segments.includes("openBottle") || segments.includes("cameraScreen") || segments.includes("insertAudioMoment") || segments.includes("audioScreen") || segments.includes("audioMoment")
   return (
@@ -15,14 +18,20 @@ export default function Layout() {
         tabBarStyle: {
           display: hide ? "none" : "flex",
           backgroundColor: "white",
-          height: 100,
+          height: windowHeight*0.15,
           borderRadius: 35,
           overflow: "hidden",
           position: "absolute",
         },
         tabBarItemStyle: {
-          margin: 5,
-          borderRadius: 10,
+          flexDirection: 'column',
+          margin: 20,
+          width: windowWidth * 0.3,
+          height: windowHeight * 0.1,
+          shadowColor: '#D9D9D9',
+          padding: 10,
+          shadowOffset: { width: 0, height: 1 },
+          shadowOpacity: 0.5,
         },
         tabBarLabelStyle: {
           fontSize: 14,

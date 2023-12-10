@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, View, ImageBackground, Image, Pressable, Modal } from "react-native";
+import { Text, View, ImageBackground, Image, Pressable, Dimensions } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import { Icon } from "react-native-elements";
 import { AppStyles } from "../../../utils/styles";
@@ -10,7 +10,10 @@ import Header from '../../header';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 
+
 export default function insertTextMoment() {
+    const { height: windowHeight, width: windowWidth } = Dimensions.get("window");
+
     const params = useLocalSearchParams();
     const { text, moment } = params
     const styles = AppStyles();
@@ -45,7 +48,7 @@ export default function insertTextMoment() {
                 </View>
                 <View style={{ alignItems: 'center'}}>
                     <View style={styles.textInputBoxMessage}>
-                    <Image source={require("../../../assets/audio.jpeg")} style={{marginTop: '15%'}}/>
+                    <Image source={require("../../../assets/audio.jpeg")} style={{marginTop: '15%', alignSelf: 'center'}}/>
                         <Text style={styles.boxText}>{text}</Text>
                         <TextInput style={{ alignSelf: 'left', width: 265, marginTop: 30, fontSize: 12}} multiline numberOfLines={1} placeholder="Caption here" />
                         <Text style={styles.timeSentText}>Today at {moment}</Text>
@@ -86,7 +89,7 @@ export default function insertTextMoment() {
                             <Text style={styles.buttonText}>Insert Moment</Text>
                         </Link>
                     </View>
-                    <Image style={{ height: 300, aspectRatio: 1, }} source={require("../../../assets/graphics/bottle-cropped.png")} resizeMode="contain">
+                    <Image style={{ height: windowHeight*0.4, aspectRatio: 1, }} source={require("../../../assets/graphics/bottle-cropped.png")} resizeMode="contain">
                     </Image>
                 </View>
             </SafeAreaView>

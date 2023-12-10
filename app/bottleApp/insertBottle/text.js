@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, View, ImageBackground, Image, TextInput, Pressable, Modal } from "react-native";
+import { Text, View, ImageBackground, Image, TextInput, Pressable } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import { AppStyles } from "../../../utils/styles";
 import { SafeAreaView } from "react-native-safe-area-context";

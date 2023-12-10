@@ -5,6 +5,7 @@ import {
   ImageBackground,
   Image,
   Pressable,
+  Dimensions,
   Modal,
   TextInput,
   Button,
@@ -23,8 +24,10 @@ import Header from '../../header';
 
 import moment from "moment";
 
-export default function openBottle() {
+export default function photovideo() {
   const styles = AppStyles();
+  const { height: windowHeight, width: windowWidth } = Dimensions.get("window");
+
   var currentMoment = moment().format("hh:mm:ss a");
 
   const [image, setImage] = useState(null);
@@ -72,15 +75,17 @@ export default function openBottle() {
             borderWidth: 2,
             borderColor: "#D9D9D9",
             position: "absolute",
-            width: 200,
-            maxHeight: 105,
+            width: windowWidth * 0.5,
+            height: windowHeight * 0.1,
             marginHorizontal: 100,
             marginVertical: 300,
             backgroundColor: "white",
             alignSelf: 'center',
             borderRadius: 20,
             padding: 10,
-            marginTop: '80%',
+            flexDirection: 'column',
+            justifyContent: 'space-evenly'
+            // marginTop: '80%',
           }}
         >
           <Pressable onPress={pickImage}>
@@ -125,7 +130,7 @@ export default function openBottle() {
                   backgroundColor: "white",
                   borderRadius: 20,
                   borderColor: "gray",
-                  width: 370,
+                  width: windowWidth * 0.7,
                   height: 350,
                   justifyContent: 'center',
                   alignItems: 'center',

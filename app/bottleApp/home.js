@@ -405,12 +405,11 @@ export default function Home() {
           <View style={{ alignItems: "center" }}>
             {selectedRecipient && (
               <>
-                <Image
-                  source={{
-                    uri: constructImageUrl(selectedRecipient.image_url),
-                  }}
-                  style={styles.modalRecieverImage}
-                />
+              {selectedRecipient.image_url ? (
+                <Image source={{ uri: constructImageUrl(selectedRecipient.image_url) }} style={styles.resultsImage} />
+              ) : (
+                <Image source={require('../../assets/people/profile.jpg')} style={styles.resultsImage} />
+              )}
               </>
             )}
           </View>
