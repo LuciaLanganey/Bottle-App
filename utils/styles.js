@@ -109,7 +109,7 @@ export const AppStyles = () => {
     },
     button: {
       width: windowWidth * 0.3,
-      height: windowHeight * 0.1,
+      height: windowHeight * 0.05,
       borderRadius: 17,
       backgroundColor: theme.buttonColor,
       justifyContent: "center",

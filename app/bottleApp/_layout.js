@@ -18,7 +18,7 @@ export default function Layout() {
         tabBarStyle: {
           display: hide ? "none" : "flex",
           backgroundColor: "white",
-          height: windowHeight*0.15,
+          height: windowHeight*0.17,
           borderRadius: 35,
           overflow: "hidden",
           position: "absolute",

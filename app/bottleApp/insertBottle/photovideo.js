@@ -58,13 +58,7 @@ export default function photovideo() {
     >
       <SafeAreaView style={{ flex: 1 }}>
         <View style={styles.headerContainer}>
-          <Link href={{ pathname: 'bottleApp/insertBottle/addMoment' }} style={styles.backIconContainer}>
-            <Ionicons
-              name="arrow-back-circle"
-              size={35}
-              color="#23AFBB"
-            />
-          </Link>
+          
         </View>
         <Image
           source={require('../../../assets/graphics/EmptyBottle.png')} resizeMode={'contain'} style={styles.momentBottle}

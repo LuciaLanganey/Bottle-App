@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, View, ImageBackground, Image, Pressable, Modal } from "react-native";
+import { Text, View, ImageBackground, Image, Pressable, Dimensions } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import { Icon } from "react-native-elements";
 import { AppStyles } from "../../../utils/styles";
@@ -10,6 +10,8 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 
 export default function insertTextMoment() {
+    const { height: windowHeight, width: windowWidth } = Dimensions.get("window");
+
     const params = useLocalSearchParams();
     const { text, moment } = params
     const styles = AppStyles();
@@ -80,11 +82,10 @@ export default function insertTextMoment() {
                     </View>
                     <View style={styles.button}>
                         <Link href={{ pathname: 'bottleApp/insertBottle/confirmation' }}>
-                            <Text style={styles.buttonText}>Insert Moment</Text>
+                            <Text style={styles.buttonText}>Insert</Text>
                         </Link>
                     </View>
-                    <Image style={{ height: 300, aspectRatio: 1, }} source={require("../../../assets/graphics/bottle-cropped.png")} resizeMode="contain">
-                    </Image>
+                    <Image style={{ height: windowHeight*0.3, aspectRatio: 1, }} source={require("../../../assets/graphics/bottle-cropped.png")} resizeMode="contain" />
                 </View>
             </SafeAreaView>
         </ImageBackground >

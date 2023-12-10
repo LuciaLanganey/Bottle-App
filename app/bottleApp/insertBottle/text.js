@@ -1,57 +1,91 @@
 import React, { useState } from "react";
-import { Text, View, ImageBackground, Image, TextInput, Pressable } from "react-native";
-import { Ionicons } from '@expo/vector-icons';
+import {
+  Text,
+  View,
+  ImageBackground,
+  Image,
+  TextInput,
+  Pressable,
+} from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 import { AppStyles } from "../../../utils/styles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link } from "expo-router";
-import moment from 'moment';
-import Header from '../../header';
-
+import moment from "moment";
+import Header from "../../header";
 
 export default function openBottle() {
-    const [text, setText] = useState(''); // State to keep track of text
-    const styles = AppStyles();
-    var currentMoment = moment().format('hh:mm:ss a');
-    const clearText = () => {
-        setText(''); // Function to clear text
-    };
-    return (
-        <ImageBackground
-            source={require("../../../assets/background.png")}
-            opacity="0.5"
-            style={styles.backgroundImage}
-        >
-            <SafeAreaView style={{ flex: 1 }}>
-                <View style={styles.headerContainer}>
-                    <Link href={{ pathname: 'bottleApp/insertBottle/addMoment.js' }} style={styles.backIconContainer}>
-                        <Ionicons
-                            name="arrow-back-circle"
-                            size={35}
-                            color="#23AFBB"
-                        />
-                    </Link>
-                </View>
-                <Image
-                    source={require('../../../assets/graphics/EmptyBottle.png')} resizeMode={'contain'} style={styles.momentBottle}
-                />
-                <View style={styles.popupBox}>
-                    <TextInput style={styles.textInputBox} multiline numberOfLines={4} placeholder="Type here" value={text} onChangeText={setText} />
-                    <View style>
-                        <View style={{ position: 'absolute', left: 25, bottom: 25, backgroundColor: 'white', borderRadius: 50, }}>
-                            <Pressable onPress={clearText} style={styles.deleteMessage}>
-                                <Ionicons name="trash-sharp" size={25} color="#23AFBB" />
-                            </Pressable>
-                        </View>
-                        <View style={{ padding: 10, position: 'absolute', left: '74%', bottom: 30, backgroundColor: 'white', borderRadius: 30 }}>
-                            <Link href={{
-                                pathname: '/bottleApp/insertBottle/insertTextMoment', params: { text: text, moment: currentMoment }
-                            }}>
-                                <Text style={{ fontSize: 16, color: "#23AFBB", font: "Inter-Bold" }}>Next &gt;</Text>
-                            </Link>
-                        </View>
-                    </View>
-                </View>
-            </SafeAreaView>
-        </ImageBackground>
-    );
+  const [text, setText] = useState(""); // State to keep track of text
+  const styles = AppStyles();
+  var currentMoment = moment().format("hh:mm:ss a");
+  const clearText = () => {
+    setText(""); // Function to clear text
+  };
+  return (
+    <ImageBackground
+      source={require("../../../assets/background.png")}
+      opacity="0.5"
+      style={styles.backgroundImage}
+    >
+      <SafeAreaView style={{ flex: 1 }}>
+        <View style={styles.headerContainer}>
+          
+        </View>
+        <Image
+          source={require("../../../assets/graphics/EmptyBottle.png")}
+          resizeMode={"contain"}
+          style={styles.momentBottle}
+        />
+        <View style={{ position: "absolute", alignSelf: "center",
+    bottom: "30%",}}>
+          <TextInput
+            style={styles.textInputBox}
+            multiline
+            numberOfLines={4}
+            placeholder="Type here"
+            value={text}
+            onChangeText={setText}
+          />
+          <View style={{flexDirection: 'row', justifyContent: 'space-between', borderColor: 'black',}}>
+            <View
+              style={{
+                position: "absolute",
+                left: 25,
+                bottom: 25,
+                backgroundColor: "white",
+                borderRadius: 50,
+              }}
+            >
+              <Pressable onPress={clearText} style={styles.deleteMessage}>
+                <Ionicons name="trash-sharp" size={25} color="#23AFBB" />
+              </Pressable>
+            </View>
+            <View
+              style={{
+                padding: 10,
+                position: "absolute",
+                left: "74%",
+                bottom: 30,
+                backgroundColor: "white",
+                borderRadius: 30,
+              }}
+            >
+              <Link
+                href={{
+                  pathname: "/bottleApp/insertBottle/insertTextMoment",
+                  params: { text: text, moment: currentMoment },
+                }}
+              >
+                <Text
+                  style={{ fontSize: 16, color: "#23AFBB", font: "Inter-Bold" }}
+                >
+                  Next &gt;
+                </Text>
+              </Link>
+            </View>
+          </View>
+        </View>
+      </SafeAreaView>
+    </ImageBackground>
+  );
 }

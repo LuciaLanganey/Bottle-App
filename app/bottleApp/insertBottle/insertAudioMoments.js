@@ -86,7 +86,7 @@ export default function insertTextMoment() {
                     </View>
                     <View style={styles.button}>
                         <Link href={{ pathname: 'bottleApp/insertBottle/confirmation' }}>
-                            <Text style={styles.buttonText}>Insert Moment</Text>
+                            <Text style={styles.buttonText}>Insert</Text>
                         </Link>
                     </View>
                     <Image style={{ height: windowHeight*0.4, aspectRatio: 1, }} source={require("../../../assets/graphics/bottle-cropped.png")} resizeMode="contain">

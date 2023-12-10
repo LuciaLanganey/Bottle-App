@@ -139,7 +139,7 @@ export default function PreviewScreen() {
                 params: { photo: undefined, video: undefined, image: undefined },
               }}
             >
-              <Text style={styles.buttonText}>Insert Moment</Text>
+              <Text style={styles.buttonText}>Insert</Text>
             </Link>
           </View>
           <Image style={{ height: windowHeight*0.3, aspectRatio: 1, }} source={require("../../../assets/graphics/bottle-cropped.png")} resizeMode="contain" />
