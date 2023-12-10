@@ -76,7 +76,7 @@ export default function audio() {
             </View>
           </Link>
         
-        <Text style={audiostyles.textStyle}>Press Hold To Record</Text>
+        <Text style={audiostyles.textStyle}>Press hold To Record</Text>
 
         </View>
       </SafeAreaView>
