@@ -69,7 +69,12 @@ export default function openBottle() {
     >
       <SafeAreaView style={{ flex: 1 }}>
         <View style={styles.headerContainer}>
-          {/* Add any header components here if needed */}
+        <Link
+            href={{ pathname: "bottleApp/insertBottle/home" }}
+            style={styles.backIconContainer}
+          >
+            <Ionicons name="arrow-back-circle" size={35} color="#23AFBB" />
+          </Link>
         </View>
         <Image
           source={require("../../../assets/graphics/EmptyBottle.png")}
