@@ -11,14 +11,14 @@ export default function Archive() {
       source={require('../../assets/graphics/bottle_archive.png')}    
       style={styles.backgroundImage}
     >
-      {/* <SafeAreaView>
+      <SafeAreaView>
         <Link href={{ pathname: 'bottleApp/openBottle' }}>
           <View style={{ height: 200, width: 100 }}>
           </View>
         </Link>
         <View style={{ height: 200 }}>
         </View>
-      </SafeAreaView> */}
+      </SafeAreaView>
     </ImageBackground>
   );
 }
